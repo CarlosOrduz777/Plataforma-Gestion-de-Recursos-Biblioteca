@@ -7,9 +7,7 @@
 	</properties>
 
 	<typeAliases>
-		<typeAlias type='edu.eci.cvds.entities.Author' alias='Author' />
-		<typeAlias type='edu.eci.cvds.entities.Review' alias='Review' />
-		<typeAlias type='edu.eci.cvds.entities.Book' alias='Book' />
+		<typeAlias type='edu.eci.cvds.entities.User' alias='User' />
 	</typeAliases>
 
 	<environments default="development">
@@ -25,7 +23,7 @@
 		</environment>
 	</environments>
 	<mappers>
-		<mapper resource="mappers/"></mapper>
+		<mapper resource="mappers/UserMapper.xml"></mapper>
 	</mappers>
 
 </configuration>

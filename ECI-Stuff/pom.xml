@@ -1,12 +1,13 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
   <modelVersion>4.0.0</modelVersion>
+
   <groupId>edu.eci.cvds</groupId>
   <artifactId>ECI-Stuff</artifactId>
-  <packaging>war</packaging>
   <version>1.0</version>
+  <packaging>war</packaging>
+
   <name>ECI-Stuff</name>
-  <url>http://maven.apache.org</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -41,6 +42,11 @@
     </dependency>
 
     <!-- Database connection dependencies -->
+    <dependency>
+      <groupId>mysql</groupId>
+      <artifactId>mysql-connector-java</artifactId>
+      <version>5.1.44</version>
+    </dependency>
     <dependency>
       <groupId>org.postgresql</groupId>
       <artifactId>postgresql</artifactId>
@@ -153,7 +159,7 @@
           <source>1.8</source>
           <target>1.8</target>
           <compilerArguments>
-            <!--                         <endorseddirs>${endorsed.dir}</endorseddirs> -->
+            <!--<endorseddirs>${endorsed.dir}</endorseddirs> -->
           </compilerArguments>
         </configuration>
       </plugin>

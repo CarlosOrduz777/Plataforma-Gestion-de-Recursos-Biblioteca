@@ -3,13 +3,9 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
-	<properties resource="test.properties">
-	</properties>
 
 	<typeAliases>
-		<typeAlias type='edu.eci.cvds.entities.Author' alias='Decanatura' />
-		<typeAlias type='edu.eci.cvds.entities.Review' alias='Programa' />
-		<typeAlias type='edu.eci.cvds.entities.Book' alias='Materia' />
+		<typeAlias type='edu.eci.cvds.entities.User' alias='User' />
 	</typeAliases>
 
 	<environments default="development">
@@ -25,8 +21,6 @@
 	</environments>
 
 	<mappers>
-		<mapper resource="mappers/DecanaturaMapper.xml"></mapper>
-		<mapper resource="mappers/ProgramaMapper.xml"></mapper>
 	</mappers>
 
 </configuration>
