@@ -21,6 +21,7 @@ public class UserBean extends BasePageBean {
 	private ECIStuffServices eciStuffServices;
 
 	public void createUsers() throws Exception {
+		System.out.println("Hola");
 		try {
 			eciStuffServices.createUsers();
 		} catch (ServicesException ex) {

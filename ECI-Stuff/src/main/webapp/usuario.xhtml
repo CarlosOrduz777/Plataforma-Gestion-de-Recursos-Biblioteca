@@ -9,21 +9,8 @@
     <title></title>
 </h:head>
 <h:body>
-    <h1>Autores</h1>
-    <p:dataTable id="dec_table" var="author" value="#{autorBean.autores}">
-        <p:column headerText="Nombre">
-            <h:outputText value="#{author.name}" />
-        </p:column>
-        <p:column headerText="Nacionalidad">
-            <h:outputText value="#{author.citizenship}" />
-        </p:column>
-        <p:column headerText="Fecha de Nacimiento">
-            <h:outputText value="#{author.birthdate}" />
-        </p:column>
-        <p:column headerText="Libros">
-            <p:button outcome="libro?author=#{author.id}" value="Ver Libros" />
-        </p:column>
-    </p:dataTable>
+    <h1>Prueba</h1>
+    <p:commandButton value="crear Usuario" actionListener="#{userBean.createUsers()}"/>
 </h:body>
 </html>
 
