@@ -10,7 +10,10 @@
 </h:head>
 <h:body>
     <h1>Prueba</h1>
-    <h:commandButton value="crear Usuario" action="#{userBean.createUser()}"/>
+    <h:form>
+        <h:commandButton value="crear Usuario" action="#{userBean.createUser}"/>
+    </h:form>
+        <p:outputLabel value="revice la tabal user_eci"/>
 </h:body>
 </html>
 

@@ -5,6 +5,6 @@
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.UserMapper">
 
     <insert id="createUser">
-        insert into "ECIStuff".user_eci (id, name, role) values (00004, 'Usuario4','Administrador')
+        insert into "ECIStuff".user_eci (id, name, role) values (00007, 'Usuario7','Comunidad')
     </insert>
 </mapper>
