@@ -20,7 +20,7 @@ public class UserBean extends BasePageBean {
 	@Inject
 	private ECIStuffServices eciStuffServices;
 
-	public void createUsers() throws Exception {
+	public void createUser() throws Exception {
 		System.out.println("Hola");
 		try {
 			eciStuffServices.createUsers();
