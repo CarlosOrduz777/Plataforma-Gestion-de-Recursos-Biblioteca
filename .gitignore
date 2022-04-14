@@ -12,3 +12,5 @@ buildNumber.properties
 .gradle
 .idea
 gradle/
+idea/
+
