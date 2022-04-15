@@ -2,7 +2,10 @@ package edu.eci.cvds.entities;
 
 import lombok.Getter;
 import lombok.Setter;
-public class User {
+
+import java.io.Serializable;
+
+public class User implements Serializable {
     @Getter @Setter private int id;
     @Getter @Setter private String nombre;
     @Getter @Setter private String email;

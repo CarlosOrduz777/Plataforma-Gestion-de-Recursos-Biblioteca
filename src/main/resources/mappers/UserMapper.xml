@@ -4,7 +4,21 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.UserMapper">
 
-    <insert id="createUser">
-        insert into "ECIStuff".user_eci (id, name, role) values (00005, 'Usuario7','Comunidad')
-    </insert>
+    <resultMap id="consultarRecursos" type="Resource">
+        <id property="id" column="id" />
+        <result property="nombre" column="nombre"/>
+        <result property="ubicacion" column="ubicacion"/>
+        <result property="disponible" column="disponible"/>
+        <result property="tipo" column="tipo"/>
+    </resultMap>
+    
+    <select id="consultResources" resultMap="consultarRecursos">
+        SELECT
+            id,
+            nombre,
+            ubicacion,
+            disponible,
+            tipo
+        FROM "ECIStuff".recursos;
+    </select>
 </mapper>

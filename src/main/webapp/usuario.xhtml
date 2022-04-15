@@ -1,19 +1,29 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-    <title></title>
+    <title>Consultar Recursos</title>
 </h:head>
 <h:body>
-    <h1>Prueba</h1>
+    <h1>Consultar Recursos</h1>
     <h:form>
-        <h:commandButton value="crear Usuario" action="#{userBean.createUser}"/>
+        <b:container value="fluid">
+            <b:dataTable value="#{userBean.consultResources()}"
+                         var="ub"
+                        searching="false">
+                <b:dataTableColumn value="#{ub.id}" />
+                <b:dataTableColumn value="#{ub.nombre}" />
+                <b:dataTableColumn value="#{ub.ubicacion}" />
+                <b:dataTableColumn value="#{ub.disponible}" />
+                <b:dataTableColumn value="#{ub.tipo}" />
+            </b:dataTable>
+        </b:container>
+
     </h:form>
-        <p:outputLabel value="revice la tabal user_eci"/>
 </h:body>
 </html>
 

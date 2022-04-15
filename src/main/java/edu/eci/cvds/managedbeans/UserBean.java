@@ -1,5 +1,6 @@
 package edu.eci.cvds.managedbeans;
 
+import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.ECIStuffServices;
 import edu.eci.cvds.services.ServicesException;
@@ -25,6 +26,13 @@ public class UserBean extends BasePageBean {
 	public void createUser() throws Exception {
 		try {
 			eciStuffServices.createUsers();
+		} catch (ServicesException ex) {
+			throw ex;
+		}
+	}
+	public List<Resource> consultResources() throws ServicesException {
+		try {
+			return eciStuffServices.consultResources();
 		} catch (ServicesException ex) {
 			throw ex;
 		}

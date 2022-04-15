@@ -8,6 +8,7 @@
 
 	<typeAliases>
 		<typeAlias type='edu.eci.cvds.entities.User' alias='User' />
+		<typeAlias type='edu.eci.cvds.entities.Resource' alias='Resource' />
 	</typeAliases>
 
 	<environments default="development">

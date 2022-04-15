@@ -16,6 +16,14 @@
   </properties>
 
   <dependencies>
+    <!-- Bootsfaces dependency -->
+    <dependency>
+      <groupId>net.bootsfaces</groupId>
+      <artifactId>bootsfaces</artifactId>
+      <version>1.5.0</version>
+      <scope>compile</scope>
+    </dependency>
+
     <!-- Lombok dependency-->
     <dependency>
       <groupId>org.projectlombok</groupId>
