@@ -14,7 +14,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         try{
             userDAO.create();
         }catch (PersistenceException e){
-            throw new ServicesException("No se puede crear Usuario", e);
+            throw new ServicesException("No se puede crear Usuario por:" + e.getMessage(), e);
         }
     }
 }

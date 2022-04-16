@@ -6,14 +6,28 @@
       xmlns:p="http://primefaces.org/ui">
 
 <h:head>
-    <title></title>
+    <title>Registrar Recurso</title>
+    <link rel="stylesheet" href="login.css"/>
 </h:head>
 <h:body>
-    <h1>Prueba</h1>
-    <h:form>
-        <h:commandButton value="crear Usuario" action="#{userBean.createUser}"/>
-    </h:form>
-    <p:outputLabel value="revice la tabal user_eci"/>
+    <div class="container">
+
+        <div class="sidebar">
+            <img src="https://cdn.discordapp.com/attachments/810979872473350154/964584678248022116/unknown.png" alt="Logo Escuela"/>
+            <span>ECI - STUFF</span>
+        </div>
+        <h:form class="container" id="LogIn">
+            <div class="register">
+                <h1 class="titulo">LogIn</h1>
+                    <label for="iName">Correo</label>
+                    <p:inputText class="input" type="text" value="#{userBean.email}"></p:inputText>
+                    <br/>
+                    <label for="iName">Contraseña</label>
+                    <p:password class="input" type="String" value="#{userBean.password}"></p:password>
+                    <br/>
+                    <p:commandButton value="Ingresar" update="LogIn" actionListener="#{userBean.setEmail(Email.value)}"  />
+            </div>
+        </h:form>
+    </div>
 </h:body>
 </html>
-
