@@ -40,7 +40,7 @@ html, body{
     align-self: center;
 }
 
-input{
+.input{
     background-color: transparent;
     color: white;
 
@@ -63,23 +63,24 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-#iCapa{
+.sInput{
     width: 25%;
 }
 
-select{
+.select{
     background-color: #635959;
     color: white; 
 
     width: 25%;
 
     margin: 0;
+    border: 1px solid white;
     border-radius: 4px;
     padding: 0.5rem 3.5rem 0.5rem 1rem;
     line-height: 1.5em;
     
     font: inherit;
-          
+
     -webkit-appearance: none;
     -moz-appearance: none;
 
@@ -96,4 +97,26 @@ select{
         5px 5px,
         1px 1.5em;
     background-repeat: no-repeat;
+}
+
+.submit-btn{
+    border: 1px solid #635959;
+    border-radius: 5px;
+
+    background-color: transparent;
+    color: white;
+
+    font: inherit;
+}
+
+.submit-btn:hover {
+    background-color: #c1171a;
+}
+
+#register-btn{
+    width: 10%;
+}
+
+.formItem{
+    margin-bottom: 25px;
 }

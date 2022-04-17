@@ -21,30 +21,41 @@
 
         <h1 class="titulo">Registrar Recurso</h1>
 
-        <label for="iName">Nombre</label>
-        <input type="text" id="iName" name="iName"/><br/>
+        <h:form>
 
-        <label for="iName">Ubicación</label>
-        <input type="text" id="iUbi" name="iUbi"/><br/>
+        <div class="formItem">
+            <label for="iName">Nombre</label><br/>
+            <p:inputText class="input" type="text" binding="#{iNombre}"></p:inputText><br/>
+        </div>
+        <div class="formItem">
+            <label for="iName">Ubicación</label><br/>
+            <p:inputText class="input" type="text" binding="#{iUbi}"></p:inputText><br/>
+        </div>
+        <div class="formItem">
+            <p:selectOneMenu class="select" id="option" value="#{selectOneMenuView.selectedOption}" hideNoSelectionOption="#{not empty selectOneMenuView.hideNoSelectOption}">
+                    <f:selectItem itemLabel="Tipo" itemValue="" noSelectionOption="true" class="itemSelect"/>
+                    <f:selectItem itemLabel="Sala de Estudio" itemValue="sala"/>
+                    <f:selectItem itemLabel="Equipo de Cómputo" itemValue="pc"/>
+                    <f:selectItem itemLabel="Equipo Multimedia" itemValue="multi"/>
+            </p:selectOneMenu><br/>
+        </div>
+        <div class="formItem">
+            <label for="iCapa">Capacidad</label><br/>
+            <p:inputText type="number" id="iCapa" class="input sInput"/><br/>
+        </div>
+        <div class="formItem">
+            <label for="iFechaI">Inicio Disponibilidad</label><br/>
+            <p:inputText type="date" id="iFechaI" class="input sInput"/><br/>
+        </div>
+        <div class="formItem">
+            <label for="iFechaI">Fin Disponibilidad</label><br/>
+            <p:inputText type="date" id="iFechaF" class="input sInput"/><br/>
+        </div>
 
-        <select name="iType" id="iType">
-
-            <option hidden="true" >Tipo</option>
-            <option value="sala">Sala de Estudio</option>
-            <option value="pc">Equipo de Cómputo</option>
-            <option value="multi">Equipo Multimedia</option>
-
-        </select><br/>
-
-        <label for="iCapa">Capacidad</label>
-        <input type="number" name="iCapa" id="iCapa"/><br/>
-
-        <select name="iDisp" id="iDisp">
-            <option hidden="true">Disponibilidad</option>
-            <option value="F">Full</option>
-            <option value="L">Lunes</option>
-        </select>
+        <p:commandButton type="submit" class="submit-btn" id="register-btn" value="Registrar" />
         
+        </h:form>
+
     </div>
     </div>
 </h:body>
