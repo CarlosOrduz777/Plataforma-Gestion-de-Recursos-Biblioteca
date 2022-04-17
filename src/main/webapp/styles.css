@@ -63,10 +63,6 @@ input[type=number] {
     -moz-appearance: textfield;
 }
 
-.sInput{
-    width: 25%;
-}
-
 .select{
     background-color: #635959;
     color: white; 
@@ -97,6 +93,17 @@ input[type=number] {
         5px 5px,
         1px 1.5em;
     background-repeat: no-repeat;
+}
+
+.ui-selectonemenu-items-wrapper>ul{
+    background-color: #635959;
+    color: white;
+}
+
+.ui-selectonemenu-items-wrapper li:hover{
+    background-color: white;
+    opacity: 0.3;
+    color: black;
 }
 
 .submit-btn{
