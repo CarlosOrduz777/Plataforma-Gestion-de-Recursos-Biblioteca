@@ -25,7 +25,7 @@
                     <label for="iName">Contraseña</label>
                     <p:password class="input" type="String" value="#{userBean.password}"></p:password>
                     <br/>
-                    <p:commandButton value="Ingresar" update="LogIn" actionListener="#{userBean.setEmail(Email.value)}"  />
+                    <p:commandButton value="Ingresar" update="LogIn" action="#{userBean.signIn}"  />
             </div>
         </h:form>
     </div>

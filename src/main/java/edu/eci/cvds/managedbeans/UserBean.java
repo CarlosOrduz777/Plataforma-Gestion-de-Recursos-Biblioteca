@@ -32,6 +32,15 @@ public class UserBean extends BasePageBean {
 		}
 	}
 
+	public void signIn() throws Exception{
+		try{
+			System.out.println("SIGNIN");
+			eciStuffServices.signIn(email, password);
+		}catch (ServicesException ex){
+			throw ex;
+		}
+	}
+
 	public String getEmail() {
 		return email;
 	}

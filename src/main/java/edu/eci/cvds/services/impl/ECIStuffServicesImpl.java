@@ -5,6 +5,16 @@ import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
 import edu.eci.cvds.services.ServicesException;
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.authc.*;
+import org.apache.shiro.session.Session;
+import org.apache.shiro.subject.Subject;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
+import javax.faces.context.FacesContext;
+import java.io.IOException;
+
 
 public class ECIStuffServicesImpl implements ECIStuffServices {
     @Inject
@@ -16,5 +26,58 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         }catch (PersistenceException e){
             throw new ServicesException("No se puede crear Usuario por:" + e.getMessage(), e);
         }
+    }
+    @Override
+    public void signIn(String email, String password) throws ServicesException{
+        System.out.println("--------ECIStuffServicesImpl--------");
+        System.out.println("--------SignIn--------");
+        Logger log = LoggerFactory.getLogger(ECIStuffServices.class);
+        Subject currentUser = SecurityUtils.getSubject();
+        // Do some stuff with a Session (no need for a web or EJB container!!!)
+        Session session = currentUser.getSession();
+        session.setAttribute("email", email);
+        String value = (String) session.getAttribute("email");
+        if (value.equals(email)) {
+            log.info("Retrieved the correct value! [" + value + "]");
+        }
+        // let's login the current user so we can check against roles and permissions:
+        if (!currentUser.isAuthenticated()) {
+            UsernamePasswordToken token = new UsernamePasswordToken(email, password);
+            token.setRememberMe(true);
+            try {
+                currentUser.login(token);
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/pruebaEjemplo.xhtml");
+            } catch (UnknownAccountException uae) {
+                log.info("There is no user with username of " + token.getPrincipal());
+            } catch (IncorrectCredentialsException ice) {
+                log.info("Password for account " + token.getPrincipal() + " was incorrect!");
+            } catch (LockedAccountException lae) {
+                log.info("The account for username " + token.getPrincipal() + " is locked.  " +
+                        "Please contact your administrator to unlock it.");
+            }
+            // ... catch more exceptions here (maybe custom ones specific to your application?
+            catch (AuthenticationException | IOException ae) {
+                //unexpected condition?  error?
+                log.info(ae.getMessage());
+            }
+        }
+
+        //say who they are:
+        //print their identifying principal (in this case, a username):
+        log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
+
+        /*
+        //test a role:
+        if (currentUser.hasRole("schwartz")) {
+            log.info("May the Schwartz be with you!");
+        } else {
+            log.info("Hello, mere mortal.");
+        }
+
+        //all done - log out!
+        currentUser.logout();
+
+        System.exit(0);
+         */
     }
 }
