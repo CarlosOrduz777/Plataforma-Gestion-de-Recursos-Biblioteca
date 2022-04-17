@@ -12,4 +12,6 @@ public interface ECIStuffServices {
      */
     public void createUsers() throws ServicesException;
 
+    public void registerResources() throws  ServicesException;
+
 }
