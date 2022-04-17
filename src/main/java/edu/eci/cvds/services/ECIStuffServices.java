@@ -12,6 +12,6 @@ public interface ECIStuffServices {
      */
     public void createUsers() throws ServicesException;
 
-    public void registerResources() throws  ServicesException;
+    public void registerResources(String nombre, String ubicacion, String tipo, String capacidad, String inicioDisp, String finDisp) throws  ServicesException;
 
 }

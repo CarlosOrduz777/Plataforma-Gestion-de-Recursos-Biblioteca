@@ -24,6 +24,6 @@
 
     <insert id="registerResources" parameterType="map">
         INSERT INTO ECIStuff
-        VALUES (#{resource.id},#{resource.nombre},#{resource.ubicacion},#{resource.disponible},#{resource.tipo},#{resource.descripcion})
+        VALUES (#{nombre},#{ubicacion},#{tipo},#{capacidad},#{iDisp},#{fDisp});
     </insert>
 </mapper>

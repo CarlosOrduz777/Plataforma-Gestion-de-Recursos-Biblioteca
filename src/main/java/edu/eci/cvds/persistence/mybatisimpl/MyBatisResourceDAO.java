@@ -9,9 +9,9 @@ public class MyBatisResourceDAO implements ResourceDAO {
     private ResourceMapper resourceMapper;
 
     @Override
-    public void registerResources() throws PersistenceException {
+    public void registerResources(String nombre, String ubicacion, String tipo, String capacidad, String inicioDisp, String finDisp) throws PersistenceException {
         try {
-            resourceMapper.registerResource();
+            resourceMapper.registerResource(nombre, ubicacion, tipo, capacidad, inicioDisp, finDisp);
         }catch (Exception e){
             throw new PersistenceException("Error al registrar el recurso");
         }

@@ -27,7 +27,8 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     @Override
     public void registerResources() throws ServicesException {
         try{
-            resourceDAO.registerResources();
+
+            resourceDAO.registerResources(nombre, ubicacion, tipo, capacidad, inicioDisp, finDisp);
         }catch (Exception e){
             throw new ServicesException("No se ha podido registrar el recurso", e);
         }
