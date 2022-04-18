@@ -46,7 +46,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             token.setRememberMe(true);
             try {
                 currentUser.login(token);
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/pruebaEjemplo.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/pruebaEjemplo.xhtml");
             } catch (UnknownAccountException uae) {
                 log.info("There is no user with username of " + token.getPrincipal());
             } catch (IncorrectCredentialsException ice) {
@@ -63,7 +63,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         }
 
         //say who they are:
-        //print their identifying principal (in this case, a username):
+        //print their identifying princip   al (in this case, a username):
         log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
 
         /*
