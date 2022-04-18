@@ -44,6 +44,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         if (!currentUser.isAuthenticated()) {
             UsernamePasswordToken token = new UsernamePasswordToken(email, password);
             token.setRememberMe(true);
+            log.info("Sale del IF");
             try {
                 currentUser.login(token);
                 FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/pruebaEjemplo.xhtml");
