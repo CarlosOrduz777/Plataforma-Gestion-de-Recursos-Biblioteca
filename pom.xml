@@ -85,6 +85,7 @@
       <artifactId>primefaces</artifactId>
       <version>6.2</version>
     </dependency>
+
     <!-- Test dependencies -->
     <dependency>
       <groupId>junit</groupId>
@@ -92,6 +93,13 @@
       <version>4.12</version>
       <scope>test</scope>
     </dependency>
+
+    <dependency>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.2</version>
+      </dependency>
+
   </dependencies>
 
   <build>
@@ -230,6 +238,27 @@
           </execution>
         </executions>
       </plugin>
+
+      <!-- Jacoco embedded plugin. -->
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.2</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
     </plugins>
   </build>
 </project>
