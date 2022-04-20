@@ -26,20 +26,19 @@
             <!-- Campo Nombre -->
         <div class="formItem">
             <label>Nombre</label><br/>
-            <p:inputText id="iName" class="input" type="text" placeholder="Nombre" binding="#{resourceBean.nombre}"/><br/>
+            <p:inputText id="iName" class="input" type="text" placeholder="Nombre" value="#{resourceBean.nombre}"/><br/>
         </div>
 
             <!-- Campo Ubi -->
         <div class="formItem">
             <label>Ubicación</label><br/>
-            <p:inputText id="iUbi" class="input" type="text" placeholder="Ubicación" binding="#{resourceBean.ubicacion}"/><br/>
+            <p:inputText id="iUbi" class="input" type="text" placeholder="Ubicación" value="#{resourceBean.ubicacion}"/><br/>
         </div>
 
             <!-- Selector Tipo -->
         <div class="formItem">
-            <p:selectOneMenu class="select" id="iType" binding="#{resourceBean.tipo}" >
+            <p:selectOneMenu class="select" id="iType" value="#{resourceBean.tipo}" >
                     <f:selectItem itemLabel="Tipo" itemValue="" />
-                    <!-- Agregarlos como variable para no dejar quemado -->
                     <f:selectItem itemLabel="Sala de Estudio" itemValue="sala"/>
                     <f:selectItem itemLabel="Equipo de Cómputo" itemValue="pc"/>
                     <f:selectItem itemLabel="Equipo Multimedia" itemValue="multi"/>
@@ -49,23 +48,23 @@
             <!-- Campo Capacidad -->
         <div class="formItem">
             <label>Capacidad</label><br/>
-            <p:inputText id="iCapa" class="input" type="number" placeholder="Capacidad" binding="#{resourceBean.capacidad}" /><br/>
+            <p:inputText id="iCapa" class="input" type="number" placeholder="Capacidad" value="#{resourceBean.capacidad}" /><br/>
         </div>
 
             <!-- Campo IDisponibilidad -->
         <div class="formItem">
             <label>Inicio Disponibilidad</label><br/>
-            <p:inputText id="iFechaI" class="input" type="date" binding="#{resourceBean.iDisp}" /><br/>
+            <p:inputText id="iFechaI" class="input" type="date" value="#{resourceBean.iDisp}" /><br/>
         </div>
 
             <!-- Campo FDisponibilidad -->
         <div class="formItem">
             <label>Fin Disponibilidad</label><br/>
-            <p:inputText id="iFechaF" class="input" type="date" binding="#{resourceBean.fDisp}" /><br/>
+            <p:inputText id="iFechaF" class="input" type="date" value="#{resourceBean.fDisp}" /><br/>
         </div>
 
         <p:commandButton class="submit-btn" id="register-btn" value="Registrar" actionListener="#{resourceBean.registerResource}" update="registerResourceForm" />
-        
+
         </h:form>
 
     </div>

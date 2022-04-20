@@ -98,7 +98,7 @@
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
           <version>0.8.2</version>
-      </dependency>
+    </dependency>
 
   </dependencies>
 
@@ -258,6 +258,13 @@
                     </goals>
                 </execution>
             </executions>
+            <configuration>
+                <excludes>
+                  <exclude>edu/eci/cvds/guice/*</exclude>
+                  <exclude>edu/eci/cvds/persistence/*</exclude>
+                  <exclude>edu/eci/cvds/*App*</exclude>
+                </excludes>
+            </configuration>
         </plugin>
     </plugins>
   </build>
