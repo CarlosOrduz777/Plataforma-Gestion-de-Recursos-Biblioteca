@@ -1,6 +1,7 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.ResourceDAO;
 import edu.eci.cvds.persistence.UserDAO;
@@ -25,7 +26,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     }
 
     @Override
-    public void registerResources() throws ServicesException {
+    public void registerResources(Resource resource) throws ServicesException {
         try{
             resourceDAO.registerResources(resource);
         }catch (Exception e){

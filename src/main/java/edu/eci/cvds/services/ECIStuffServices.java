@@ -1,5 +1,6 @@
 package edu.eci.cvds.services;
 
+import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 
 import java.util.List;
