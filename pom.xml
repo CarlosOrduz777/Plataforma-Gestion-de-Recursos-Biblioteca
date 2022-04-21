@@ -98,7 +98,13 @@
           <groupId>org.jacoco</groupId>
           <artifactId>jacoco-maven-plugin</artifactId>
           <version>0.8.2</version>
-      </dependency>
+    </dependency>
+    <dependency>
+      <groupId>org.projectlombok</groupId>
+      <artifactId>lombok</artifactId>
+      <version>RELEASE</version>
+      <scope>compile</scope>
+    </dependency>
 
   </dependencies>
 
@@ -258,6 +264,13 @@
                     </goals>
                 </execution>
             </executions>
+            <configuration>
+                <excludes>
+                  <exclude>edu/eci/cvds/guice/*</exclude>
+                  <exclude>edu/eci/cvds/persistence/*</exclude>
+                  <exclude>edu/eci/cvds/*App*</exclude>
+                </excludes>
+            </configuration>
         </plugin>
     </plugins>
   </build>

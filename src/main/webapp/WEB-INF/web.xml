@@ -3,6 +3,8 @@
   <context-param>
     <param-name>javax.faces.PROJECT_STAGE</param-name>
     <param-value>Development</param-value>
+    <param-name>primefaces.THEME</param-name>
+    <param-value>none</param-value>
   </context-param>
   <servlet>
     <servlet-name>Faces Servlet</servlet-name>
