@@ -87,7 +87,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
 
         System.exit(0);
          */
-            throw new ServicesException("No se puede crear Usuario", e);
+            //throw new ServicesException("No se puede crear Usuario");
         }
 
     @Override
