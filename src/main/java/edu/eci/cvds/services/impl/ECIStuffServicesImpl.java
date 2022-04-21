@@ -3,15 +3,17 @@ package edu.eci.cvds.services.impl;
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.persistence.PersistenceException;
+import edu.eci.cvds.persistence.ResourceDAO;
 import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
 import edu.eci.cvds.services.ServicesException;
 
-import java.util.List;
-
 public class ECIStuffServicesImpl implements ECIStuffServices {
     @Inject
     private UserDAO userDAO;
+
+    @Inject
+    private ResourceDAO resourceDAO;
 
 
     @Override
@@ -24,11 +26,11 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     }
 
     @Override
-    public List<Resource> consultResources() throws ServicesException {
+    public void registerResources(Resource resource) throws ServicesException {
         try{
-            return userDAO.consultResources();
-        }catch (PersistenceException e){
-            throw new ServicesException("No se ha podido consultar los recursos", e);
+            resourceDAO.registerResources(resource);
+        }catch (Exception e){
+            throw new ServicesException("No se ha podido registrar el recurso", e);
         }
     }
 }

@@ -4,31 +4,24 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.io.Serializable;
+import java.sql.Date;
 
 public class Resource implements Serializable {
 
     @Getter @Setter private int id;
     @Getter @Setter private String nombre;
     @Getter @Setter private String ubicacion;
-    @Getter @Setter private boolean disponible;
+    @Getter @Setter private String capacidad;
     @Getter @Setter private String tipo;
-    @Getter @Setter private String descripcion;
+    @Getter @Setter private Date iDisp;
+    @Getter @Setter private Date fDisp;
 
-    public Resource(int id, String nombre, String ubicacion, boolean disponible, String tipo, String descripcion){
-        this.id = id;
+    public Resource(String nombre, String ubicacion, String capacidad, String tipo, Date iDisp, Date fDisp){
         this.nombre = nombre;
         this.ubicacion = ubicacion;
-        this.disponible = disponible;
+        this.capacidad = capacidad;
         this.tipo = tipo;
-        this.descripcion = descripcion;
-    }
-
-    public Resource(int id, String nombre, String ubicacion, boolean disponible, String tipo){
-        this.id = id;
-        this.nombre = nombre;
-        this.ubicacion = ubicacion;
-        this.disponible = disponible;
-        this.tipo = tipo;
-        this.descripcion = null;
+        this.iDisp = iDisp;
+        this.fDisp = fDisp;
     }
 }
