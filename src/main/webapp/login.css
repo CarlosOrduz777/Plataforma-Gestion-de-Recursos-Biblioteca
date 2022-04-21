@@ -1,0 +1,64 @@
+html, body{
+    margin: 0px;
+    height: 100%;
+    font-family: 'Source Sans Pro', sans-serif;
+}
+
+.container{
+    display: flex;
+    height: 100%;
+    width: 100%;
+}
+
+.sidebar{
+    display: flex;
+    flex-direction: column;
+
+    background-color: #c1171a;
+    color: white;
+    
+    width: 25%;
+}
+
+.sidebar span{
+    align-self: center;
+    font-size: 3.5rem;
+}
+
+.register{
+    display: flex;
+    flex-direction: column;
+    background-color: #413939;
+    color: white;
+
+    padding-left: 2%;
+    padding-right: 2%;
+    width: 71%;
+}
+
+.titulo{
+    align-self: center;
+}
+
+input{
+    background-color: transparent;
+    color: white;
+
+    border: 0px;
+    border-bottom: 1px solid #635959;
+    
+    margin-top: 10px;
+
+    font: inherit;
+
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type=number] {
+    -moz-appearance: textfield;
+}

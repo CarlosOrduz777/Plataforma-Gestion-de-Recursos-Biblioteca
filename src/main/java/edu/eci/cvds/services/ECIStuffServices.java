@@ -13,6 +13,8 @@ public interface ECIStuffServices {
      */
     public void createUsers() throws ServicesException;
 
+    public void signIn(String email, String password) throws  ServicesException;
+
     public void registerResources(Resource resource) throws  ServicesException;
 
 }
