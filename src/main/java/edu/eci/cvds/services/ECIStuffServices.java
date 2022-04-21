@@ -1,5 +1,6 @@
 package edu.eci.cvds.services;
 
+import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 
 import java.util.List;
@@ -13,5 +14,7 @@ public interface ECIStuffServices {
     public void createUsers() throws ServicesException;
 
     public void signIn(String email, String password) throws  ServicesException;
+
+    public void registerResources(Resource resource) throws  ServicesException;
 
 }

@@ -15,10 +15,17 @@ import org.slf4j.LoggerFactory;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
 
+import edu.eci.cvds.entities.Resource;
+import edu.eci.cvds.persistence.ResourceDAO;
 
 public class ECIStuffServicesImpl implements ECIStuffServices {
     @Inject
     private UserDAO userDAO;
+
+    @Inject
+    private ResourceDAO resourceDAO;
+
+
     @Override
     public void createUsers() throws ServicesException {
         try{
@@ -80,5 +87,15 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
 
         System.exit(0);
          */
+            throw new ServicesException("No se puede crear Usuario", e);
+        }
+
+    @Override
+    public void registerResources(Resource resource) throws ServicesException {
+        try{
+            resourceDAO.registerResources(resource);
+        }catch (Exception e){
+            throw new ServicesException("No se ha podido registrar el recurso", e);
+        }
     }
 }
