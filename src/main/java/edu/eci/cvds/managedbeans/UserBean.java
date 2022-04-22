@@ -4,7 +4,10 @@ import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.ECIStuffServices;
 import edu.eci.cvds.services.ServicesException;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -22,6 +25,7 @@ public class UserBean extends BasePageBean {
 
 	@Inject
 	private ECIStuffServices eciStuffServices;
+	@Getter @Setter private List<Resource> result;
 
 	public void createUser() throws Exception {
 		try {
@@ -30,11 +34,14 @@ public class UserBean extends BasePageBean {
 			throw ex;
 		}
 	}
+
+	@PostConstruct
 	public List<Resource> consultResources() throws ServicesException {
 		try {
-			return eciStuffServices.consultResources();
+			result = eciStuffServices.consultResources();
+			return result;
 		} catch (ServicesException ex) {
-			throw ex;
+			throw new ServicesException(ex.getMessage());
 		}
 	}
 

@@ -8,6 +8,8 @@ import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
 import edu.eci.cvds.services.ServicesException;
 
+import java.util.List;
+
 public class ECIStuffServicesImpl implements ECIStuffServices {
     @Inject
     private UserDAO userDAO;
@@ -22,6 +24,15 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             userDAO.create();
         }catch (PersistenceException e){
             throw new ServicesException("No se puede crear Usuario", e);
+        }
+    }
+
+    @Override
+    public List<Resource> consultResources() throws ServicesException {
+        try{
+            return userDAO.consultResources();
+        }catch (PersistenceException e){
+            throw new ServicesException("No se puede consultar recurso", e);
         }
     }
 

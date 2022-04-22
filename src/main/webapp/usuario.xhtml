@@ -1,29 +1,50 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
+<f:metadata>
+    <f:viewParam name="result" value="#{userBean.result}" />
+    <f:event type="preRenderView" listener="#{userBean.consultResources()}" />
+</f:metadata>
 
 <h:head>
     <title>Consultar Recursos</title>
+    <link rel="stylesheet" href="UserStyle.css"/>
 </h:head>
 <h:body>
     <h1>Consultar Recursos</h1>
-    <h:form>
-        <b:container value="fluid">
-            <b:dataTable value="#{userBean.consultResources()}"
-                         var="ub"
-                        searching="false">
-                <b:dataTableColumn value="#{ub.id}" />
-                <b:dataTableColumn value="#{ub.nombre}" />
-                <b:dataTableColumn value="#{ub.ubicacion}" />
-                <b:dataTableColumn value="#{ub.disponible}" />
-                <b:dataTableColumn value="#{ub.tipo}" />
-            </b:dataTable>
-        </b:container>
 
-    </h:form>
+    <div class="consultContainer">
+        <h:form>
+            <b:container value="fluid">
+                <b:dataTable value="#{userBean.result}"
+                             var="ub"
+                             searching="true">
+                    <b:dataTableColumn value="#{ub.id}" />
+                    <b:dataTableColumn value="#{ub.nombre}" />
+                    <b:dataTableColumn value="#{ub.ubicacion}" />
+                    <b:dataTableColumn value="#{ub.tipo}" />
+                    <b:dataTableColumn value="#{ub.capacidad}" />
+                    <b:dataTableColumn  label="Inicio Disponibilidad">
+                        <h:outputText value="#{ub.iDisp}" >
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                        </h:outputText>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn label="Fin Disponibilidad">
+                        <h:outputText value="#{ub.fDisp}" >
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                        </h:outputText>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn label="Reserva">
+                        <b:commandButton value="reservar" ajax="true" update="@none" look="primary" style="width:80px"/>
+                    </b:dataTableColumn>
+                </b:dataTable>
+            </b:container>
+        </h:form>
+    </div>
+
 </h:body>
 </html>
 

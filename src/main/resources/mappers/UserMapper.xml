@@ -2,23 +2,30 @@
 <!DOCTYPE mapper
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.UserMapper">
 
-    <resultMap id="consultarRecursos" type="Resource">
+
+    <resultMap id="ResourceResult" type="Resource">
         <id property="id" column="id" />
         <result property="nombre" column="nombre"/>
         <result property="ubicacion" column="ubicacion"/>
-        <result property="disponible" column="disponible"/>
         <result property="tipo" column="tipo"/>
+        <result property="capacidad" column="descripcion"/>
+        <result property="iDisp" column="iniciodisponibilidad"/>
+        <result property="fDisp" column="findisponibilidad"/>
     </resultMap>
     
-    <select id="consultResources" resultMap="consultarRecursos">
+    <select id="consultResources" resultMap="ResourceResult">
         SELECT
             id,
             nombre,
             ubicacion,
-            disponible,
-            tipo
+            tipo,
+            descripcion,
+            iniciodisponibilidad,
+            findisponibilidad
         FROM "ECIStuff".recursos;
     </select>
 </mapper>

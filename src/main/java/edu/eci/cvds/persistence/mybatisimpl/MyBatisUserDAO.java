@@ -25,7 +25,7 @@ public class MyBatisUserDAO implements UserDAO {
         try {
             return userMapper.consultResources();
         }catch (Exception e){
-            throw new PersistenceException("No se pudo consultar Recursos");
+            throw new PersistenceException(e.getMessage());
         }
     }
 }

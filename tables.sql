@@ -11,9 +11,10 @@ CREATE TABLE `recursos` (
     `id` INT primary key not null,
     `nombre` varchar(50) not null,
     `ubicacion` varchar(20) not null,
-    `disponible` bool not null,
     `tipo` varchar(40) not null,
-    `descripcion` varchar(400)
+    `descripcion` varchar(400),
+    iniciodisponibilidad date,
+    findisponibilidad date
 );
 CREATE TABLE `usuarios` (
     `id` INT primary key not null,
