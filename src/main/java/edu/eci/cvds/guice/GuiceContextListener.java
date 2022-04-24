@@ -2,7 +2,9 @@ package edu.eci.cvds.guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import edu.eci.cvds.persistence.ResourceDAO;
 import edu.eci.cvds.persistence.UserDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisResourceDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisUserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
 import edu.eci.cvds.services.impl.ECIStuffServicesImpl;
@@ -32,6 +34,9 @@ public class GuiceContextListener implements ServletContextListener {
 				setClassPathResource("mybatis-config.xml");
 
 				// Hacer la inyeccion de dependencias
+				bind(UserDAO.class).to(MyBatisUserDAO.class);
+				bind(ResourceDAO.class).to(MyBatisResourceDAO.class);
+				bind(ECIStuffServices.class).to(ECIStuffServicesImpl.class);
 
 				bind(ECIStuffServices.class).to(ECIStuffServicesImpl.class);
 				bind(UserDAO.class).to(MyBatisUserDAO.class);

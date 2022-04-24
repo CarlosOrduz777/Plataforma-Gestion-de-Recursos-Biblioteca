@@ -18,6 +18,8 @@ import java.util.List;
 @ManagedBean(name = "userBean")
 @RequestScoped
 public class UserBean extends BasePageBean {
+	private String email;
+	private String password;
 
 	@Inject
 	private ECIStuffServices eciStuffServices;
@@ -30,6 +32,30 @@ public class UserBean extends BasePageBean {
 		}
 	}
 
+	public void signIn() throws Exception{
+		try{
+			System.out.println("SIGNIN");
+			eciStuffServices.signIn(email, password);
+		}catch (ServicesException ex){
+			throw ex;
+		}
+	}
 
+	public String getEmail() {
+		return email;
+	}
 
+	public void setEmail(String email) {
+		System.out.println(email);
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		System.out.println(password);
+		this.password = password;
+	}
 }

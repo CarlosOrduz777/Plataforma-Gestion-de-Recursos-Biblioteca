@@ -13,7 +13,7 @@ public class MyBatisUserDAO implements UserDAO {
         try {
             userMapper.createUser();
         }catch (Exception e){
-            throw new PersistenceException("No se Pudo crear Usuario");
+            throw new PersistenceException("No se Pudo crear Usuario por " + e.getMessage());
         }
     }
 }

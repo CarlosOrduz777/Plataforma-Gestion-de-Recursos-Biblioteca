@@ -12,5 +12,6 @@ buildNumber.properties
 .gradle
 .idea
 gradle/
-idea/
-
+.idea/
+/ECI-Stuff/.idea
+ECI-Stuff.iml
