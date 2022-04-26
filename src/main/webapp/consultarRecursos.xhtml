@@ -5,13 +5,13 @@
       xmlns:f="http://java.sun.com/jsf/core"
       xmlns:h="http://java.sun.com/jsf/html">
 <f:metadata>
-    <f:viewParam name="result" value="#{userBean.result}" />
-    <f:event type="preRenderView" listener="#{userBean.consultResources()}" />
+    <f:viewParam name="result" value="#{resourceBean.result}" />
+    <f:event type="preRenderView" listener="#{resourceBean.consultResources()}" />
 </f:metadata>
 
 <h:head>
     <title>Consultar Recursos</title>
-    <link rel="stylesheet" href="UserStyle.css"/>
+    <link rel="stylesheet" href="styles.css"/>
 </h:head>
 <h:body>
     <h1>Consultar Recursos</h1>
@@ -19,21 +19,21 @@
     <div class="consultContainer">
         <h:form>
             <b:container value="fluid">
-                <b:dataTable value="#{userBean.result}"
-                             var="ub"
+                <b:dataTable value="#{resourceBean.result}"
+                             var="rb"
                              searching="true">
-                    <b:dataTableColumn value="#{ub.id}" />
-                    <b:dataTableColumn value="#{ub.nombre}" />
-                    <b:dataTableColumn value="#{ub.ubicacion}" />
-                    <b:dataTableColumn value="#{ub.tipo}" />
-                    <b:dataTableColumn value="#{ub.capacidad}" />
+                    <b:dataTableColumn value="#{rb.id}" />
+                    <b:dataTableColumn value="#{rb.nombre}" />
+                    <b:dataTableColumn value="#{rb.ubicacion}" />
+                    <b:dataTableColumn value="#{rb.tipo}" />
+                    <b:dataTableColumn value="#{rb.capacidad}" />
                     <b:dataTableColumn  label="Inicio Disponibilidad">
-                        <h:outputText value="#{ub.iDisp}" >
+                        <h:outputText value="#{rb.iDisp}" >
                             <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
                     <b:dataTableColumn label="Fin Disponibilidad">
-                        <h:outputText value="#{ub.fDisp}" >
+                        <h:outputText value="#{rb.fDisp}" >
                             <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>

@@ -6,5 +6,5 @@ import java.util.List;
 
 public interface UserMapper {
     void createUser();
-    List<Resource> consultResources();
+
 }

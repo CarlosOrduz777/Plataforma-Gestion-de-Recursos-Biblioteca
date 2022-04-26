@@ -7,25 +7,5 @@
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.UserMapper">
 
 
-    <resultMap id="ResourceResult" type="Resource">
-        <id property="id" column="id" />
-        <result property="nombre" column="nombre"/>
-        <result property="ubicacion" column="ubicacion"/>
-        <result property="tipo" column="tipo"/>
-        <result property="capacidad" column="descripcion"/>
-        <result property="iDisp" column="iniciodisponibilidad"/>
-        <result property="fDisp" column="findisponibilidad"/>
-    </resultMap>
-    
-    <select id="consultResources" resultMap="ResourceResult">
-        SELECT
-            id,
-            nombre,
-            ubicacion,
-            tipo,
-            descripcion,
-            iniciodisponibilidad,
-            findisponibilidad
-        FROM "ECIStuff".recursos;
-    </select>
+
 </mapper>

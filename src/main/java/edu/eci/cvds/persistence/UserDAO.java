@@ -7,5 +7,5 @@ import java.util.List;
 public interface UserDAO {
     public void create() throws PersistenceException;
 
-    public List<Resource> consultResources() throws PersistenceException;
+
 }

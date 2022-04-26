@@ -127,3 +127,11 @@ input[type=number] {
 .formItem{
     margin-bottom: 25px;
 }
+.consultContainer {
+    height: 100%;
+    width: 100%;
+    background-color:#a1a3a6;
+    background-position: center;
+    background-size: cover;
+
+}
