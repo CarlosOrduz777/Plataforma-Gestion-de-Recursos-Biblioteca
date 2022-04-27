@@ -17,27 +17,29 @@
     <h1>Consultar Recursos</h1>
 
     <div class="consultContainer">
-        <h:form>
+        <h:form >
             <b:container value="fluid">
                 <b:dataTable value="#{resourceBean.result}"
                              var="rb"
-                             searching="true">
-                    <b:dataTableColumn value="#{rb.id}" />
-                    <b:dataTableColumn value="#{rb.nombre}" />
+                             searching="true"
+                             multiColumnSearch="true"
+                             multiColumnSearchPosition="top">
+                    <b:dataTableColumn value="#{rb.id}"  searchable="false"/>
+                    <b:dataTableColumn value="#{rb.nombre}" searchable="false"/>
                     <b:dataTableColumn value="#{rb.ubicacion}" />
                     <b:dataTableColumn value="#{rb.tipo}" />
                     <b:dataTableColumn value="#{rb.capacidad}" />
-                    <b:dataTableColumn  label="Inicio Disponibilidad">
+                    <b:dataTableColumn  label="Inicio Disponibilidad" searchable="false">
                         <h:outputText value="#{rb.iDisp}" >
                             <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
-                    <b:dataTableColumn label="Fin Disponibilidad">
+                    <b:dataTableColumn label="Fin Disponibilidad" searchable="false">
                         <h:outputText value="#{rb.fDisp}" >
                             <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
-                    <b:dataTableColumn label="Reserva">
+                    <b:dataTableColumn label="Reserva" searchable="false">
                         <b:commandButton value="reservar" ajax="true" update="@none" look="primary" style="width:80px"/>
                     </b:dataTableColumn>
                 </b:dataTable>
