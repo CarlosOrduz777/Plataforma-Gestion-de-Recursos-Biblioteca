@@ -9,7 +9,7 @@
         <result property="nombre" column="nombre"/>
         <result property="ubicacion" column="ubicacion"/>
         <result property="tipo" column="tipo"/>
-        <result property="descripcion" column="descripcion"/>
+        <result property="capacidad" column="descripcion"/>
         <result property="iDisp" column="iniciodisponibilidad"/>
         <result property="fDisp" column="findisponibilidad"/>
     </resultMap>
@@ -18,4 +18,17 @@
         INSERT INTO "ECIStuff".recursos (nombre, ubicacion, tipo, descripcion, iniciodisponibilidad, findisponibilidad )
         VALUES (#{r.nombre},#{r.ubicacion},#{r.tipo},#{r.capacidad},#{r.iDisp},#{r.fDisp});
     </insert>
+
+
+    <select id="consultResources" resultMap="ResourceResult">
+        SELECT
+            id,
+            nombre,
+            ubicacion,
+            tipo,
+            descripcion,
+            iniciodisponibilidad,
+            findisponibilidad
+        FROM "ECIStuff".recursos;
+    </select>
 </mapper>

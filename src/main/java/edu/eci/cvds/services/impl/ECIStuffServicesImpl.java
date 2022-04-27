@@ -18,20 +18,20 @@ import java.io.IOException;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.persistence.ResourceDAO;
 
+import java.util.List;
+
 public class ECIStuffServicesImpl implements ECIStuffServices {
+
     @Inject
     private UserDAO userDAO;
-
     @Inject
     private ResourceDAO resourceDAO;
 
-
-    @Override
     public void createUsers() throws ServicesException {
-        try{
+        try {
             userDAO.create();
-        }catch (PersistenceException e){
-            throw new ServicesException("No se puede crear Usuario por:" + e.getMessage(), e);
+        } catch (PersistenceException e) {
+            throw new ServicesException("No se puede crear Usuario", e);
         }
     }
     @Override
@@ -89,6 +89,15 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
          */
             //throw new ServicesException("No se puede crear Usuario");
         }
+
+    @Override
+    public List<Resource> consultResources() throws ServicesException {
+        try{
+            return resourceDAO.consultResources();
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
 
     @Override
     public void registerResources(Resource resource) throws ServicesException {
