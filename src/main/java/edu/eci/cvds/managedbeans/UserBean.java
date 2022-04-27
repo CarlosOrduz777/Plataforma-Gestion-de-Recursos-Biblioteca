@@ -31,7 +31,13 @@ public class UserBean extends BasePageBean {
 
 
 
-
+	public void createUser() throws Exception {
+		try {
+			eciStuffServices.createUsers();
+		} catch (ServicesException ex) {
+			throw new ServicesException(ex.getMessage());
+		}
+	}
 
 	public void signIn() throws Exception{
 		try{

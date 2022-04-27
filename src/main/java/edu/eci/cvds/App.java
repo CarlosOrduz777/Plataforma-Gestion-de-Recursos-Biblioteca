@@ -12,6 +12,7 @@ public class App
 {
     public static void main( String[] args ) throws ServicesException {
         ECIStuffServicesImpl eciStuffServices = new ECIStuffServicesImpl();
-
+        eciStuffServices.createUsers();
+        System.out.println( "===== fin =====" );
     }
 }

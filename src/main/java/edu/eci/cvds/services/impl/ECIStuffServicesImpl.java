@@ -22,11 +22,18 @@ import java.util.List;
 
 public class ECIStuffServicesImpl implements ECIStuffServices {
 
-
+    @Inject
+    private UserDAO userDAO;
     @Inject
     private ResourceDAO resourceDAO;
 
-
+    public void createUsers() throws ServicesException {
+        try {
+            userDAO.create();
+        } catch (PersistenceException e) {
+            throw new ServicesException("No se puede crear Usuario", e);
+        }
+    }
     @Override
     public void signIn(String email, String password) throws ServicesException{
         System.out.println("--------ECIStuffServicesImpl--------");
