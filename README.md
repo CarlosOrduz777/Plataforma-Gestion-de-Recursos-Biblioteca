@@ -43,7 +43,6 @@ recursos, asi como saber la ocupación que están teniendo los mismos para saber
 
 ## Descripción del proceso ##
 ### Integrantes: ###
-- Maria Carolina Morales (SM)
 - Francisco Javier Rojas (ES)
 - Juan Felipe Aguas (ES)
 - Yeison Steven Barreto (ES)
