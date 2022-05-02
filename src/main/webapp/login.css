@@ -1,43 +1,76 @@
 html, body{
-    margin: 0px;
+    margin: 10px;
     height: 100%;
-    font-family: 'Source Sans Pro', sans-serif;
+    font-family: Arial Bold;
+    background-color: #1d1b1c;
 }
 
 .container{
     display: flex;
     height: 100%;
     width: 100%;
+    flex-direction: row;
 }
 
 .sidebar{
     display: flex;
     flex-direction: column;
-
-    background-color: #c1171a;
+    background-color: #990000;
     color: white;
-    
     width: 25%;
+}
+
+.sidebar img {
+  height: 20%;
+  margin-top: 30%;
 }
 
 .sidebar span{
     align-self: center;
-    font-size: 3.5rem;
+    font-size: 320%;
+    font-family: Arial Bold;
+    margin-top: 50%;
+}
+
+.container #LoginContainer{
+    display: flex;
+    background-color: #003C69;
+    flex-direction: column;
+    width: 90%;
+}
+
+.title {
+    align-self: center;
+    height: 10%;
+    color: white;
+    font-size: 500%;
 }
 
 .register{
     display: flex;
     flex-direction: column;
-    background-color: #413939;
     color: white;
-
-    padding-left: 2%;
-    padding-right: 2%;
-    width: 71%;
+    background-image: url("https://cdn.discordapp.com/attachments/831560691252068372/970798698806251560/Diseno_sin_titulo_2.jpg");
+    margin-top: 50px;
+    width: 70%;
+    align-self: center;
+    padding: 10%;
+    border-radius: 2%;
+    background-size: 125%;
+    background-position-x: center;
 }
 
-.titulo{
-    align-self: center;
+.register label{
+      margin-top: 30px;
+      font-size: 300%;
+      margin-bottom: 30px;
+}
+
+.register Button {
+  font-size: 300%;
+  margin-top: 20%;
+  margin-right: 20%;
+  margin-left: 20%;
 }
 
 input{
