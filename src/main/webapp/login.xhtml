@@ -12,23 +12,31 @@
 <h:body>
     <div class="container">
         <div class="sidebar">
-            <img src="https://i.ibb.co/8XThK8j/logo-eci-removebg-preview.png" alt="Logo Escuela"/>
+            <img src="https://cdn.discordapp.com/attachments/831560691252068372/971016806728888380/logo-eci-removebg-preview.png" alt="Logo Escuela"/>
             <span>ECI - STUFF</span>
         </div>
-        <h:form class="container" id="LogIn">
-            <div id="LoginContainer">
-                <h1 class="title">Sign in</h1>
-                <div class="register">
-                        <label for="iName">Correo</label>
-                        <p:inputText class="input" type="text" value="#{userBean.email}"></p:inputText>
-                        <br/>
-                        <label for="iName">Contraseña</label>
-                        <p:password class="input" type="String" value="#{userBean.password}"></p:password>
-                        <br/>
-                        <p:commandButton value="Ingresar" update="LogIn" action="#{userBean.signIn}"  />
+        <div class="main">
+            <h2 class="title">Sign In</h2>
+            <h:form class="form_container" id="LogIn">
+                <div class="row">
+                    <label for="iName">Correo</label>
+                    <p:inputText id="correo" class="input" type="text"  value="#{userBean.email}" required="true" validator="#{validatorBean.validateEmail}">
+                        <f:validateLength for="correo" minimum="3" maximum="60"></f:validateLength>
+                    </p:inputText>
                 </div>
-            </div>
-        </h:form>
+                <div class="row">
+                    <label for="iName">Contraseña</label>
+                    <p:password id="password" class="input" type="String" value="#{userBean.password}" required="true" validator="#{validatorBean.validatePassword}">
+                        <f:validateLength for="password" minimum="3" maximum="20"></f:validateLength>
+                    </p:password>
+
+                </div>
+                <div class="row">
+                    <p:commandButton value="Ingresar" update="LogIn" action="#{userBean.signIn}"/>
+                </div>
+                <h:messages style="color:white; margin:8px; fontsize:1.5rem"/>
+            </h:form>
+        </div>
     </div>
 </h:body>
 </html>
