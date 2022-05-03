@@ -41,11 +41,13 @@ public class ResourceTest {
         try{
             //int initialSize = eciStuffServices.consultResources().size();
 
-            eciStuffServices.registerResources(resource);
+            eciStuffServices.consultResources();
 
             //Assert.assertEquals(eciStuffServices.consultResources().size() , initialSize++);
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+
 }

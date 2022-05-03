@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<f:metadata>
+    <f:viewParam name="result" value="#{resourceBean.result}" />
+    <f:event type="preRenderView" listener="#{resourceBean.consultResources()}" />
+</f:metadata>
+
+<h:head>
+    <title>Consultar Recursos</title>
+    <link rel="stylesheet" href="styles.css"/>
+</h:head>
+<h:body>
+    <h1>Consultar Recursos</h1>
+
+    <div class="consultContainer">
+        <h:form >
+            <b:container value="fluid">
+                <b:dataTable value="#{resourceBean.result}"
+                             var="rb"
+                             searching="true"
+                             multiColumnSearch="true"
+                             multiColumnSearchPosition="top">
+                    <b:dataTableColumn value="#{rb.id}"  searchable="false"/>
+                    <b:dataTableColumn value="#{rb.nombre}" searchable="false"/>
+                    <b:dataTableColumn value="#{rb.ubicacion}" />
+                    <b:dataTableColumn value="#{rb.tipo}" />
+                    <b:dataTableColumn value="#{rb.capacidad}" />
+                    <b:dataTableColumn  label="Inicio Disponibilidad" searchable="false">
+                        <h:outputText value="#{rb.iDisp}" >
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                        </h:outputText>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn label="Fin Disponibilidad" searchable="false">
+                        <h:outputText value="#{rb.fDisp}" >
+                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                        </h:outputText>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn label="Reserva" searchable="false">
+                        <b:commandButton value="reservar" ajax="true" update="@none" look="primary" style="width:80px"/>
+                    </b:dataTableColumn>
+                </b:dataTable>
+            </b:container>
+        </h:form>
+    </div>
+
+</h:body>
+</html>
+

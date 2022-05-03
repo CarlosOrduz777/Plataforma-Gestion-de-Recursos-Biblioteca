@@ -1,9 +1,13 @@
 package edu.eci.cvds.managedbeans;
 
+import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.ECIStuffServices;
 import edu.eci.cvds.services.ServicesException;
+import lombok.Getter;
+import lombok.Setter;
 
+import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -24,11 +28,14 @@ public class UserBean extends BasePageBean {
 	@Inject
 	private ECIStuffServices eciStuffServices;
 
+
+
+
 	public void createUser() throws Exception {
 		try {
 			eciStuffServices.createUsers();
 		} catch (ServicesException ex) {
-			throw ex;
+			throw new ServicesException(ex.getMessage());
 		}
 	}
 

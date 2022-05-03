@@ -12,6 +12,7 @@ public interface ECIStuffServices {
      * @throws ServicesException
      */
     public void createUsers() throws ServicesException;
+    List<Resource> consultResources() throws  ServicesException;
 
     public void signIn(String email, String password) throws  ServicesException;
 
