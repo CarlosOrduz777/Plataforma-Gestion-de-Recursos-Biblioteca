@@ -1,0 +1,29 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+
+<h:head>
+    <title>Reservar Recurso</title>
+</h:head>
+<h:body>
+    <h1>Reservar Recurso</h1>
+    <b:form horizontal="false">
+        <b:formGroup>
+            <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaInicio}" required="true" label="Fecha Inicio:" label-col-sm="3" col-sm="6"
+            minDate="#{resourceBean.iDisp}" maxDate="#{resourceBean.fDisp}"/>
+            <b:message for="@previous" col-sm="9" />
+        </b:formGroup>
+        <b:formGroup>
+            <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaFin}" required="true" label="Fecha Fin:" label-col-sm="3" col-sm="6"
+                              disabledDates="'04/30/2022'"/>
+            <b:message for="@previous" col-sm="9" />
+        </b:formGroup>
+        <b:commandButton value="resercar" update="@form" look="success" action="#{bookingBean.registerBooking(bookingBean.fechaInicio,bookingBean.fechaFin,userBean.idUser,userBean.idRecurso)}"/>
+    </b:form>
+
+</h:body>
+</html>
+

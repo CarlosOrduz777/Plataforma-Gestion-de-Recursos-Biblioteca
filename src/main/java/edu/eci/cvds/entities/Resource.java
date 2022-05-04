@@ -56,4 +56,16 @@ public class Resource implements Serializable {
         return this.iDisp;
     }
 
+    @Override
+    public String toString() {
+        return "Resource{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", ubicacion='" + ubicacion + '\'' +
+                ", capacidad='" + capacidad + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", iDisp=" + iDisp +
+                ", fDisp=" + fDisp +
+                '}';
+    }
 }

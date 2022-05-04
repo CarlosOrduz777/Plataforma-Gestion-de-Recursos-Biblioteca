@@ -17,4 +17,17 @@ public class User implements Serializable {
         this.email = email;
         this.role = role;
     }
+    public User(int id){
+        this.id=id;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                '}';
+    }
 }

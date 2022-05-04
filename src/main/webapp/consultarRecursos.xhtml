@@ -3,10 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 <f:metadata>
     <f:viewParam name="result" value="#{resourceBean.result}" />
     <f:event type="preRenderView" listener="#{resourceBean.consultResources()}" />
+
 </f:metadata>
 
 <h:head>
@@ -17,8 +19,7 @@
     <h1>Consultar Recursos</h1>
 
     <div class="consultContainer">
-        <h:form >
-            <b:container value="fluid">
+        <h:form>
                 <b:dataTable value="#{resourceBean.result}"
                              var="rb"
                              searching="true"
@@ -40,12 +41,16 @@
                         </h:outputText>
                     </b:dataTableColumn>
                     <b:dataTableColumn label="Reserva" searchable="false">
-                        <b:commandButton value="reservar" ajax="true" update="@none" look="primary" style="width:80px"/>
+                        <b:commandButton value="reservar" title="View" immediate="true" action="#{userBean.getUserIdByEmail(rb.id)}" process="@this" look="primary" ajax="false">
+                            <h:messages/>
+                        </b:commandButton>
+
                     </b:dataTableColumn>
                 </b:dataTable>
-            </b:container>
+
         </h:form>
     </div>
+
 
 </h:body>
 </html>
