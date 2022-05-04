@@ -28,6 +28,8 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     @Inject
     private ResourceDAO resourceDAO;
 
+    private final static Logger log = LoggerFactory.getLogger(ECIStuffServices.class);
+
     public void createUsers() throws ServicesException {
         try {
             userDAO.create();
@@ -39,7 +41,6 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     public void signIn(String email, String password) throws ServicesException{
         System.out.println("--------ECIStuffServicesImpl--------");
         System.out.println("--------SignIn--------");
-        Logger log = LoggerFactory.getLogger(ECIStuffServices.class);
         Subject currentUser = SecurityUtils.getSubject();
         // Do some stuff with a Session (no need for a web or EJB container!!!)
         Session session = currentUser.getSession();
@@ -118,7 +119,10 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     public void registerResources(Resource resource) throws ServicesException {
         try{
             resourceDAO.registerResources(resource);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/consultarRecursos.xhtml");
         }catch (Exception e){
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se ha podido registrar el recurso"));
+            log.info("No se ha podido registrar el recurso");
             throw new ServicesException("No se ha podido registrar el recurso", e);
         }
     }
