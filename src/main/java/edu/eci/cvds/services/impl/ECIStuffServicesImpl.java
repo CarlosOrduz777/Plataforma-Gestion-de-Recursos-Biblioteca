@@ -123,6 +123,15 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     }
 
     @Override
+    public List<?> consultBookings() throws ServicesException {
+        try{
+            return bookingDAO.consultBookings();
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
     public User getUserIdByEmail(String email) throws ServicesException {
         try{
             return userDAO.getUserIdByEmail(email);

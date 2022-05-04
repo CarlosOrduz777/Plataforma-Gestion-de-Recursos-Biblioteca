@@ -14,13 +14,10 @@ public interface ECIStuffServices {
      * @throws ServicesException
      */
     public void createUsers() throws ServicesException;
-    List<Resource> consultResources() throws  ServicesException;
-
     public void signIn(String email, String password) throws  ServicesException;
-
+    List<Resource> consultResources() throws  ServicesException;
     public void registerResources(Resource resource) throws  ServicesException;
     void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId) throws ServicesException;
+    List<?> consultBookings() throws ServicesException;
     User getUserIdByEmail(String email) throws ServicesException;
-
-
 }

@@ -7,6 +7,7 @@ import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.exceptions.PersistenceException;
 
 import java.sql.Date;
+import java.util.List;
 
 public class MyBatisBookingDAO implements BookingDAO {
 
@@ -20,6 +21,15 @@ public class MyBatisBookingDAO implements BookingDAO {
             bookingMapper.registerBooking(fechaInicio,fechaFin,userId,resourceId);
         }catch (Exception e){
             throw new PersistenceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<?> consultBookings() throws edu.eci.cvds.persistence.PersistenceException {
+        try {
+            return bookingMapper.consultBookings();
+        }catch (Exception e){
+            throw new edu.eci.cvds.persistence.PersistenceException(e.getMessage());
         }
     }
 }
