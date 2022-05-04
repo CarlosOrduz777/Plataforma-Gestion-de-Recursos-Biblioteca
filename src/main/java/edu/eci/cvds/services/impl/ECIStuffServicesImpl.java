@@ -12,6 +12,7 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
 
@@ -51,14 +52,17 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         if (!currentUser.isAuthenticated()) {
             UsernamePasswordToken token = new UsernamePasswordToken(email, password);
             token.setRememberMe(true);
-            log.info("Sale del IF");
+            log.info("Sale del IF authenticated");
             try {
                 currentUser.login(token);
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/pruebaEjemplo.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/consultarRecursos.xhtml");
+                log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
             } catch (UnknownAccountException uae) {
                 log.info("There is no user with username of " + token.getPrincipal());
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Credenciales Incorrectas"));
             } catch (IncorrectCredentialsException ice) {
                 log.info("Password for account " + token.getPrincipal() + " was incorrect!");
+                FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("Credenciales Incorrectas"));
             } catch (LockedAccountException lae) {
                 log.info("The account for username " + token.getPrincipal() + " is locked.  " +
                         "Please contact your administrator to unlock it.");
@@ -72,7 +76,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
 
         //say who they are:
         //print their identifying princip   al (in this case, a username):
-        log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
+        //log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
 
         /*
         //test a role:
@@ -89,6 +93,17 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
          */
             //throw new ServicesException("No se puede crear Usuario");
         }
+
+    @Override
+    public  void logOut() throws ServicesException{
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.logout();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/login.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public List<Resource> consultResources() throws ServicesException {

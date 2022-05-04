@@ -48,6 +48,15 @@ public class UserBean extends BasePageBean {
 		}
 	}
 
+	public void logOut() throws Exception{
+		try {
+			System.out.println("++++++++=============LOGOUT========================");
+			eciStuffServices.logOut();
+		}catch (ServicesException ex) {
+			throw ex;
+		}
+	}
+
 	public String getEmail() {
 		return email;
 	}
