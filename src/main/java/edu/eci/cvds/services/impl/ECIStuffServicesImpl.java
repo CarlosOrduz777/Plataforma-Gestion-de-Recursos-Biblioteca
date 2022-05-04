@@ -1,6 +1,8 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.User;
+import edu.eci.cvds.persistence.BookingDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
@@ -18,6 +20,7 @@ import java.io.IOException;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.persistence.ResourceDAO;
 
+import java.sql.Date;
 import java.util.List;
 
 public class ECIStuffServicesImpl implements ECIStuffServices {
@@ -26,6 +29,8 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     private UserDAO userDAO;
     @Inject
     private ResourceDAO resourceDAO;
+    @Inject
+    private BookingDAO bookingDAO;
 
     public void createUsers() throws ServicesException {
         try {
@@ -105,6 +110,24 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             resourceDAO.registerResources(resource);
         }catch (Exception e){
             throw new ServicesException("No se ha podido registrar el recurso", e);
+        }
+    }
+
+    @Override
+    public void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId) throws ServicesException {
+        try{
+            bookingDAO.registerBooking(fechaInicio,fechaFin,userId,resourceId);
+        }catch (Exception e){
+            throw new ServicesException("No se ha podido registrar la reserva", e);
+        }
+    }
+
+    @Override
+    public User getUserIdByEmail(String email) throws ServicesException {
+        try{
+            return userDAO.getUserIdByEmail(email);
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
         }
     }
 }
