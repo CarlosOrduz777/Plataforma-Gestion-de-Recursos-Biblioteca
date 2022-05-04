@@ -1,5 +1,6 @@
 package edu.eci.cvds.managedbeans;
 
+import edu.eci.cvds.entities.Booking;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.ECIStuffServices;
@@ -50,9 +51,17 @@ public class UserBean extends BasePageBean {
 
 	public void logOut() throws Exception{
 		try {
-			System.out.println("++++++++=============LOGOUT========================");
+			System.out.println("====================LOGOUT========================");
 			eciStuffServices.logOut();
 		}catch (ServicesException ex) {
+			throw ex;
+		}
+	}
+
+	public List<Booking> viewBookingUser() throws Exception{
+		try{
+			return eciStuffServices.viewBookingUser();
+		}catch (ServicesException ex){
 			throw ex;
 		}
 	}

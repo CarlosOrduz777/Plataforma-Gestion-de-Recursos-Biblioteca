@@ -1,6 +1,7 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Booking;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
@@ -120,6 +121,15 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             resourceDAO.registerResources(resource);
         }catch (Exception e){
             throw new ServicesException("No se ha podido registrar el recurso", e);
+        }
+    }
+
+    @Override
+    public List<Booking> viewBookingUser() throws ServicesException{
+        try{
+
+        }catch (Exception e){
+            throw new ServicesException("No se ha podido traer Reservas para el usuario Actual", e);
         }
     }
 }

@@ -1,5 +1,6 @@
 package edu.eci.cvds.services;
 
+import edu.eci.cvds.entities.Booking;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 
@@ -19,5 +20,7 @@ public interface ECIStuffServices {
     public void registerResources(Resource resource) throws  ServicesException;
 
     public void logOut() throws  ServicesException;
+
+    public List<Booking> viewBookingUser() throws ServicesException;
 
 }
