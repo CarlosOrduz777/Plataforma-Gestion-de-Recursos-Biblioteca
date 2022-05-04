@@ -18,4 +18,6 @@ public interface ECIStuffServices {
 
     public void registerResources(Resource resource) throws  ServicesException;
 
+    public void logOut() throws  ServicesException;
+
 }
