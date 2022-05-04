@@ -20,4 +20,7 @@ public interface ECIStuffServices {
     void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId) throws ServicesException;
     List<?> consultBookings() throws ServicesException;
     User getUserIdByEmail(String email) throws ServicesException;
+
+    public void logOut() throws  ServicesException;
+
 }
