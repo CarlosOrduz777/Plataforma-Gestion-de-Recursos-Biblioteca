@@ -55,7 +55,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             log.info("Sale del IF authenticated");
             try {
                 currentUser.login(token);
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/pruebaEjemplo.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/consultarRecursos.xhtml");
                 log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
             } catch (UnknownAccountException uae) {
                 log.info("There is no user with username of " + token.getPrincipal());
@@ -93,6 +93,17 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
          */
             //throw new ServicesException("No se puede crear Usuario");
         }
+
+    @Override
+    public  void logOut() throws ServicesException{
+        Subject currentUser = SecurityUtils.getSubject();
+        currentUser.logout();
+        try {
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/login.xhtml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
     @Override
     public List<Resource> consultResources() throws ServicesException {
