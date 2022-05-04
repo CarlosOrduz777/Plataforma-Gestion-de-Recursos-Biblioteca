@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.RecursoMapper">
+    <select parameterType="map" id="consultarRecurso" resultMap="RecursoResult">
+        SELECT
+        r.id AS r_id,
+        r.nombre AS r_nombre,
+        r.ubicacion AS r_ubicacion,
+        r.tipo AS r_tipo,
+        r.descripcion AS r_descripcion,
+        r.iniciodisponibilidad AS r_iniciodisponibilidad,
+        r.findisponibilidad AS r_findisponibilidad
+        FROM "ECIStuff".recursos AS r
+        WHERE r.id = #{id}
+    </select>
+
+
+    <select parameterType="map" id="consultarRecursosDisponibles" resultMap="RecursoResult">
+        SELECT
+        r.id AS r_id,
+        r.nombre AS r_nombre,
+        r.ubicacion AS r_ubicacion,
+        r.tipo AS r_tipo,
+        r.descripcion AS r_descripcion,
+        r.iniciodisponibilidad AS r_iniciodisponibilidad,
+        r.findisponibilidad AS r_findisponibilidad
+        FROM "ECIStuff".reservas r2
+        RIGHT JOIN "ECIStuff".recursos AS r
+        ON r.id = r2.recurso_id
+        where r2.id is null
+    </select>
+
+    <select parameterType="map" id="consultarRecursosNoDisponibles" resultMap="RecursoResult">
+        SELECT
+        r.id AS r_id,
+        r.nombre AS r_nombre,
+        r.ubicacion AS r_ubicacion,
+        r.tipo AS r_tipo,
+        r.descripcion AS r_descripcion,
+        r.iniciodisponibilidad AS r_iniciodisponibilidad,
+        r.findisponibilidad AS r_findisponibilidad
+        FROM "ECIStuff".reservas r2
+        RIGHT JOIN "ECIStuff".recursos AS r
+        ON r.id = r2.recurso_id
+        where r2.id is not null
+    </select>
+
+    <resultMap type='Recurso' id='RecursoResult'>
+        <id property='id' column='r_id'/>
+        <result property='nombre' column='r_nombre'/>
+        <result property='ubicacion' column='r_ubicacion'/>
+        <result property='tipo' column='r_tipo'/>
+        <result property='descripcion' column='r_descripcion'/>
+        <result property='iniciodisponibilidad' column='r_iniciodisponibilidad'/>
+        <result property='findisponibilidad' column='r_findisponibilidad'/>
+
+    </resultMap>
+</mapper>

@@ -30,6 +30,7 @@ recursos, asi como saber la ocupación que están teniendo los mismos para saber
 
 ## Arquitectura y Diseño ##
 ### Modelo E-R ###
+![sprint-backlog](img/Modelo_ER.png)
 ### Diagrama de clases ###
 ### Descripción de la arquitectura ###
 ### Enlace a la aplicacion ###  

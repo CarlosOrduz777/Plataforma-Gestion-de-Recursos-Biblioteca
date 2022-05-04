@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title> Recursos Reservados </title>
+</h:head>
+<style>
+.ui-panelgrid td {
+    padding: 2px 30px ;
+}
+</style>
+
+<script type="text/javascript">
+    PrimeFaces.locales ['de'] = {
+        closeText: 'Schließen',
+        prevText: 'Zurück',
+        nextText: 'Weiter',
+        monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+        weekHeader: 'Woche',
+        firstDay: 1,
+        isRTL: false,
+        showMonthAfterYear: false,
+        yearSuffix: '',
+        timeOnlyTitle: 'Nur Zeit',
+        timeText: 'Zeit',
+        hourText: 'Stunde',
+        minuteText: 'Minute',
+        secondText: 'Sekunde',
+        currentText: 'Aktuelles Datum',
+        ampm: false,
+        month: 'Monat',
+        week: 'Woche',
+        day: 'Tag',
+        allDayText: 'Ganzer Tag'
+    };
+</script>
+
+<style type="text/css">
+    .value {
+        font-weight: bold;
+    }
+
+</style>
+
+
+<style type="text/css">
+    button.ui-button {
+        margin-right: .5rem;
+    }
+</style>
+
+
+<h:body>
+    <div class="container">
+        <h:form id="Recursos">
+            <p:panel header="Recursos Disponibles" toggleable="true" toggleSpeed="500" widgetVar="panel" style="text-align: center" name="panel" id="panel1">
+                <p:dataTable  id="recursoDT" var="recurso" value="#{AlquilerBean.consultarRecursosDisponibles()}" selectionMode="single" selection="#{AlquilerBean.recurso}" rowKey="#{recurso.id}" rows="10" paginator="true"
+                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records" style="text-align: left; align: center">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{recurso.id}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{recurso.nombre}" />
+                    </p:column>
+                    <p:column headerText="Ubicación">
+                        <h:outputText value="#{recurso.ubicacion}" />
+                    </p:column>
+                    <p:column headerText="Tipo">
+                        <h:outputText value="#{recurso.tipo}" />
+                    </p:column>
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{recurso.descripcion}" />
+                    </p:column>
+                    <p:column headerText="Reservar">
+                        <div class="card">
+                            <h:form id="form">
+                                <p:growl id="msgs" showDetail="true" skipDetailIfEqualsSummary="true"/>
+                                    <div style="text-align: center; border: 1px solid">
+                                        <p:outputLabel for="reservar" value="Seleccionar Dia:"/>
+
+                                    <p:calendar id="reservar" value="#{calendarView.date5}" locale="de" navigator="true"
+                                                pattern="yyyy-MMM-dd"  href="reservas" />
+                                        <p:button value="Confirmar" href="reservas" />
+                                    </div>
+                            </h:form>
+                        </div>
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+
+        <h:form id="Recursos1">
+            <p:panel header="Recursos Reservados" toggleable="true" toggleSpeed="500"  style="text-align: center" name="panel" id="panel2">
+                <p:dataTable  id="recursoDT1" var="recurso" value="#{AlquilerBean.consultarRecursosNoDisponibles()}" selectionMode="single" selection="#{AlquilerBean.recurso}" rowKey="#{recurso.id}" rows="10" paginator="true"
+                              paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records" style="text-align: left; align: center">
+                    <p:column headerText="ID">
+                        <h:outputText value="#{recurso.id}" />
+                    </p:column>
+                    <p:column headerText="Nombre">
+                        <h:outputText value="#{recurso.nombre}" />
+                    </p:column>
+                    <p:column headerText="Ubicación">
+                        <h:outputText value="#{recurso.ubicacion}" />
+                    </p:column>
+                    <p:column headerText="Tipo">
+                        <h:outputText value="#{recurso.tipo}" />
+                    </p:column>
+                    <p:column headerText="Descripción">
+                        <h:outputText value="#{recurso.descripcion}" />
+                    </p:column>
+                </p:dataTable>
+            </p:panel>
+        </h:form>
+
+    </div>
+</h:body>
+</html>
