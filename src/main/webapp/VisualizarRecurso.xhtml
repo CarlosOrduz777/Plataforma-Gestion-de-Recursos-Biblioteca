@@ -57,7 +57,7 @@
     <div class="container">
         <h:form id="Recursos">
             <p:panel header="Recursos Disponibles" toggleable="true" toggleSpeed="500" widgetVar="panel" style="text-align: center" name="panel" id="panel1">
-                <p:dataTable  id="recursoDT" var="recurso" value="#{AlquilerBean.consultarRecursosDisponibles()}" selectionMode="single" selection="#{AlquilerBean.recurso}" rowKey="#{recurso.id}" rows="10" paginator="true"
+                <p:dataTable  id="recursoDT" var="recurso" value="#{VisualizarBean.consultarRecursosDisponibles()}" selectionMode="single" selection="#{VisualizarBean.recurso}" rowKey="#{recurso.id}" rows="10" paginator="true"
                               paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records" style="text-align: left; align: center">
                     <p:column headerText="ID">
                         <h:outputText value="#{recurso.id}" />
@@ -94,7 +94,7 @@
 
         <h:form id="Recursos1">
             <p:panel header="Recursos Reservados" toggleable="true" toggleSpeed="500"  style="text-align: center" name="panel" id="panel2">
-                <p:dataTable  id="recursoDT1" var="recurso" value="#{AlquilerBean.consultarRecursosNoDisponibles()}" selectionMode="single" selection="#{AlquilerBean.recurso}" rowKey="#{recurso.id}" rows="10" paginator="true"
+                <p:dataTable  id="recursoDT1" var="recurso" value="#{VisualizarBean.consultarRecursosNoDisponibles()}" selectionMode="single" selection="#{VisualizarBean.recurso}" rowKey="#{recurso.id}" rows="10" paginator="true"
                               paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records" style="text-align: left; align: center">
                     <p:column headerText="ID">
                         <h:outputText value="#{recurso.id}" />

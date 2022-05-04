@@ -1,10 +1,7 @@
 package edu.eci.cvds.sampleprj.dao;
 
 /**
- * Clase de excepción para la clase Persistence
- * @author Nathalia Garcia
- * @author Yeison Barreto
- * @version 22/03/22 1.0
+ * Clase de excepción para la clase Persistencia
  */
 public class PersistenceException extends Exception {
 

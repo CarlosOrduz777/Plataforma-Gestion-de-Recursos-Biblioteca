@@ -6,8 +6,8 @@ import javax.servlet.ServletContextListener;
 
 import edu.eci.cvds.sampleprj.dao.RecursoDAO;
 import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISRecursoDAO;
-import edu.eci.cvds.samples.services.ServiciosAlquiler;
-import edu.eci.cvds.samples.services.impl.ServiciosAlquilerImpl;
+import edu.eci.cvds.samples.services.ServiciosVisualizar;
+import edu.eci.cvds.samples.services.impl.ServiciosVisualizarImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 import com.google.inject.Guice;
@@ -30,7 +30,7 @@ public class GuiceContextListener implements ServletContextListener {
 
                 // TODO Add service class associated to Stub implementation
                 bind(RecursoDAO.class).to(MyBATISRecursoDAO.class);
-                bind(ServiciosAlquiler.class).to(ServiciosAlquilerImpl.class);
+                bind(ServiciosVisualizar.class).to(ServiciosVisualizarImpl.class);
             }
         });
 

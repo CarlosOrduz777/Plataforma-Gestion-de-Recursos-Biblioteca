@@ -5,10 +5,7 @@ import org.apache.ibatis.annotations.Param;
 
 import edu.eci.cvds.samples.entities.Recurso;
 
-/**
- *
- * @author 2106913
- */
+
 public interface RecursoMapper {
 
     public Recurso consultarRecurso(@Param("idrec") int id);
