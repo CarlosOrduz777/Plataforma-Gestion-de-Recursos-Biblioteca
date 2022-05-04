@@ -1,6 +1,9 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Booking;
+import edu.eci.cvds.entities.User;
+import edu.eci.cvds.persistence.BookingDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
@@ -12,6 +15,7 @@ import org.apache.shiro.subject.Subject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.context.FacesContext;
 import java.io.IOException;
 
@@ -146,7 +150,16 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     @Override
     public List<Booking> viewBookingUser() throws ServicesException{
         try{
-
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            List<Booking> bookings = userDAO.viewBookingUser((String) session.getAttribute("email"));
+            System.out.println('[');
+            for (Booking b: bookings) {
+                System.out.print(b);
+                System.out.print(", ");
+            }
+            System.out.print(']');
+            return bookings;
         }catch (Exception e){
             throw new ServicesException("No se ha podido traer Reservas para el usuario Actual", e);
         }
