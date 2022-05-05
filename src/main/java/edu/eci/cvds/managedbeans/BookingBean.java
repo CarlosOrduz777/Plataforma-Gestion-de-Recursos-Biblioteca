@@ -1,6 +1,7 @@
 package edu.eci.cvds.managedbeans;
 
 
+import edu.eci.cvds.entities.Booking;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.services.ECIStuffServices;
 import edu.eci.cvds.services.ServicesException;
@@ -9,7 +10,10 @@ import lombok.Setter;
 
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import javax.servlet.http.HttpServletRequest;
+import javax.sound.midi.Soundbank;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -23,7 +27,7 @@ public class BookingBean extends BasePageBean{
     @Inject
     private ECIStuffServices eciStuffServices;
 
-    @Setter @Getter private List<?> result;
+    @Setter @Getter private Booking booking;
 
     public void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId) throws ServicesException, ParseException {
         try {
@@ -37,10 +41,12 @@ public class BookingBean extends BasePageBean{
         }
     }
 
-    public List<?> consultBookings() throws ServicesException {
+    public Booking consultBooking() throws ServicesException {
         try {
-            result =  eciStuffServices.consultBookings();
-            return result;
+            HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
+            int id = Integer.parseInt(request.getParameter("id"));
+            booking =  eciStuffServices.consultBooking(id);
+            return booking;
         } catch (ServicesException ex) {
             throw new ServicesException(ex.getMessage());
         }

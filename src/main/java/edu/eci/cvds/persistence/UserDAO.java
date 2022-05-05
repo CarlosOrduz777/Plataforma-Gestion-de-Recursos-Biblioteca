@@ -12,4 +12,5 @@ public interface UserDAO {
     User getUserIdByEmail(String email) throws PersistenceException;
 
 
+    User getUserById(int id) throws PersistenceException;
 }

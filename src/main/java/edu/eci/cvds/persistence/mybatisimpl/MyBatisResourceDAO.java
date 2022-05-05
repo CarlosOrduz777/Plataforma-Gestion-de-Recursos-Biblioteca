@@ -28,4 +28,13 @@ public class MyBatisResourceDAO implements ResourceDAO {
             throw new edu.eci.cvds.persistence.PersistenceException(e.getMessage());
         }
     }
+
+    @Override
+    public Resource getResourceById(int id) {
+        try {
+            return resourceMapper.getResourceById(id);
+        }catch (Exception e){
+            throw new PersistenceException(e.getMessage());
+        }
+    }
 }
