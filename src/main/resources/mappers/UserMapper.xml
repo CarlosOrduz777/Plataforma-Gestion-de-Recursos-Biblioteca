@@ -35,7 +35,7 @@
         <id property="id" column="id"/>
         <result property="fechaInicio" column="fechainicio"/>
         <result property="fechaFin" column="fechafin"/>
-        <result property="usuarioId" column="usuario_id"/>
-        <result property="usuarioId" column="recurso_id"/>
+        <result property="usuario_id" column="usuario_id"/>
+        <result property="recurso_id" column="recurso_id"/>
     </resultMap>
 </mapper>
