@@ -15,6 +15,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Bean para la interfaz de usuario de las decanaturas
@@ -27,6 +29,7 @@ public class UserBean extends BasePageBean {
 	private int idUser;
 	private String email;
 	private String password;
+	@Getter @Setter private List<Booking> bookingsUser;
 
 	@Inject
 	private ECIStuffServices eciStuffServices;
@@ -61,12 +64,13 @@ public class UserBean extends BasePageBean {
 		}
 	}
 
-	public List<Booking> viewBookingUser() throws Exception{
+	public void viewBookingUser() throws Exception{
 		try{
-			return eciStuffServices.viewBookingUser();
+			bookingsUser = eciStuffServices.viewBookingUser();
 		}catch (ServicesException ex){
 			throw ex;
 		}
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/reservasUsuario.xhtml");
 	}
 
 	public String getEmail() {

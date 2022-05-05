@@ -18,7 +18,7 @@
         SELECT * from "ECIStuff".reservas
         WHERE usuario_id  = (SELECT id
         FROM "ECIStuff".usuarios
-        WHERE email = #{email});
+        WHERE email = #{email}) order by fechainicio;
     </select>
     <resultMap id="UserResult" type="User">
         <id property="id" column="id"/>
