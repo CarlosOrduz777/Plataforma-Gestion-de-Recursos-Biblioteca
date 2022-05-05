@@ -18,7 +18,7 @@
         VALUES (1,#{fI},#{fE},#{ui},#{ri});
     </insert>
 
-    <select id="consultBookings" resultMap="BookingResult">
+    <select id="consultBooking" resultMap="BookingResult" parameterType="map">
         SELECT
             id,
             fechainicio,
@@ -26,5 +26,6 @@
             usuario_id,
             recurso_id
         FROM "ECIStuff".reservas
+        WHERE id=#{id}
     </select>
 </mapper>
