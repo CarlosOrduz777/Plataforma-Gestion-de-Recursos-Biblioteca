@@ -17,7 +17,7 @@
 </h:head>
 <h:body>
     <h1>Consultar Recursos</h1>
-
+    <p:commandButton value="Cerrar Sesion"  immediate="true" action="#{userBean.logOut}"/>
     <div class="consultContainer">
         <h:form>
                 <b:dataTable value="#{resourceBean.result}"
