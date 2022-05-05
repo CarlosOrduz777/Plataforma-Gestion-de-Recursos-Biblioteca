@@ -1,39 +1,53 @@
 package edu.eci.cvds.guice;
 
+
+import com.google.inject.Guice;
+import com.google.inject.Injector;
+import edu.eci.cvds.persistence.BookingDAO;
+import edu.eci.cvds.persistence.ResourceDAO;
+import edu.eci.cvds.persistence.UserDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisBookingDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisResourceDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisUserDAO;
+import edu.eci.cvds.services.ECIStuffServices;
+import edu.eci.cvds.services.impl.ECIStuffServicesImpl;
+import org.mybatis.guice.XMLMyBatisModule;
+import org.mybatis.guice.datasource.helper.JdbcHelper;
+
 import javax.servlet.ServletContext;
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 
-import edu.eci.cvds.sampleprj.dao.RecursoDAO;
-import edu.eci.cvds.sampleprj.dao.mybatis.MyBATISRecursoDAO;
-import edu.eci.cvds.samples.services.ServiciosVisualizar;
-import edu.eci.cvds.samples.services.impl.ServiciosVisualizarImpl;
-import org.mybatis.guice.XMLMyBatisModule;
-import org.mybatis.guice.datasource.helper.JdbcHelper;
-import com.google.inject.Guice;
-import com.google.inject.Injector;
 
 public class GuiceContextListener implements ServletContextListener {
 
-    public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        ServletContext servletContext = servletContextEvent.getServletContext();
-        servletContext.removeAttribute(Injector.class.getName());
-    }
+	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+		ServletContext servletContext = servletContextEvent.getServletContext();
+		servletContext.removeAttribute(Injector.class.getName());
+	}
 
-    public void contextInitialized(ServletContextEvent servletContextEvent) {
-        Injector injector = Guice.createInjector(new XMLMyBatisModule() {
-            @Override
-            protected void initialize() {
-                install(JdbcHelper.MySQL);
-                setEnvironmentId("development");
-                setClassPathResource("mybatis-config.xml");
+	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		Injector injector = Guice.createInjector(new XMLMyBatisModule() {
+			@Override
+			protected void initialize() {
 
-                // TODO Add service class associated to Stub implementation
-                bind(RecursoDAO.class).to(MyBATISRecursoDAO.class);
-                bind(ServiciosVisualizar.class).to(ServiciosVisualizarImpl.class);
-            }
-        });
+				install(JdbcHelper.PostgreSQL);
 
-        servletContextEvent.getServletContext().setAttribute(Injector.class.getName(), injector);
-    }
+				setEnvironmentId("development");
+
+				setClassPathResource("mybatis-config.xml");
+
+				// Hacer la inyeccion de dependencias
+				bind(UserDAO.class).to(MyBatisUserDAO.class);
+				bind(ResourceDAO.class).to(MyBatisResourceDAO.class);
+				bind(BookingDAO.class).to(MyBatisBookingDAO.class);
+				bind(ECIStuffServices.class).to(ECIStuffServicesImpl.class);
+			}
+		}
+
+		);
+		ServletContext servletContext = servletContextEvent.getServletContext();
+		servletContext.setAttribute(Injector.class.getName(), injector);
+	}
+
 }

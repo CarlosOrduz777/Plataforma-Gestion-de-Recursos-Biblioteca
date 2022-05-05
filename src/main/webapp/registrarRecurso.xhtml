@@ -1,0 +1,73 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Registrar Recurso</title>
+    <link rel="stylesheet" href="registrarRecurso.css"/>
+</h:head>
+<h:body>
+    <div class="container">
+
+    <div class="sidebar">
+        <img src="https://cdn.discordapp.com/attachments/810979872473350154/964584678248022116/unknown.png" alt="Logo Escuela"/>
+        <span>ECI - STUFF</span>
+    </div>
+
+    <div class="register">
+
+        <h1 class="titulo">Registrar Recurso</h1>
+
+        <h:form id="registerResourceForm">
+
+            <!-- Campo Nombre -->
+        <div class="formItem">
+            <label>Nombre</label><br/>
+            <p:inputText id="iName" class="input" type="text" placeholder="Nombre" value="#{resourceBean.nombre}"/><br/>
+        </div>
+
+            <!-- Campo Ubi -->
+        <div class="formItem">
+            <label>Ubicación</label><br/>
+            <p:inputText id="iUbi" class="input" type="text" placeholder="Ubicación" value="#{resourceBean.ubicacion}"/><br/>
+        </div>
+
+            <!-- Selector Tipo -->
+        <div class="formItem">
+            <p:selectOneMenu class="select" id="iType" value="#{resourceBean.tipo}" >
+                    <f:selectItem itemLabel="Tipo" itemValue="" />
+                    <f:selectItem itemLabel="Sala de Estudio" itemValue="sala"/>
+                    <f:selectItem itemLabel="Equipo de Cómputo" itemValue="pc"/>
+                    <f:selectItem itemLabel="Equipo Multimedia" itemValue="multi"/>
+            </p:selectOneMenu><br/>
+        </div>
+
+            <!-- Campo Capacidad -->
+        <div class="formItem">
+            <label>Capacidad</label><br/>
+            <p:inputText id="iCapa" class="input" type="number" placeholder="Capacidad" value="#{resourceBean.capacidad}" /><br/>
+        </div>
+
+            <!-- Campo IDisponibilidad -->
+        <div class="formItem">
+            <label>Inicio Disponibilidad</label><br/>
+            <p:inputText id="iFechaI" class="input" type="date" value="#{resourceBean.iDisp}" /><br/>
+        </div>
+
+            <!-- Campo FDisponibilidad -->
+        <div class="formItem">
+            <label>Fin Disponibilidad</label><br/>
+            <p:inputText id="iFechaF" class="input" type="date" value="#{resourceBean.fDisp}" /><br/>
+        </div>
+
+        <p:commandButton class="submit-btn" id="register-btn" value="Registrar" actionListener="#{resourceBean.registerResource}" update="registerResourceForm" />
+            <p:commandButton value="Cerrar Sesion"  action="#{userBean.logOut}"/>
+        </h:form>
+
+    </div>
+    </div>
+</h:body>
+</html>

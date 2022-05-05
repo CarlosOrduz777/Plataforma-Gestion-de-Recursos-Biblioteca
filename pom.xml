@@ -1,5 +1,7 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>edu.eci.cvds</groupId>
@@ -17,12 +19,14 @@
 
   <dependencies>
     <!-- Bootsfaces dependency -->
+
     <dependency>
       <groupId>net.bootsfaces</groupId>
       <artifactId>bootsfaces</artifactId>
       <version>1.5.0</version>
       <scope>compile</scope>
     </dependency>
+
 
     <!-- Lombok dependency-->
     <dependency>
@@ -305,32 +309,32 @@
       </plugin>
 
       <!-- Jacoco embedded plugin. -->
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>report</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <excludes>
-            <exclude>edu/eci/cvds/guice/*</exclude>
-            <exclude>edu/eci/cvds/persistence/*</exclude>
-            <exclude>edu/eci/cvds/*App*</exclude>
-          </excludes>
-        </configuration>
-      </plugin>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.2</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+            <configuration>
+                <excludes>
+                  <exclude>edu/eci/cvds/guice/*</exclude>
+                  <exclude>edu/eci/cvds/persistence/*</exclude>
+                  <exclude>edu/eci/cvds/*App*</exclude>
+                </excludes>
+            </configuration>
+        </plugin>
 
     </plugins>
   </build>

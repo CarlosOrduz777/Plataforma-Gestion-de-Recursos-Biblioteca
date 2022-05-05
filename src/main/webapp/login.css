@@ -1,0 +1,106 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #131112;
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-family: Arial Bold;
+    color: white;
+}
+
+.container {
+    border: 0px solid #F00000 ;
+    width: 98vw;
+    height: 90vh;
+    display: flex;
+}
+
+.sidebar{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #990000;
+    color: white;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.sidebar img {
+    width: 15rem;
+    height: 6rem;
+    aspect-ratio: 16/9;
+}
+
+.sidebar span {
+    align-self: center;
+    font-size: 2.5rem;
+    font-family: Arial Bold;
+    margin-top: 1rem;
+}
+
+.main {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #003C69;
+}
+
+.title {
+    position: absolute;
+    top: 0;
+    font-size: 3rem;
+    font-family: Arial Bold;
+    font-weight: lighter;
+    margin: 3rem;
+}
+
+.form_container{
+    height: 50%;
+    border: 0px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-image: url("https://cdn.discordapp.com/attachments/831560691252068372/970798698806251560/Diseno_sin_titulo_2.jpg");
+    background-size: cover;
+    width: 80%;
+    border-radius: 1rem;
+    padding:15rem;
+}
+
+.row{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8rem;
+    
+}
+
+  
+input{
+      background-color: transparent;
+      color: white;
+      border-bottom: 1px solid #635959;
+      margin-top: 10px;
+      font: inherit;
+      font-size: 100%;
+  
+  }
+  
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type=number] {
+      -moz-appearance: textfield;
+  } 
+  
