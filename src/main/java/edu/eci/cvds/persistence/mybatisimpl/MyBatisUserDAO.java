@@ -5,6 +5,7 @@ import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.persistence.mybatisimpl.mappers.UserMapper;
+import edu.eci.cvds.entities.User;
 
 import java.util.List;
 
@@ -20,6 +21,14 @@ public class MyBatisUserDAO implements UserDAO {
         }
     }
 
+    @Override
+    public User getUserIdByEmail(String email) throws PersistenceException {
+        try {
+            return userMapper.getUserIdByEmail(email);
+        }catch (Exception e){
+            throw new PersistenceException("No se Pudo consultar id de Usuario" + e.getMessage());
+        }
+    }
 
 
 }

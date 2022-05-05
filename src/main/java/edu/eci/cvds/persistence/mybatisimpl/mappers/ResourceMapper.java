@@ -3,6 +3,7 @@ package edu.eci.cvds.persistence.mybatisimpl.mappers;
 import edu.eci.cvds.entities.Resource;
 import org.apache.ibatis.annotations.Param;
 
+import java.sql.Date;
 import java.util.List;
 
 public interface ResourceMapper {

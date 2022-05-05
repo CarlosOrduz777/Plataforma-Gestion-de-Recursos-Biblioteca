@@ -9,5 +9,12 @@
     <insert id="createUser">
         insert into "ECIStuff".user_eci (id, name, role) values (00005, 'Usuario7','Comunidad')
     </insert>
-
+    <select id="getUserIdByEmail" resultMap="UserResult" parameterType="map">
+        SELECT
+            id
+        FROM "ECIStuff".usuarios WHERE email = #{email}
+    </select>
+    <resultMap id="UserResult" type="User">
+        <id property="id" column="id"/>
+    </resultMap>
 </mapper>

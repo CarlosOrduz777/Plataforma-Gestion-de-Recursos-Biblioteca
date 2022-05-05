@@ -9,10 +9,10 @@ import lombok.Setter;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import java.io.IOException;
 import java.util.List;
 
 /**
@@ -20,8 +20,10 @@ import java.util.List;
  */
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "userBean")
-@RequestScoped
+@ApplicationScoped
 public class UserBean extends BasePageBean {
+	private int idRecurso;
+	private int idUser;
 	private String email;
 	private String password;
 
@@ -43,6 +45,7 @@ public class UserBean extends BasePageBean {
 		try{
 			System.out.println("SIGNIN");
 			eciStuffServices.signIn(email, password);
+			System.out.println(email);
 		}catch (ServicesException ex){
 			throw ex;
 		}
@@ -61,6 +64,22 @@ public class UserBean extends BasePageBean {
 		return email;
 	}
 
+	public int getIdRecurso() {
+		return idRecurso;
+	}
+
+	public void setIdRecurso(int idRecurso) {
+		this.idRecurso = idRecurso;
+	}
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
 	public void setEmail(String email) {
 		System.out.println(email);
 		this.email = email;
@@ -73,5 +92,21 @@ public class UserBean extends BasePageBean {
 	public void setPassword(String password) {
 		System.out.println(password);
 		this.password = password;
+	}
+
+	public User getUserIdByEmail(int idRecurso) throws ServicesException{
+		this.idRecurso = idRecurso;
+		System.out.println(this.idRecurso);
+		System.out.println(this.email);
+		try{
+
+			User result = eciStuffServices.getUserIdByEmail(this.email);
+			this.idUser = result.getId();
+			System.out.println(result);
+			FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/reservarRecurso.xhtml");
+			return result;
+		}catch (Exception e){
+			throw new ServicesException(e.getMessage());
+		}
 	}
 }

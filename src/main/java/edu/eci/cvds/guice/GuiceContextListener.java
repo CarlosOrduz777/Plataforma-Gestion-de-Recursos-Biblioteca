@@ -2,8 +2,10 @@ package edu.eci.cvds.guice;
 
 import com.google.inject.Guice;
 import com.google.inject.Injector;
+import edu.eci.cvds.persistence.BookingDAO;
 import edu.eci.cvds.persistence.ResourceDAO;
 import edu.eci.cvds.persistence.UserDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisBookingDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisResourceDAO;
 import edu.eci.cvds.persistence.mybatisimpl.MyBatisUserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
@@ -36,6 +38,7 @@ public class GuiceContextListener implements ServletContextListener {
 				// Hacer la inyeccion de dependencias
 				bind(UserDAO.class).to(MyBatisUserDAO.class);
 				bind(ResourceDAO.class).to(MyBatisResourceDAO.class);
+				bind(BookingDAO.class).to(MyBatisBookingDAO.class);
 				bind(ECIStuffServices.class).to(ECIStuffServicesImpl.class);
 			}
 		}

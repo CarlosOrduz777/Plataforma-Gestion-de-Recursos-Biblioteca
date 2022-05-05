@@ -16,4 +16,17 @@ public class Booking implements Serializable {
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
     }
+    public Booking(Date fechaInicio,Date fechaFin){
+        this.fechaInicio = fechaInicio;
+        this.fechaFin = fechaFin;
+    }
+
+    @Override
+    public String toString() {
+        return "Booking{" +
+                "id=" + id +
+                ", fechaInicio=" + fechaInicio +
+                ", fechaFin=" + fechaFin +
+                '}';
+    }
 }

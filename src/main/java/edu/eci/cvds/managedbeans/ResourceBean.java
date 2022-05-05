@@ -7,20 +7,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.RequestScoped;
+import javax.faces.bean.*;
+import javax.faces.context.FacesContext;
 import javax.inject.Inject;
+import java.io.IOException;
 import java.sql.Date;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
 @ManagedBean(name = "resourceBean")
-@RequestScoped
+@SessionScoped
 public class ResourceBean extends BasePageBean{
 
     @Inject
     private ECIStuffServices eciStuffServices;
     @Setter @Getter private List<Resource> result;
+    private int idSeleccionado;
 
     private String nombre;
     private String ubicacion;
@@ -58,12 +60,17 @@ public class ResourceBean extends BasePageBean{
         }
     }
 
+
     public ECIStuffServices getEciStuffServices() {
         return eciStuffServices;
     }
 
     public void setEciStuffServices(ECIStuffServices eciStuffServices) {
         this.eciStuffServices = eciStuffServices;
+    }
+
+    public int getIdSeleccionado() {
+        return idSeleccionado;
     }
 
     public String getNombre() {
@@ -113,4 +120,9 @@ public class ResourceBean extends BasePageBean{
     public void setfDisp(String fDisp) {
         this.fDisp = fDisp;
     }
+
+    public void setIdSeleccionado(int idSeleccionado) {
+        this.idSeleccionado = idSeleccionado;
+    }
+
 }

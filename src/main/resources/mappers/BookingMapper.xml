@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.BookingMapper">
+    <insert id="registerBooking" parameterType="map">
+        INSERT INTO "ECIStuff".reservas (id,fechainicio,fechafin,usuario_id,recurso_id)
+        VALUES (1,#{fI},#{fE},#{ui},#{ri});
+    </insert>
+</mapper>
