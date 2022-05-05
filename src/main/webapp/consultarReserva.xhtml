@@ -1,0 +1,60 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<f:metadata>
+    <f:viewParam name="booking" value="#{bookingBean.booking}" />
+    <f:event type="preRenderView" listener="#{bookingBean.consultBooking()}" >
+        <f:param name="id" value="#{param['id']}"/>
+    </f:event>
+</f:metadata>
+
+<h:head>
+    <title>Consultar Reserva</title>
+    <link rel="stylesheet" href="consultarReserva.css"/>
+</h:head>
+<h:body>
+    <div class="container">
+
+        <div class="sidebar">
+            <img src="https://cdn.discordapp.com/attachments/810979872473350154/964584678248022116/unknown.png" alt="Logo Escuela"/>
+            <span>ECI - STUFF</span>
+        </div>
+
+        <div class="booking">
+            <h1 class="titulo">Consultar Reserva</h1>
+
+            <b>No Reserva</b><br/>
+            <h:outputText value="#{param['id']}" class="text" /><br/>
+
+            <b>Id Recurso</b><br/>
+            <h:outputText value="#{bookingBean.booking.recurso_id}" class="text" /><br/>
+
+            <b>Nombre Recurso</b><br/>
+            <h:outputText value="#{bookingBean.booking.nombreRecurso}" class="text" /><br/>
+
+            <b>Ubicacion Recurso</b><br/>
+            <h:outputText value="#{bookingBean.booking.ubiRecurso}" class="text" /><br/>
+
+            <b>Tipo Recurso</b><br/>
+            <h:outputText value="#{bookingBean.booking.tipoRecurso}" class="text" /><br/>
+
+            <b>Fecha Inicio</b><br/>
+            <h:outputText value="#{bookingBean.booking.fechaInicio}" class="text" /><br/>
+
+            <b>Fecha Fin</b><br/>
+            <h:outputText value="#{bookingBean.booking.fechaFin}" class="text" /><br/>
+
+            <b>Nombre usuario</b><br/>
+            <h:outputText value="#{bookingBean.booking.nombreUsuario}" class="text" /><br/>
+
+            <b>Email Usuario</b><br/>
+            <h:outputText value="#{bookingBean.booking.emailUsuario}" class="text" /><br/>
+
+        </div>
+    </div>
+
+</h:body>
+</html>
