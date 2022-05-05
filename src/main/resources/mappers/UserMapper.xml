@@ -14,7 +14,28 @@
             id
         FROM "ECIStuff".usuarios WHERE email = #{email}
     </select>
+    <select id="viewBookingUser" resultMap="UserBookings" parameterType="String">
+        SELECT * from "ECIStuff".reservas
+        WHERE usuario_id  = (SELECT id
+        FROM "ECIStuff".usuarios
+        WHERE email = #{email}) order by fechainicio;
+    </select>
+    <select id="getUserById" resultMap="UserResult" parameterType="map">
+        SELECT
+            id,
+            nombre,
+            email,
+            role
+        FROM "ECIStuff".usuarios WHERE id = #{id}
+    </select>
     <resultMap id="UserResult" type="User">
         <id property="id" column="id"/>
+    </resultMap>
+    <resultMap id="UserBookings" type="Booking">
+        <id property="id" column="id"/>
+        <result property="fechaInicio" column="fechainicio"/>
+        <result property="fechaFin" column="fechafin"/>
+        <result property="usuario_id" column="usuario_id"/>
+        <result property="recurso_id" column="recurso_id"/>
     </resultMap>
 </mapper>
