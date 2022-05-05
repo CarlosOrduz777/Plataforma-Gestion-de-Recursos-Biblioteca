@@ -139,6 +139,44 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     }
 
     @Override
+    public Booking consultBooking(int id) throws ServicesException {
+        try{
+            Booking booking = bookingDAO.consultBooking(id);
+            User user = getUserById(booking.getUsuario_id());
+            Resource resource = getResourceById(booking.getRecurso_id());
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            Booking bookingDetail;
+            if (currentUser.hasRole("Administrador")){
+                bookingDetail = new Booking(booking, user.getNombre(), user.getEmail(), resource.getNombre(), resource.getUbicacion(), resource.getTipo());
+            }else{
+                bookingDetail = new Booking(booking, resource.getNombre(), resource.getUbicacion(), resource.getTipo());
+            }
+            return bookingDetail;
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Resource getResourceById(int id) throws ServicesException {
+        try{
+            return resourceDAO.getResourceById(id);
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public User getUserById(int id) throws ServicesException {
+        try{
+            return userDAO.getUserById(id);
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
     public User getUserIdByEmail(String email) throws ServicesException {
         try{
             return userDAO.getUserIdByEmail(email);

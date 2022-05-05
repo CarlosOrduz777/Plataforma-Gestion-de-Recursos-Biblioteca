@@ -20,6 +20,14 @@
         FROM "ECIStuff".usuarios
         WHERE email = #{email}) order by fechainicio;
     </select>
+    <select id="getUserById" resultMap="UserResult" parameterType="map">
+        SELECT
+            id,
+            nombre,
+            email,
+            role
+        FROM "ECIStuff".usuarios WHERE id = #{id}
+    </select>
     <resultMap id="UserResult" type="User">
         <id property="id" column="id"/>
     </resultMap>

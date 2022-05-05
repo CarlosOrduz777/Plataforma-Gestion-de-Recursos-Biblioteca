@@ -9,4 +9,6 @@ import java.util.List;
 public interface ResourceDAO {
     public void registerResources(Resource resource) throws PersistenceException;
     public List<Resource> consultResources() throws edu.eci.cvds.persistence.PersistenceException;
+
+    Resource getResourceById(int id) throws edu.eci.cvds.persistence.PersistenceException;
 }

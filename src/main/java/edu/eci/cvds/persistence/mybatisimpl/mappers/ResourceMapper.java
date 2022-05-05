@@ -9,4 +9,6 @@ import java.util.List;
 public interface ResourceMapper {
     void registerResource(@Param("r") Resource resource);
     List<Resource> consultResources();
+
+    Resource getResourceById(@Param("id") int id);
 }

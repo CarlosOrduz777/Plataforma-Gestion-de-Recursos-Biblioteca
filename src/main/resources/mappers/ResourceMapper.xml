@@ -31,4 +31,17 @@
             findisponibilidad
         FROM "ECIStuff".recursos;
     </select>
+
+    <select id="getResourceById" resultMap="ResourceResult" parameterType="map">
+        SELECT
+            id,
+            nombre,
+            ubicacion,
+            tipo,
+            descripcion,
+            iniciodisponibilidad,
+            findisponibilidad
+        FROM "ECIStuff".recursos
+        WHERE id=#{id};
+    </select>
 </mapper>

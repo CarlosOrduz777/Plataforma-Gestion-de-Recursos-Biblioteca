@@ -15,4 +15,5 @@ public interface UserDAO {
     public List<Booking> viewBookingUser(String email) throws PersistenceException;
 
 
+    User getUserById(int id) throws PersistenceException;
 }

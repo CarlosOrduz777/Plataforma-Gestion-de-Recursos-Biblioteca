@@ -12,4 +12,5 @@ public interface UserMapper {
     User getUserIdByEmail(@Param("email")String email);
     List<Booking> viewBookingUser(@Param("email")String email);
 
+    User getUserById(@Param("id") int id);
 }

@@ -40,5 +40,14 @@ public class MyBatisUserDAO implements UserDAO {
         }
     }
 
+    @Override
+    public User getUserById(int id) throws PersistenceException {
+        try{
+            return userMapper.getUserById(id);
+        }catch(Exception e) {
+            throw new PersistenceException("No se pudo consultar el horario" + e.getMessage());
+        }
+    }
+
 
 }
