@@ -8,7 +8,6 @@
 <f:metadata>
     <f:viewParam name="result" value="#{resourceBean.result}" />
     <f:event type="preRenderView" listener="#{resourceBean.consultResources()}" />
-
 </f:metadata>
 
 <h:head>
@@ -20,6 +19,8 @@
 
     <div class="consultContainer">
         <h:form>
+                <p:commandButton value="Cerrar Sesion" immediate="true"  action="#{userBean.logOut}"/>
+                <b:button outcome="/faces/reservasUsuario.xhtml" value="Mis reservas"/>
                 <b:dataTable value="#{resourceBean.result}"
                              var="rb"
                              searching="true"

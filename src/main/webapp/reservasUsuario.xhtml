@@ -31,14 +31,14 @@
                         <h:outputText value="#{Booking.recurso_id}" />
                     </p:column>
                     <p:column field="CancelarBooking" headerText="Cancelar">
-                        <h:commandButton value="Cancelar" />
+                        <h:commandButton value="Cancelar" onclick="alert('Funcionalidad en Desarrollo');"/>
                     </p:column>
                     <p:column field="verBooking" headerText="Ver">
                         <p:button value="Ver" outcome="/faces/consultarReserva.xhtml?id=#{Booking.id}"/>
                     </p:column>
                 </p:dataTable>
-                <p:commandButton value=" ver Reservas Canceladas"></p:commandButton>
-                <p:commandButton value=" ver Reservas Finalizada"></p:commandButton>
+                <p:commandButton value=" ver Reservas Canceladas" onclick="document.write('Funcionalidad en Desarrollo');"></p:commandButton>
+                <p:commandButton value=" ver Reservas Finalizada" onclick="document.write('Funcionalidad en Desarrollo');"></p:commandButton>
             </div>
     </div>
 </h:body>

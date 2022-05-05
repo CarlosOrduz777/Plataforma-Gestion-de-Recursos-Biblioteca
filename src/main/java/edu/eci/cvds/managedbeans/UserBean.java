@@ -50,6 +50,7 @@ public class UserBean extends BasePageBean {
 			System.out.println("SIGNIN");
 			eciStuffServices.signIn(email, password);
 			System.out.println(email);
+			bookingsUser = eciStuffServices.viewBookingUser();
 		}catch (ServicesException ex){
 			throw ex;
 		}
