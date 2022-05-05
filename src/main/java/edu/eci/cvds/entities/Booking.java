@@ -12,6 +12,11 @@ public class Booking implements Serializable {
     @Getter @Setter private Date fechaFin;
     @Getter @Setter private int usuario_id;
     @Getter @Setter private int recurso_id;
+    @Getter @Setter private String nombreUsuario;
+    @Getter @Setter private String emailUsuario;
+    @Getter @Setter private String nombreRecurso;
+    @Getter @Setter private String ubiRecurso;
+    @Getter @Setter private String tipoRecurso;
 
     public Booking(){
         super();
@@ -33,6 +38,40 @@ public class Booking implements Serializable {
         this.fechaFin = fechaFin;
         this.usuario_id = usuario_id;
         this.recurso_id = recurso_id;
+    }
+
+    public Booking(Booking booking, String nombreUsuario, String emailUsuario, String nombreRecurso, String ubiRecurso, String tipoRecurso) {
+        this.id = booking.getId();
+        this.fechaInicio = booking.getFechaInicio();
+        this.fechaFin = booking.getFechaFin();
+        this.usuario_id = booking.getUsuario_id();
+        this.recurso_id = booking.getRecurso_id();
+        this.nombreUsuario = nombreUsuario;
+        this.emailUsuario = emailUsuario;
+        this.nombreRecurso = nombreRecurso;
+        this.ubiRecurso = ubiRecurso;
+        this.tipoRecurso = tipoRecurso;
+    }
+
+    public Booking(Booking booking, String nombreRecurso, String ubiRecurso, String tipoRecurso) {
+        this.id = booking.getId();
+        this.fechaInicio = booking.getFechaInicio();
+        this.fechaFin = booking.getFechaFin();
+        this.usuario_id = booking.getUsuario_id();
+        this.recurso_id = booking.getRecurso_id();
+        this.nombreRecurso = nombreRecurso;
+        this.ubiRecurso = ubiRecurso;
+        this.tipoRecurso = tipoRecurso;
+    }
+
+    public Booking(Booking booking, String nombreRecurso, String tipoRecurso) {
+        this.id = booking.getId();
+        this.fechaInicio = booking.getFechaInicio();
+        this.fechaFin = booking.getFechaFin();
+        this.usuario_id = booking.getUsuario_id();
+        this.recurso_id = booking.getRecurso_id();
+        this.nombreRecurso = nombreRecurso;
+        this.tipoRecurso = tipoRecurso;
     }
 
     @Override
