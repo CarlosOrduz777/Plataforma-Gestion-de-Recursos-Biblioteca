@@ -6,7 +6,7 @@
 
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.BookingMapper">
     <insert id="registerBooking" parameterType="map">
-        INSERT INTO "ECIStuff".reservas (id,fechainicio,fechafin,usuario_id,recurso_id)
-        VALUES (1,#{fI},#{fE},#{ui},#{ri});
+        INSERT INTO "ECIStuff".reservas (fechainicio,fechafin,usuario_id,recurso_id)
+        VALUES (#{fI},#{fE},#{ui},#{ri});
     </insert>
 </mapper>

@@ -1,0 +1,36 @@
+.container {
+    border: 0px solid #F00000 ;
+    width: 98vw;
+    height: 90vh;
+    display: flex;
+
+}
+
+.sidebar{
+    height: auto;
+    width: 10px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #990000;
+    color: white;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.sidebar span {
+    align-self: center;
+    font-size: 2.5rem;
+    font-family: Arial Bold;
+    margin-top: 1rem;
+
+}
+.main {
+    flex: 2;
+    display: grid;
+    color: #FFFFFF;
+    justify-content: center;
+    grid-auto-flow: dense;
+    grid-row-end: auto;
+    background-image: url("https://cdn.discordapp.com/attachments/771508386452734003/971605779868184626/image.jpg");
+}
