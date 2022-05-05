@@ -16,10 +16,13 @@
     <link rel="stylesheet" href="consultarRecursos.css"/>
 </h:head>
 <h:body>
-    <h1>Consultar Recursos</h1>
-    <p:commandButton value="Cerrar Sesion"  immediate="true" action="#{userBean.logOut}"/>
+    <div class="navBar">
+        <h1>Consultar Recursos</h1>
+        <p:commandButton value="Cerrar Sesion" styleClass="myCustomStyle" immediate="true" action="#{userBean.logOut}"/>
+    </div>
+
     <div class="consultContainer">
-        <h:form>
+        <h:form class="formClass">
                 <b:dataTable value="#{resourceBean.result}"
                              var="rb"
                              searching="true"

@@ -135,3 +135,21 @@ input[type=number] {
     background-size: cover;
 
 }
+
+.navBar{
+    font-family:"cursive";
+    display: flex;
+    background-color: #c1171a;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex: auto;
+}
+.myCustomStyle {
+    border-width:1px;
+    border-color: #000000;
+    border-style: solid;
+    text-align: center;
+    font-weight: bold;
+    background: #48a832;
+    color: #FFFFFF;
+}
