@@ -1,6 +1,7 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Booking;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.BookingDAO;
 import edu.eci.cvds.persistence.PersistenceException;
@@ -81,7 +82,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
 
         //say who they are:
         //print their identifying princip   al (in this case, a username):
-        //log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
+        log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
 
         /*
         //test a role:
@@ -138,11 +139,67 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     }
 
     @Override
+    public Booking consultBooking(int id) throws ServicesException {
+        try{
+            Booking booking = bookingDAO.consultBooking(id);
+            User user = getUserById(booking.getUsuario_id());
+            Resource resource = getResourceById(booking.getRecurso_id());
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            Booking bookingDetail;
+            if (currentUser.hasRole("Administrador")){
+                bookingDetail = new Booking(booking, user.getNombre(), user.getEmail(), resource.getNombre(), resource.getUbicacion(), resource.getTipo());
+            }else{
+                bookingDetail = new Booking(booking, resource.getNombre(), resource.getUbicacion(), resource.getTipo());
+            }
+            return bookingDetail;
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Resource getResourceById(int id) throws ServicesException {
+        try{
+            return resourceDAO.getResourceById(id);
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public User getUserById(int id) throws ServicesException {
+        try{
+            return userDAO.getUserById(id);
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
     public User getUserIdByEmail(String email) throws ServicesException {
         try{
             return userDAO.getUserIdByEmail(email);
         }catch (Exception e){
             throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Booking> viewBookingUser() throws ServicesException{
+        try{
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            List<Booking> bookings = userDAO.viewBookingUser((String) session.getAttribute("email"));
+            System.out.println('[');
+            for (Booking b: bookings) {
+                System.out.print(b);
+                System.out.print(", ");
+            }
+            System.out.print(']');
+            return bookings;
+        }catch (Exception e){
+            throw new ServicesException("No se ha podido traer Reservas para el usuario Actual", e);
         }
     }
 }

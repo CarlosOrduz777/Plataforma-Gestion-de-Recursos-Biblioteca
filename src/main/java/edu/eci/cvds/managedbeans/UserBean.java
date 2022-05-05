@@ -1,5 +1,6 @@
 package edu.eci.cvds.managedbeans;
 
+import edu.eci.cvds.entities.Booking;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.ECIStuffServices;
@@ -14,6 +15,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.util.List;
+import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Bean para la interfaz de usuario de las decanaturas
@@ -26,6 +29,7 @@ public class UserBean extends BasePageBean {
 	private int idUser;
 	private String email;
 	private String password;
+	@Getter @Setter private List<Booking> bookingsUser;
 
 	@Inject
 	private ECIStuffServices eciStuffServices;
@@ -46,6 +50,7 @@ public class UserBean extends BasePageBean {
 			System.out.println("SIGNIN");
 			eciStuffServices.signIn(email, password);
 			System.out.println(email);
+			bookingsUser = eciStuffServices.viewBookingUser();
 		}catch (ServicesException ex){
 			throw ex;
 		}
@@ -53,11 +58,20 @@ public class UserBean extends BasePageBean {
 
 	public void logOut() throws Exception{
 		try {
-			System.out.println("++++++++=============LOGOUT========================");
+			System.out.println("====================LOGOUT========================");
 			eciStuffServices.logOut();
 		}catch (ServicesException ex) {
 			throw ex;
 		}
+	}
+
+	public void viewBookingUser() throws Exception{
+		try{
+			bookingsUser = eciStuffServices.viewBookingUser();
+		}catch (ServicesException ex){
+			throw ex;
+		}
+		FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/reservasUsuario.xhtml");
 	}
 
 	public String getEmail() {

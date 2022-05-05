@@ -5,8 +5,27 @@
 
 
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.BookingMapper">
+    <resultMap id="BookingResult" type="Booking">
+        <id property="id" column="id" />
+        <result property="fechaInicio" column="fechainicio"/>
+        <result property="fechaFin" column="fechafin"/>
+        <result property="usuario_id" column="usuario_id"/>
+        <result property="recurso_id" column="recurso_id"/>
+    </resultMap>
+
     <insert id="registerBooking" parameterType="map">
         INSERT INTO "ECIStuff".reservas (id,fechainicio,fechafin,usuario_id,recurso_id)
         VALUES (1,#{fI},#{fE},#{ui},#{ri});
     </insert>
+
+    <select id="consultBooking" resultMap="BookingResult" parameterType="map">
+        SELECT
+            id,
+            fechainicio,
+            fechafin,
+            usuario_id,
+            recurso_id
+        FROM "ECIStuff".reservas
+        WHERE id=#{id}
+    </select>
 </mapper>
