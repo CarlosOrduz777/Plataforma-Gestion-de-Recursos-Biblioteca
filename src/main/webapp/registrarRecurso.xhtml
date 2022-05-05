@@ -7,7 +7,7 @@
 
 <h:head>
     <title>Registrar Recurso</title>
-    <link rel="stylesheet" href="styles.css"/>
+    <link rel="stylesheet" href="registrarRecurso.css"/>
 </h:head>
 <h:body>
     <div class="container">
@@ -64,7 +64,7 @@
         </div>
 
         <p:commandButton class="submit-btn" id="register-btn" value="Registrar" actionListener="#{resourceBean.registerResource}" update="registerResourceForm" />
-
+            <p:commandButton value="Cerrar Sesion"  action="#{userBean.logOut}"/>
         </h:form>
 
     </div>

@@ -23,4 +23,6 @@ public interface ECIStuffServices {
     User getUserIdByEmail(String email) throws ServicesException;
 
 
+    public void logOut() throws  ServicesException;
+
 }
