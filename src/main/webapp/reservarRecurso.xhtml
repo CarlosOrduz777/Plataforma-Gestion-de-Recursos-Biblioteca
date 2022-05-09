@@ -21,7 +21,9 @@
                               disabledDates="'04/30/2022'"/>
             <b:message for="@previous" col-sm="9" />
         </b:formGroup>
-        <b:commandButton value="resercar" update="@form" look="success" action="#{bookingBean.registerBooking(bookingBean.fechaInicio,bookingBean.fechaFin,userBean.idUser,userBean.idRecurso)}"/>
+        <b:commandButton value="resercar" update="@form" look="success"
+                         action="#{bookingBean.registerBooking(bookingBean.fechaInicio,bookingBean.fechaFin,userBean.idUser,userBean.idRecurso)}"
+                         actionListener="{userBean.updateBookingsUser}"/>
     </b:form>
 
 </h:body>
