@@ -58,4 +58,11 @@ public class ValidatorsBean {
         }
         return false;
     }
+    public boolean isComunidad(){
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!(currentUser.isAuthenticated() && currentUser.hasRole("Administrador"))){
+            return true;
+        }
+        return false;
+    }
 }
