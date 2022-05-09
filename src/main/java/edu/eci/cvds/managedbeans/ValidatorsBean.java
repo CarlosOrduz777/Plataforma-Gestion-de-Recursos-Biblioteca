@@ -1,5 +1,8 @@
 package edu.eci.cvds.managedbeans;
 
+import org.apache.shiro.SecurityUtils;
+import org.apache.shiro.subject.Subject;
+
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
@@ -32,5 +35,27 @@ public class ValidatorsBean {
         } else if(passwordInserted.trim().length() > 60) {
             throw new ValidatorException(new FacesMessage("Numero de caracteres exedidos en credencial contraseña"));
         }
+    }
+
+    public boolean authenticated() {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (currentUser.isAuthenticated()){
+            return true;
+        }
+        return false;
+    }
+    public boolean notAuthenticated() {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (!currentUser.isAuthenticated()){
+            return true;
+        }
+        return false;
+    }
+    public boolean isAdmin() {
+        Subject currentUser = SecurityUtils.getSubject();
+        if (currentUser.isAuthenticated() && currentUser.hasRole("Administrador")){
+            return true;
+        }
+        return false;
     }
 }

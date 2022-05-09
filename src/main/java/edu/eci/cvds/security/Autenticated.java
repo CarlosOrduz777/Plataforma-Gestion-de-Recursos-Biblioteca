@@ -12,7 +12,7 @@ import javax.servlet.ServletResponse;
  */
 public class Autenticated extends AccessControlFilter{
 
-        String welcomeurl = "/faces/index.html";
+        String welcomeurl = "/faces/index.xhtml";
 
         @Override
         protected boolean isAccessAllowed(ServletRequest request, ServletResponse response, Object mappedValue) throws Exception {
