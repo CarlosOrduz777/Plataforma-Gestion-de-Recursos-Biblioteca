@@ -29,7 +29,7 @@ public class UserBean extends BasePageBean {
 	private int idUser;
 	private String email;
 	private String password;
-	@Getter @Setter private List<Booking> bookingsUser;
+	@Setter private List<Booking> bookingsUser;
 
 	@Inject
 	private ECIStuffServices eciStuffServices;
@@ -74,14 +74,13 @@ public class UserBean extends BasePageBean {
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/reservasUsuario.xhtml");
 	}
 
-	public void updateBookingsUser() throws Exception{
+	public void updateBookingsUser(){
 		try {
 			bookingsUser = eciStuffServices.viewBookingUser();
 		}catch (ServicesException ex){
-			throw  ex;
+			  System.out.println("error actualizando reservas Usuario" + ex);
 		}
 	}
-
 
 	public String getEmail() {
 		return email;
@@ -131,5 +130,10 @@ public class UserBean extends BasePageBean {
 		}catch (Exception e){
 			throw new ServicesException(e.getMessage());
 		}
+	}
+
+	public List<Booking> getBookingsUser(){
+		updateBookingsUser();
+		return bookingsUser;
 	}
 }
