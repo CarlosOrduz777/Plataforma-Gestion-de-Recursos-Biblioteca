@@ -45,6 +45,7 @@ public class BookingBean extends BasePageBean{
         try {
             HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext().getRequest();
             int id = Integer.parseInt(request.getParameter("id"));
+            System.out.println("------------"+id+"---------------------");
             booking =  eciStuffServices.consultBooking(id);
             return booking;
         } catch (ServicesException ex) {

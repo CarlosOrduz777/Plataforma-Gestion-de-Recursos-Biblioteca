@@ -17,8 +17,9 @@ public class User implements Serializable {
         this.email = email;
         this.role = role;
     }
-    public User(int id){
+    public User(int id,String role){
         this.id=id;
+        this.role=role;
     }
 
     @Override

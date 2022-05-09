@@ -1,0 +1,77 @@
+.navbar{
+    background-color: #990000;
+}
+.navbar-default .navbar-nav > li > a{
+    color: #FFFFFF;
+    font-size: larger;
+}
+.headerP{
+    display: flex;
+}
+.logoEci{
+    width: 50px;
+    height: 50px;
+}
+ul{
+    display: flex;
+    justify-content: flex-end;
+    color: #FFFFFF;
+}
+.services{
+    display: flex;
+    align-items: center;
+    margin-top: 0
+;
+}
+.service {
+    margin-top: 0;
+    border-radius:5px;
+    border: 1px solid #999;
+    padding:13px;
+    width:700px;
+    height: 440px;
+    background-size: cover;
+    background-size: 100% ;
+}
+.servicei{
+    margin-top: 0;
+    padding:13px;
+    width:700px;
+    height: 440px;
+    background-size: cover;
+    background-size: 100% ;
+}
+.salaE{
+    background-image: url("https://cdn.discordapp.com/attachments/771508386452734003/971605779868184626/image.jpg");
+}
+.button{
+    transition-duration: 0.4s;
+    background-color: #990000;
+    border-radius: 4px;
+    margin-top: 3%;
+    margin-left: 40%;
+    color: #FFFFFF;
+    text-align: center;
+    padding: 15px;
+}
+.button:hover {
+    border-color: #f2f0f0;
+    box-shadow: 0 12px 16px 0 rgba(0,0,0,0.24), 0 17px 50px 0 rgba(0,0,0,0.19);
+}
+.jumbotron h1{
+    text-transform: uppercase;
+}
+.jumbotron{
+    margin-bottom: 0;
+}
+.salaEinfo{
+    padding-left: 70px;
+}
+.salaEinfo h2{
+    margin-top: 40px;
+}
+.salaEinfo p{
+    margin-bottom: 15px;
+    font-size: 21px;
+    font-weight: 200
+}

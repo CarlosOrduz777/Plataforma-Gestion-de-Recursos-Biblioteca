@@ -16,4 +16,6 @@ public interface UserDAO {
 
 
     User getUserById(int id) throws PersistenceException;
+
+
 }

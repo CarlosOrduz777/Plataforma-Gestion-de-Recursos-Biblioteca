@@ -24,6 +24,7 @@ import edu.eci.cvds.persistence.ResourceDAO;
 
 import java.sql.Date;
 import java.util.List;
+import java.util.Objects;
 
 public class ECIStuffServicesImpl implements ECIStuffServices {
 
@@ -61,7 +62,12 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             log.info("Sale del IF authenticated");
             try {
                 currentUser.login(token);
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/consultarRecursos.xhtml");
+                if (Objects.equals(userDAO.getUserIdByEmail(email).getRole(), "Administrador")){
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/homeAdmin.xhtml");
+                }else{
+                    FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/homeComunidad.xhtml");
+                }
+
                 log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
             } catch (UnknownAccountException uae) {
                 log.info("There is no user with username of " + token.getPrincipal());
@@ -77,6 +83,8 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             catch (AuthenticationException | IOException ae) {
                 //unexpected condition?  error?
                 log.info(ae.getMessage());
+            } catch (PersistenceException e) {
+                throw new RuntimeException(e);
             }
         }
 
@@ -105,7 +113,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/home.xhtml");
         } catch (IOException e) {
             e.printStackTrace();
         }

@@ -18,9 +18,10 @@
     <h1>Consultar Recursos</h1>
 
     <div class="consultContainer">
+        <b:button outcome="/faces/homeAdmin.xhtml" value="Regresar"/>
+        <p:commandButton value="Cerrar Sesion" immediate="true"  action="#{userBean.logOut}"/>
+        <b:button outcome="/faces/reservasUsuario.xhtml" value="Mis reservas"/>
         <h:form>
-                <p:commandButton value="Cerrar Sesion" immediate="true"  action="#{userBean.logOut}"/>
-                <b:button outcome="/faces/reservasUsuario.xhtml" value="Mis reservas"/>
                 <b:dataTable value="#{resourceBean.result}"
                              var="rb"
                              searching="true"
@@ -28,9 +29,11 @@
                              multiColumnSearchPosition="top">
                     <b:dataTableColumn value="#{rb.id}"  searchable="false"/>
                     <b:dataTableColumn value="#{rb.nombre}" searchable="false"/>
-                    <b:dataTableColumn value="#{rb.ubicacion}" />
-                    <b:dataTableColumn value="#{rb.tipo}" />
-                    <b:dataTableColumn value="#{rb.capacidad}" />
+                    <b:dataTableColumn value="#{rb.ubicacion}" searchable="true"/>
+                    <b:dataTableColumn value="#{rb.tipo}" searchable="true">
+                        <h:messages/>
+                    </b:dataTableColumn>
+                    <b:dataTableColumn value="#{rb.capacidad}" searchable="true"/>
                     <b:dataTableColumn  label="Inicio Disponibilidad" searchable="false">
                         <h:outputText value="#{rb.iDisp}" >
                             <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
@@ -40,12 +43,6 @@
                         <h:outputText value="#{rb.fDisp}" >
                             <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
                         </h:outputText>
-                    </b:dataTableColumn>
-                    <b:dataTableColumn label="Reserva" searchable="false">
-                        <b:commandButton value="reservar" title="View" immediate="true" action="#{userBean.getUserIdByEmail(rb.id)}" process="@this" look="primary" ajax="false">
-                            <h:messages/>
-                        </b:commandButton>
-
                     </b:dataTableColumn>
                 </b:dataTable>
 
