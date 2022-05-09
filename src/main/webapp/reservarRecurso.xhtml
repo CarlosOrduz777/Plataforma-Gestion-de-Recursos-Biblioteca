@@ -3,38 +3,29 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:h="http://java.sun.com/jsf/html">
 
 <h:head>
-    <title>HOME</title>
-    <link rel="stylesheet" href="reservaRec.css"/>
-
+    <title>Reservar Recurso</title>
 </h:head>
 <h:body>
-    <b:navBar >
-        <b:navbarLinks>
-            <b:navLink value="Volver" href="/faces/consultarRecursosComunidad.xhtml"></b:navLink>
-            <b:form>
-                <b:commandButton value="Cerrar Sesion" immediate="true" action="#{userBean.logOut()}"/>
-            </b:form>
-        </b:navbarLinks>
-    </b:navBar>
-
+    <h1>Reservar Recurso</h1>
     <b:form horizontal="false">
         <b:formGroup>
-            <label>Fecha Inicio</label>
-            <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaInicio}" required="true" label-col-sm="3" col-sm="6"
-                              minDate="#{resourceBean.iDisp}" maxDate="#{resourceBean.fDisp}"/>
+            <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaInicio}" required="true" label="Fecha Inicio:" label-col-sm="3" col-sm="6"
+            minDate="#{resourceBean.iDisp}" maxDate="#{resourceBean.fDisp}"/>
             <b:message for="@previous" col-sm="9" />
         </b:formGroup>
         <b:formGroup>
-            <label>Fecha Fin</label>
-            <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaFin}" required="true" label-col-sm="3" col-sm="6"/>
+            <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaFin}" required="true" label="Fecha Fin:" label-col-sm="3" col-sm="6"
+                              disabledDates="'04/30/2022'"/>
             <b:message for="@previous" col-sm="9" />
         </b:formGroup>
-        <b:commandButton value="reservar" update="@form" look="success" action="#{bookingBean.registerBooking(bookingBean.fechaInicio,bookingBean.fechaFin,userBean.idUser,userBean.idRecurso)}"/>
+        <b:commandButton value="resercar" update="@form" look="success"
+                         action="#{bookingBean.registerBooking(bookingBean.fechaInicio,bookingBean.fechaFin,userBean.idUser,userBean.idRecurso)}"
+                         actionListener="{userBean.updateBookingsUser}"/>
     </b:form>
 
 </h:body>
 </html>
+

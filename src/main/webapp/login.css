@@ -10,7 +10,8 @@ body {
     place-items: center;
     width: 100vw;
     height: 100vh;
-    font-family: Arial Bold;
+    font-family: "Arial";
+    font-weight: bold;
     color: white;
 }
 
@@ -40,7 +41,6 @@ body {
 .sidebar span {
     align-self: center;
     font-size: 2.5rem;
-    font-family: Arial Bold;
     margin-top: 1rem;
 }
 
@@ -56,10 +56,8 @@ body {
 
 .title {
     position: absolute;
-    top: 0;
+    bottom: 80%;
     font-size: 3rem;
-    font-family: Arial Bold;
-    font-weight: lighter;
     margin: 3rem;
 }
 
@@ -69,7 +67,7 @@ body {
     display: flex;
     flex-direction: column;
     justify-content: space-around;
-    background-image: url("https://cdn.discordapp.com/attachments/831560691252068372/970798698806251560/Diseno_sin_titulo_2.jpg");
+    background-image: url("https://cdn.discordapp.com/attachments/831560691252068372/972713369167597629/fondoLogin1.jpg");
     background-size: cover;
     width: 80%;
     border-radius: 1rem;
@@ -80,14 +78,39 @@ body {
     display: flex;
     flex-direction: column;
     font-size: 1.8rem;
+    margin: 0.5rem;
     
 }
 
-  
+.btn-ingresar {
+    border: 4px solid #000000;
+    background: #990000;
+    border-radius: 6px;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 16px 8px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.btn-ingresar:hover {
+      border: 4px solid white;
+      background-color: transparent;
+      color: 00000;
+ }
+
+.label{
+    margin: 10px;
+    font-weight: lighter;
+}
 input{
       background-color: transparent;
       color: white;
-      border-bottom: 1px solid #635959;
+      border: 2px solid #635959;
       margin-top: 10px;
       font: inherit;
       font-size: 100%;

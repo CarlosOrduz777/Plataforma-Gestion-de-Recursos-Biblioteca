@@ -74,6 +74,15 @@ public class UserBean extends BasePageBean {
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/reservasUsuario.xhtml");
 	}
 
+	public void updateBookingsUser() throws Exception{
+		try {
+			bookingsUser = eciStuffServices.viewBookingUser();
+		}catch (ServicesException ex){
+			throw  ex;
+		}
+	}
+
+
 	public String getEmail() {
 		return email;
 	}
