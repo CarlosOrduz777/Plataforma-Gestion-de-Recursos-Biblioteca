@@ -61,7 +61,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             log.info("Sale del IF authenticated");
             try {
                 currentUser.login(token);
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/consultarRecursos.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/index.xhtml");
                 log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
             } catch (UnknownAccountException uae) {
                 log.info("There is no user with username of " + token.getPrincipal());
@@ -105,7 +105,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/index.xhtml");
         } catch (IOException e) {
             e.printStackTrace();
         }
