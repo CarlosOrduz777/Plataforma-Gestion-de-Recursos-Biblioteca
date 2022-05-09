@@ -16,7 +16,7 @@ import java.text.SimpleDateFormat;
 import java.util.List;
 
 @ManagedBean(name = "resourceBean")
-@SessionScoped
+@ApplicationScoped
 public class ResourceBean extends BasePageBean{
 
     @Inject

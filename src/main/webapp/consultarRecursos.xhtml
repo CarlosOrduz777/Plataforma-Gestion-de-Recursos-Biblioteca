@@ -88,7 +88,7 @@
                             <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
-                    <b:dataTableColumn label="Reserva" searchable="false" rendered="#{validatorBean.isComunidad()}">
+                    <b:dataTableColumn label="Reserva" searchable="false" rendered="#{validatorBean.authenticated()}">
                         <b:commandButton value="reservar" title="View" immediate="true" action="#{userBean.getUserIdByEmail(rb.id)}" process="@this" look="primary" ajax="false">
                             <h:messages/>
                         </b:commandButton>
