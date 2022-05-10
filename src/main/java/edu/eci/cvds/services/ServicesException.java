@@ -13,9 +13,5 @@ public class ServicesException extends Exception {
     public ServicesException(String message, Throwable cause) {
         super(message, cause);
     }
-
-    public ServicesException(Throwable cause) {
-        super(cause);
-    }
     
 }

@@ -171,7 +171,13 @@
     <dependency>
       <groupId>org.mockito</groupId>
       <artifactId>mockito-all</artifactId>
-      <version>1.10.19</version>
+      <version>2.0.2-beta</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>3.12.4</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -340,6 +346,9 @@
                   <exclude>edu/eci/cvds/guice/*</exclude>
                   <exclude>edu/eci/cvds/persistence/*</exclude>
                   <exclude>edu/eci/cvds/*App*</exclude>
+                  <exclude>edu/eci/cvds/entities/</exclude>
+                  <exclude>edu/eci/cvds/security/</exclude>
+                  <exclude>edu/eci/cvds/persistence/mybatisimpl/</exclude>
                 </excludes>
             </configuration>
         </plugin>
