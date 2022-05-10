@@ -1,4 +1,4 @@
-package edu.eci.cvds;
+package edu.eci.cvds.security;
 
 import com.github.sdorra.shiro.ShiroRule;
 import com.github.sdorra.shiro.SubjectAware;
