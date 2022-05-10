@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.HorarioMapper">
+    <!--
+    <select parameterType="map" id="consultarRecurso" resultMap="RecursoResult">
+        SELECT
+        r.id AS r_id,
+        r.nombre AS r_nombre,
+        r.ubicacion AS r_ubicacion,
+        r.tipo AS r_tipo,
+        r.descripcion AS r_descripcion,
+        r.iniciodisponibilidad AS r_iniciodisponibilidad,
+        r.findisponibilidad AS r_findisponibilidad
+        FROM "ECIStuff".recursos AS r
+        WHERE r.id = #{id}
+    </select>
+    -->
+
+    <select parameterType="map" id="consultarHorariosDisponibles" resultMap="HorarioResult">
+        SELECT
+        h.idhorario AS h_idhorario,
+        h.idusuario AS h_idusuario,
+        h.idrecurso AS h_idrecurso,
+        h.fecha AS h_fecha,
+        h.horainicial AS h_horainicial,
+        h.horafinal AS h_horafinal
+        FROM "ECIStuff".horarios as h;
+    </select>
+
+
+    <resultMap type='Horario' id='HorarioResult'>
+        <id property='idhorario' column='r_idhorario'/>
+        <result property='idusuario' column='h_idusuario'/>
+        <result property='idrecurso' column='h_idrecurso'/>
+        <result property='fecha' column='h_fecha'/>
+        <result property='horainicial' column='h_horainicial'/>
+        <result property='horafinal' column='h_horafinal'/>
+    </resultMap>
+</mapper>
