@@ -15,6 +15,7 @@ import org.mockito.MockitoAnnotations;
 import java.util.Arrays;
 import java.util.Date;
 
+import static org.mockito.Matchers.doubleThat;
 import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 
@@ -25,8 +26,6 @@ public class UserBeanTest extends TestCase {
     @InjectMocks
     private UserBean userBean;
 
-    private User user;
-    private Resource resource;
     private Booking booking;
     private Booking booking1;
     private Booking booking2;
@@ -35,9 +34,9 @@ public class UserBeanTest extends TestCase {
     public void setUp() throws Exception {
         super.setUp();
         MockitoAnnotations.initMocks(this);
-        user = new User(1,"Francisco Rojas","Rojas-m", "Administrador");
+        User user = new User(1,"Francisco Rojas","Rojas-m", "Administrador");
         //Resource
-        resource = new Resource(1, "R1", "Ubi", "si","Sala");
+        Resource resource = new Resource(1, "R1", "Ubi", "si","Sala");
         //Bookings
         booking = new Booking(1,new Date(122, 5,3),
                 new Date(122, 6,3), user.getId(),resource.getId());
@@ -78,6 +77,7 @@ public class UserBeanTest extends TestCase {
             userBean.viewBookingUser();
         } catch (Exception e) {
             e.printStackTrace();
+            Assert.assertEquals(e.toString(),"edu.eci.cvds.services.ServicesException");
         }
     }
 
@@ -115,7 +115,7 @@ public class UserBeanTest extends TestCase {
             doThrow(ServicesException.class).when(eciStuffServices).viewBookingUser();
             userBean.updateBookingsUser();
         } catch(Exception e) {
-            e.printStackTrace();
+            assertEquals("edu.eci.cvds.services.ServicesException", e.toString());
         }
     }
 }

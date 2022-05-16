@@ -66,11 +66,11 @@ public class UserBean extends BasePageBean {
 		FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/reservasUsuario.xhtml");
 	}
 
-	public void updateBookingsUser(){
+	public void updateBookingsUser() throws Exception{
 		try {
 			bookingsUser = eciStuffServices.viewBookingUser();
 		}catch (ServicesException ex){
-			  System.out.println("error actualizando reservas Usuario" + ex);
+			  throw ex;
 		}
 	}
 
@@ -88,7 +88,7 @@ public class UserBean extends BasePageBean {
 		}
 	}
 
-	public List<Booking> getBookingsUser(){
+	public List<Booking> getBookingsUser() throws Exception{
 		updateBookingsUser();
 		return bookingsUser;
 	}

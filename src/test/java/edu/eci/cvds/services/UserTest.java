@@ -30,8 +30,6 @@ public class UserTest {
     @InjectMocks
     private ECIStuffServicesImpl eciStuffServices;
 
-    private User user;
-    private Resource resource;
     private Booking booking;
     private Booking booking1;
     private Booking booking2;
@@ -40,9 +38,9 @@ public class UserTest {
     public void setUp() throws Exception {
         MockitoAnnotations.initMocks(this);
         //User
-        user = new User(1,"Francisco Rojas","Rojas-m", "Administrador");
+        User user = new User(1,"Francisco Rojas","Rojas-m", "Administrador");
         //Resource
-        resource = new Resource(1, "R1", "Ubi", "si","Sala");
+        Resource resource = new Resource(1, "R1", "Ubi", "si","Sala");
         //Bookings
         booking = new Booking(1,new Date(122, 5,3),
                 new Date(122, 6,3), user.getId(),resource.getId());
