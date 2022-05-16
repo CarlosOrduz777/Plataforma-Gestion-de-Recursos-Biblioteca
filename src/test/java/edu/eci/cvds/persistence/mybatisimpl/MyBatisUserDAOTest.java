@@ -26,7 +26,7 @@ public class MyBatisUserDAOTest extends TestCase {
     private MyBatisUserDAO myBatisUserDAO;
 
     private User user;
-    private Resource resource;
+
     private Booking booking;
     private Booking booking1;
     private Booking booking2;
@@ -37,7 +37,7 @@ public class MyBatisUserDAOTest extends TestCase {
         MockitoAnnotations.initMocks(this);
         user = new User(1,"Francisco Rojas","Rojas-m", "Administrador");
         //Resource
-        resource = new Resource(1, "R1", "Ubi", "si","Sala");
+        Resource resource = new Resource(1, "R1", "Ubi", "si","Sala");
         //Bookings
         booking = new Booking(1,new Date(122, 5,3),
                 new Date(122, 6,3), user.getId(),resource.getId());
