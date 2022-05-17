@@ -7,6 +7,7 @@ body {
     font-weight: bold;
     color: black;
     margin: 0px;
+    background-color: #6571b8;
 }
 
 .main-container {
@@ -187,6 +188,6 @@ svg {
 .formContainer{
     background-image: url("https://cdn.discordapp.com/attachments/771508386452734003/972947606185586818/sala.jpg");
     background-size: cover;
-    height: 70%;
-    width: 70%;
+    height: 95%;
+    width: 80%;
 }

@@ -8,6 +8,7 @@ import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
 import edu.eci.cvds.services.ServicesException;
+import lombok.Generated;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
@@ -34,14 +35,8 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     @Inject
     private BookingDAO bookingDAO;
 
-    public void createUsers() throws ServicesException {
-        try {
-            userDAO.create();
-        } catch (PersistenceException e) {
-            throw new ServicesException("No se puede crear Usuario", e);
-        }
-    }
     @Override
+    @lombok.Generated
     public void signIn(String email, String password) throws ServicesException{
         System.out.println("--------ECIStuffServicesImpl--------");
         System.out.println("--------SignIn--------");
@@ -101,6 +96,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         }
 
     @Override
+    @lombok.Generated
     public  void logOut() throws ServicesException{
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();

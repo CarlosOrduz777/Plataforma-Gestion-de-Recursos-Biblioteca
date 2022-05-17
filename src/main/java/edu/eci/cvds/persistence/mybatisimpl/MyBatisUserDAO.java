@@ -14,6 +14,7 @@ public class MyBatisUserDAO implements UserDAO {
     @Inject
     private UserMapper userMapper;
     @Override
+    @lombok.Generated
     public void create() throws PersistenceException {
         try {
             userMapper.createUser();

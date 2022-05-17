@@ -19,32 +19,22 @@ import lombok.Getter;
 import lombok.Setter;
 
 /**
- * Bean para la interfaz de usuario de las decanaturas
+ * Bean para la interfaz de usuario de los Usuarios
  */
 @SuppressWarnings("deprecation")
 @ManagedBean(name = "userBean")
 @ApplicationScoped
 public class UserBean extends BasePageBean {
-	private int idRecurso;
-	private int idUser;
-	private String email;
-	private String password;
-	@Getter @Setter private List<Booking> bookingsUser;
+	@Getter @Setter private int idRecurso;
+	@Getter @Setter private int idUser;
+	@Getter @Setter private String email;
+	@Getter @Setter private String password;
+	@Setter private List<Booking> bookingsUser;
 
 	@Inject
 	private ECIStuffServices eciStuffServices;
 
-
-
-
-	public void createUser() throws Exception {
-		try {
-			eciStuffServices.createUsers();
-		} catch (ServicesException ex) {
-			throw new ServicesException(ex.getMessage());
-		}
-	}
-
+	@lombok.Generated
 	public void signIn() throws Exception{
 		try{
 			System.out.println("SIGNIN");
@@ -56,6 +46,7 @@ public class UserBean extends BasePageBean {
 		}
 	}
 
+	@lombok.Generated
 	public void logOut() throws Exception{
 		try {
 			System.out.println("====================LOGOUT========================");
@@ -65,6 +56,7 @@ public class UserBean extends BasePageBean {
 		}
 	}
 
+	@lombok.Generated
 	public void viewBookingUser() throws Exception{
 		try{
 			bookingsUser = eciStuffServices.viewBookingUser();
@@ -78,51 +70,14 @@ public class UserBean extends BasePageBean {
 		try {
 			bookingsUser = eciStuffServices.viewBookingUser();
 		}catch (ServicesException ex){
-			throw  ex;
+			  throw ex;
 		}
-	}
-
-
-	public String getEmail() {
-		return email;
-	}
-
-	public int getIdRecurso() {
-		return idRecurso;
-	}
-
-	public void setIdRecurso(int idRecurso) {
-		this.idRecurso = idRecurso;
-	}
-
-	public int getIdUser() {
-		return idUser;
-	}
-
-	public void setIdUser(int idUser) {
-		this.idUser = idUser;
-	}
-
-	public void setEmail(String email) {
-		System.out.println(email);
-		this.email = email;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public void setPassword(String password) {
-		System.out.println(password);
-		this.password = password;
 	}
 
 	public User getUserIdByEmail(int idRecurso) throws ServicesException{
 		this.idRecurso = idRecurso;
-		System.out.println(this.idRecurso);
-		System.out.println(this.email);
-		try{
 
+		try{
 			User result = eciStuffServices.getUserIdByEmail(this.email);
 			this.idUser = result.getId();
 			System.out.println(result);
@@ -131,5 +86,10 @@ public class UserBean extends BasePageBean {
 		}catch (Exception e){
 			throw new ServicesException(e.getMessage());
 		}
+	}
+
+	public List<Booking> getBookingsUser() throws Exception{
+		updateBookingsUser();
+		return bookingsUser;
 	}
 }

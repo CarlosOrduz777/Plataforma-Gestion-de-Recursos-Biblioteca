@@ -1,5 +1,6 @@
 package edu.eci.cvds.managedbeans;
 
+import lombok.Setter;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.subject.Subject;
 
@@ -14,6 +15,7 @@ import javax.faces.validator.ValidatorException;
 @ManagedBean(name = "validatorBean")
 @RequestScoped
 public class ValidatorsBean {
+    @Setter public String userMail;
     public void validateEmail(FacesContext arg0, UIComponent arg1, Object arg2)
             throws ValidatorException {
             String emailInserted = (String)arg2;
@@ -65,4 +67,10 @@ public class ValidatorsBean {
         }
         return false;
     }
+
+    public String getUserMail(){
+        Subject currentUser = SecurityUtils.getSubject();
+        return (String) currentUser.getPrincipal();
+    }
+
 }
