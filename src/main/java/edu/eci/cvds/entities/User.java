@@ -11,10 +11,25 @@ public class User implements Serializable {
     @Getter @Setter private String email;
     @Getter @Setter private String role;
 
+
     public User(int id, String nombre, String email, String role){
         this.id = id;
         this.nombre = nombre;
         this.email = email;
         this.role = role;
+    }
+    public User(int id,String role){
+        this.id=id;
+        this.role=role;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", nombre='" + nombre + '\'' +
+                ", email='" + email + '\'' +
+                ", role='" + role + '\'' +
+                '}';
     }
 }

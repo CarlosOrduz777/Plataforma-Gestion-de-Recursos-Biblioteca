@@ -19,22 +19,24 @@
             <h2 class="title">Sign In</h2>
             <h:form class="form_container" id="LogIn">
                 <div class="row">
-                    <label for="iName">Correo</label>
-                    <p:inputText id="correo" class="input" type="text"  value="#{userBean.email}" required="true" validator="#{validatorBean.validateEmail}">
-                        <f:validateLength for="correo" minimum="3" maximum="60"></f:validateLength>
+                    <label class="label" for="iName">Correo</label>
+                    <p:inputText id="correo" class="input" type="text"  value="#{userBean.email}" required="true"
+                                 requiredMessage="Campo correo es requerido"
+                                 validator="#{validatorBean.validateEmail}">
                     </p:inputText>
                 </div>
                 <div class="row">
-                    <label for="iName">Contraseña</label>
-                    <p:password id="password" class="input" type="String" value="#{userBean.password}" required="true" validator="#{validatorBean.validatePassword}">
-                        <f:validateLength for="password" minimum="3" maximum="20"></f:validateLength>
+                    <label class="label" for="iName">Contraseña</label>
+                    <p:password id="password" class="input" type="String" value="#{userBean.password}" required="true"
+                                requiredMessage="Campo contraseña es requerido"
+                                validator="#{validatorBean.validatePassword}">
                     </p:password>
 
                 </div>
                 <div class="row">
-                    <p:commandButton value="Ingresar" update="LogIn" action="#{userBean.signIn}"/>
+                    <p:commandButton  class="btn-ingresar" value="Ingresar" update="LogIn" action="#{userBean.signIn}"/>
                 </div>
-                <h:messages style="color:white; margin:8px; fontsize:1.5rem"/>
+                <h:messages style="color:#F00000; margin:10px; font-size:1.5rem"/>
             </h:form>
         </div>
     </div>

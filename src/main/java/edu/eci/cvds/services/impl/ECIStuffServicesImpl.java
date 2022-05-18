@@ -1,10 +1,14 @@
 package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Booking;
+import edu.eci.cvds.entities.User;
+import edu.eci.cvds.persistence.BookingDAO;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
 import edu.eci.cvds.services.ServicesException;
+import lombok.Generated;
 import org.apache.shiro.SecurityUtils;
 import org.apache.shiro.authc.*;
 import org.apache.shiro.session.Session;
@@ -19,6 +23,7 @@ import java.io.IOException;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.persistence.ResourceDAO;
 
+import java.sql.Date;
 import java.util.List;
 
 public class ECIStuffServicesImpl implements ECIStuffServices {
@@ -27,17 +32,13 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     private UserDAO userDAO;
     @Inject
     private ResourceDAO resourceDAO;
+    @Inject
+    private BookingDAO bookingDAO;
 
     private final static Logger log = LoggerFactory.getLogger(ECIStuffServices.class);
 
-    public void createUsers() throws ServicesException {
-        try {
-            userDAO.create();
-        } catch (PersistenceException e) {
-            throw new ServicesException("No se puede crear Usuario", e);
-        }
-    }
     @Override
+    @lombok.Generated
     public void signIn(String email, String password) throws ServicesException{
         System.out.println("--------ECIStuffServicesImpl--------");
         System.out.println("--------SignIn--------");
@@ -56,7 +57,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             log.info("Sale del IF authenticated");
             try {
                 currentUser.login(token);
-                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/consultarRecursos.xhtml");
+                FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/index.xhtml");
                 log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
             } catch (UnknownAccountException uae) {
                 log.info("There is no user with username of " + token.getPrincipal());
@@ -77,7 +78,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
 
         //say who they are:
         //print their identifying princip   al (in this case, a username):
-        //log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
+        log.info("User [" + currentUser.getPrincipal() + "] logged in successfully.");
 
         /*
         //test a role:
@@ -96,11 +97,12 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         }
 
     @Override
+    @lombok.Generated
     public  void logOut() throws ServicesException{
         Subject currentUser = SecurityUtils.getSubject();
         currentUser.logout();
         try {
-            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/login.xhtml");
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/index.xhtml");
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -124,6 +126,80 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se ha podido registrar el recurso"));
             log.info("No se ha podido registrar el recurso");
             throw new ServicesException("No se ha podido registrar el recurso", e);
+        }
+    }
+
+    @Override
+    public void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId) throws ServicesException {
+        try{
+            bookingDAO.registerBooking(fechaInicio,fechaFin,userId,resourceId);
+        }catch (Exception e){
+            throw new ServicesException("No se ha podido registrar la reserva", e);
+        }
+    }
+
+    @Override
+    public Booking consultBooking(int id) throws ServicesException {
+        try{
+            Booking booking = bookingDAO.consultBooking(id);
+            User user = getUserById(booking.getUsuario_id());
+            Resource resource = getResourceById(booking.getRecurso_id());
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            Booking bookingDetail;
+            if (currentUser.hasRole("Administrador")){
+                bookingDetail = new Booking(booking, user.getNombre(), user.getEmail(), resource.getNombre(), resource.getUbicacion(), resource.getTipo());
+            }else{
+                bookingDetail = new Booking(booking, resource.getNombre(), resource.getUbicacion(), resource.getTipo());
+            }
+            return bookingDetail;
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Resource getResourceById(int id) throws ServicesException {
+        try{
+            return resourceDAO.getResourceById(id);
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public User getUserById(int id) throws ServicesException {
+        try{
+            return userDAO.getUserById(id);
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public User getUserIdByEmail(String email) throws ServicesException {
+        try{
+            return userDAO.getUserIdByEmail(email);
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Booking> viewBookingUser() throws ServicesException{
+        try{
+            Subject currentUser = SecurityUtils.getSubject();
+            Session session = currentUser.getSession();
+            List<Booking> bookings = userDAO.viewBookingUser((String) session.getAttribute("email"));
+            System.out.println('[');
+            for (Booking b: bookings) {
+                System.out.print(b);
+                System.out.print(", ");
+            }
+            System.out.print(']');
+            return bookings;
+        }catch (Exception e){
+            throw new ServicesException("No se ha podido traer Reservas para el usuario Actual", e);
         }
     }
 }

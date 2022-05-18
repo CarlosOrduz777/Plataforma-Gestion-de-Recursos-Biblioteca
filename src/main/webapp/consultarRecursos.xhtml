@@ -3,22 +3,72 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:b="http://bootsfaces.net/ui"
       xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
 <f:metadata>
     <f:viewParam name="result" value="#{resourceBean.result}" />
     <f:event type="preRenderView" listener="#{resourceBean.consultResources()}" />
+
 </f:metadata>
 
 <h:head>
     <title>Consultar Recursos</title>
-    <link rel="stylesheet" href="consultarRecursos.css"/>
+    <link rel="stylesheet" href="consultarRec.css"/>
 </h:head>
 <h:body>
-    <h1>Consultar Recursos</h1>
+    <div class="main-container">
+        <div id="sidemenu" class="menu-static">
+            <!-- Header -->
+            <div class="header">
+                <div class="title">
+                    <span>ECI-STUFF</span>
+                </div>
+            </div>
+            <!-- Logo -->
+            <div class="profile">
+                <h:form class="photo">
+                    <img src="https://cdn.discordapp.com/attachments/831560691252068372/971016806728888380/logo-eci-removebg-preview.png" alt="Logo Escuela"/>
+                    <h:outputText value="#{validatorBean.userMail}" rendered="#{validatorBean.authenticated()}"></h:outputText>
+                </h:form>
+            </div>
+            <!-- Items -->
+            <div class="menu-items">
+                <div class="item">
+                    <a href="/faces/index.xhtml">
+                        <div class="icon">
+                            <img src="https://cdn.discordapp.com/attachments/831560691252068372/972921286059778108/553376.png" alt="Inicio"/>
+                        </div>
+                        <div class="title">
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+                </div>
+                <h:form class="item">
+                    <p:link outcome="/faces/reservasUsuario.xhtml" rendered="#{validatorBean.authenticated()}">
+                        <h:panelGroup  class="icon" layout="block">
+                            <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973021919504896040/661513.png"/>
+                        </h:panelGroup>
+                        <h:panelGroup  class="title" layout="block">
+                            <h:panelGroup>Mis reservas</h:panelGroup>
+                        </h:panelGroup>
+                    </p:link>
+                </h:form>
+                <h:form class="item">
+                    <p:commandLink action="#{userBean.logOut}" immediate="true" rendered="#{validatorBean.authenticated()}">
+                        <h:panelGroup  class="icon" layout="block">
+                            <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973033620744847380/unknown.png"/>
+                        </h:panelGroup>
+                        <h:panelGroup  class="title" layout="block">
+                            <h:panelGroup>Cerrar Sesion</h:panelGroup>
+                        </h:panelGroup>
+                    </p:commandLink>
+                </h:form>
 
-    <div class="consultContainer">
-        <h:form >
-            <b:container value="fluid">
+            </div>
+        </div>
+
+        <div class="formContain" style="overflow:auto;">
+            <h:form>
                 <b:dataTable value="#{resourceBean.result}"
                              var="rb"
                              searching="true"
@@ -39,13 +89,19 @@
                             <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
-                    <b:dataTableColumn label="Reserva" searchable="false">
-                        <b:commandButton value="reservar" ajax="true" update="@none" look="primary" style="width:80px"/>
+                    <b:dataTableColumn label="Reserva" searchable="false" rendered="#{validatorBean.authenticated()}">
+                        <b:commandButton value="reservar" title="View" immediate="true" action="#{userBean.getUserIdByEmail(rb.id)}" process="@this" look="primary" ajax="false">
+                            <h:messages/>
+                        </b:commandButton>
+
                     </b:dataTableColumn>
                 </b:dataTable>
-            </b:container>
-        </h:form>
+
+            </h:form>
+        </div>
     </div>
+
+
 
 </h:body>
 </html>

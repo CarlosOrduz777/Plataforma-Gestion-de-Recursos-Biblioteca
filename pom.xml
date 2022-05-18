@@ -17,12 +17,14 @@
 
   <dependencies>
     <!-- Bootsfaces dependency -->
+
     <dependency>
       <groupId>net.bootsfaces</groupId>
       <artifactId>bootsfaces</artifactId>
-      <version>1.5.0</version>
+      <version>1.4.0</version>
       <scope>compile</scope>
     </dependency>
+
 
     <!-- Lombok dependency-->
     <dependency>
@@ -164,6 +166,19 @@
       <groupId>org.glassfish</groupId>
       <artifactId>javax.faces</artifactId>
       <version>2.2.5</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>2.0.2-beta</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>3.12.4</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -321,6 +336,9 @@
                     <goals>
                         <goal>report</goal>
                     </goals>
+                    <configuration>
+                      <outputDirectory>target/jacoco-report</outputDirectory>
+                    </configuration>
                 </execution>
             </executions>
             <configuration>
@@ -328,6 +346,9 @@
                   <exclude>edu/eci/cvds/guice/*</exclude>
                   <exclude>edu/eci/cvds/persistence/*</exclude>
                   <exclude>edu/eci/cvds/*App*</exclude>
+                  <exclude>edu/eci/cvds/entities/</exclude>
+                  <exclude>edu/eci/cvds/security/</exclude>
+                  <exclude>edu/eci/cvds/persistence/mybatisimpl/</exclude>
                 </excludes>
             </configuration>
         </plugin>

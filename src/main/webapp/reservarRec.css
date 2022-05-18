@@ -1,0 +1,193 @@
+
+body {
+    display: grid;
+    width: 100vw;
+    height: 100vh;
+    font-family: "Arial";
+    font-weight: bold;
+    color: black;
+    margin: 0px;
+    background-color: #6571b8;
+}
+
+.main-container {
+    margin: 0px;
+    width: 98vw;
+    height: 99vh;
+    display: flex;
+}
+
+#sidemenu {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #990000;
+    color: white;
+    justify-content: flex-start;
+    align-items: stretch;
+    height:99vh;
+    min-width: 0;
+    max-width: 20vw;
+}
+
+#sidemenu a{
+    color: #000000;
+    text-decoration: none;
+}
+
+#sidemenu .header {
+    box-sizing: border-box;
+    align-self: center;
+}
+
+#sidemenu .header .title {
+    box-sizing: border-box;
+    vertical-align: middle;
+    padding: 10px;
+    font-size: 1.5em;
+    padding-top: 40px;
+    padding-bottom: 30px;
+}
+
+#sidemenu .header .title span {
+    position: center;
+}
+
+#sidemenu .profile {
+    border-top: solid 3px #131112;
+    border-bottom: solid 3px #131112;
+    padding: 10px;
+    text-align: center;
+}
+
+#sidemenu .profile .photo {
+    box-sizing: border-box;
+    padding: 10px;
+    margin: 0 auto;
+}
+
+#sidemenu .profile .photo img{
+    width: 20rem;
+}
+
+#sidemenu .profile .photo, #sidemenu .profile .nameUser{
+    font-size: 1.2rem;
+    padding: 10px 0;
+    overflow: hidden;
+}
+
+#sidemenu .menu-items{
+    overflow: hidden;
+}
+#sidemenu .menu-items .item{
+    width: var(30px);
+}
+
+#sidemenu .menu-items .item .icon{
+    display: inline-block;
+}
+
+#sidemenu .menu-items .item .icon,
+#sidemenu .menu-items .item .title{
+    font-size:1.6rem;
+    vertical-align:middle;
+    overflow: hidden;
+    display: inline-block;
+}
+
+#sidemenu .menu-items .item a{
+    display: block;
+}
+
+#sidemenu .menu-items .item a:hover{
+    background-color:#131112
+}
+
+#sidemenu .menu-items .item .icon{
+    box-sizing: border-box;
+    padding: 10px;
+    width: 50px;
+}
+
+#sidemenu .menu-items .item .icon img{
+    width: 40px;
+}
+#sidemenu .menu-items .item .title{
+    padding: 10px 0;
+    margin: 10px;
+}
+
+.main {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+
+.main .container {
+    height: 300px;
+    border: 0px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-image: url("https://cdn.discordapp.com/attachments/831560691252068372/972960122894700544/ezgif.com-gif-maker_1.gif");
+    background-size: cover;
+    width: 700px;
+    border-radius: 1rem;
+    padding:15rem;
+
+
+}
+
+.center {
+    align-self: center;
+    width: 180px;
+    height: 60px;
+    position: relative;
+}
+
+.btn {
+    width: 180px;
+    height: 60px;
+    cursor: pointer;
+    background: #cc5a65;
+    color: black;
+    border: 2px solid #990000;
+    outline: none;
+    transition: 1s ease-in-out;
+}
+
+svg {
+    position: absolute;
+    left: 0;
+    top: 0;
+    fill: none;
+    stroke: #fff;
+    stroke-dasharray: 150 480;
+    stroke-dashoffset: 150;
+    transition: 1s ease-in-out;
+}
+
+.btn:hover {
+    transition: 1s ease-in-out;
+    background: #990000;
+}
+
+.btn:hover svg {
+    stroke-dashoffset: -480;
+}
+
+.btn span {
+    color: white;
+    font-size: 18px;
+    font-weight: 100;
+}
+.formContainer{
+    background-image: url("https://cdn.discordapp.com/attachments/771508386452734003/972947606185586818/sala.jpg");
+    background-size: cover;
+    height: 95%;
+    width: 80%;
+}

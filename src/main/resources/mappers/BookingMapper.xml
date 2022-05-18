@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+        <!DOCTYPE mapper
+                PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+                "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.BookingMapper">
+    <resultMap id="BookingResult" type="Booking">
+        <id property="id" column="id" />
+        <result property="fechaInicio" column="fechainicio"/>
+        <result property="fechaFin" column="fechafin"/>
+        <result property="usuario_id" column="usuario_id"/>
+        <result property="recurso_id" column="recurso_id"/>
+    </resultMap>
+
+    <insert id="registerBooking" parameterType="map">
+        INSERT INTO "ECIStuff".reservas (fechainicio,fechafin,usuario_id,recurso_id)
+        VALUES (#{fI},#{fE},#{ui},#{ri});
+    </insert>
+
+    <select id="consultBooking" resultMap="BookingResult" parameterType="map">
+        SELECT
+            id,
+            fechainicio,
+            fechafin,
+            usuario_id,
+            recurso_id
+        FROM "ECIStuff".reservas
+        WHERE id=#{id}
+    </select>
+</mapper>

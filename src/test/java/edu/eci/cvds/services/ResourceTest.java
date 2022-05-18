@@ -1,4 +1,4 @@
-package edu.eci.cvds;
+package edu.eci.cvds.services;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Resource;
