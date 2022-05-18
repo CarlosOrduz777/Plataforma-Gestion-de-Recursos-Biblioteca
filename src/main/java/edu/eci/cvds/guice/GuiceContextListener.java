@@ -8,6 +8,14 @@ import edu.eci.cvds.services.ServiciosHorario;
 import edu.eci.cvds.services.ServiciosReservar;
 import edu.eci.cvds.services.impl.ServiciosHorarioImpl;
 import edu.eci.cvds.services.impl.ServiciosReservarImpl;
+import edu.eci.cvds.persistence.BookingDAO;
+import edu.eci.cvds.persistence.ResourceDAO;
+import edu.eci.cvds.persistence.UserDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisBookingDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisResourceDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisUserDAO;
+import edu.eci.cvds.services.ECIStuffServices;
+import edu.eci.cvds.services.impl.ECIStuffServicesImpl;
 import org.mybatis.guice.XMLMyBatisModule;
 import org.mybatis.guice.datasource.helper.JdbcHelper;
 
@@ -17,33 +25,38 @@ import javax.servlet.ServletContextListener;
 
 public class GuiceContextListener implements ServletContextListener {
 
-    public void contextDestroyed(ServletContextEvent servletContextEvent) {
-        ServletContext servletContext = servletContextEvent.getServletContext();
-        servletContext.removeAttribute(Injector.class.getName());
-    }
+	public void contextDestroyed(ServletContextEvent servletContextEvent) {
+		ServletContext servletContext = servletContextEvent.getServletContext();
+		servletContext.removeAttribute(Injector.class.getName());
+	}
 
-    public void contextInitialized(ServletContextEvent servletContextEvent) {
-        Injector injector = Guice.createInjector(new XMLMyBatisModule() {
-                                                     @Override
-                                                     protected void initialize() {
+	public void contextInitialized(ServletContextEvent servletContextEvent) {
+		Injector injector = Guice.createInjector(new XMLMyBatisModule() {
+			@Override
+			protected void initialize() {
 
-                                                         install(JdbcHelper.PostgreSQL);
+				install(JdbcHelper.PostgreSQL);
 
-                                                         setEnvironmentId("development");
+				setEnvironmentId("development");
 
-                                                         setClassPathResource("mybatis-config.xml");
+				setClassPathResource("mybatis-config.xml");
 
-                                                         // Hacer la inyeccion de dependencias
-                                                         bind(HorarioDAO.class).to(MyBATISHorarioDAO.class);
-                                                         bind(ServiciosReservar.class).to(ServiciosReservarImpl.class);
-                                                         bind(ServiciosHorario.class).to(ServiciosHorarioImpl.class);
+				// Hacer la inyeccion de dependencias
+				bind(UserDAO.class).to(MyBatisUserDAO.class);
+				bind(ResourceDAO.class).to(MyBatisResourceDAO.class);
+				bind(BookingDAO.class).to(MyBatisBookingDAO.class);
+				bind(ECIStuffServices.class).to(ECIStuffServicesImpl.class);
+				bind(HorarioDAO.class).to(MyBATISHorarioDAO.class);
+				bind(ServiciosReservar.class).to(ServiciosReservarImpl.class);
+				bind(ServiciosHorario.class).to(ServiciosHorarioImpl.class);
 
-                                                     }
-                                                 }
 
-        );
-        ServletContext servletContext = servletContextEvent.getServletContext();
-        servletContext.setAttribute(Injector.class.getName(), injector);
-    }
+			}
+		}
+
+		);
+		ServletContext servletContext = servletContextEvent.getServletContext();
+		servletContext.setAttribute(Injector.class.getName(), injector);
+	}
 
 }

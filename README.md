@@ -31,6 +31,7 @@ recursos, asi como saber la ocupación que están teniendo los mismos para saber
 ## Arquitectura y Diseño ##
 ### Modelo E-R ###
 ![sprint-backlog](img/Modelo_ER.png)
+
 ### Diagrama de clases ###
 ### Descripción de la arquitectura ###
 ### Enlace a la aplicacion ###  
@@ -55,10 +56,12 @@ La metrología que se usó en el proyecto es la metodología SCRUM
 
 ### Spint1 ###
 **sprint-backlog**
-![sprint-backlog](img/sprint1.0.png)
 
+![sprint-backlog](https://media.discordapp.net/attachments/831560691252068372/967907397005869137/sprint1.0.png?width=1369&height=670)
+![backlog-AfterSprint1](https://media.discordapp.net/attachments/831560691252068372/967916443637280808/unknown.png?width=1060&height=669)
 **sprint-burndown chart**
-![sprint-burndown chart](img/sprint1.1.png)
+![sprint-burndown chart](https://media.discordapp.net/attachments/831560691252068372/967907397215588362/sprint1.1.png)
+
 
 
 ### Reporte de pruebas y de cubrimiento ###

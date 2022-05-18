@@ -20,7 +20,7 @@
     <dependency>
       <groupId>net.bootsfaces</groupId>
       <artifactId>bootsfaces</artifactId>
-      <version>1.5.0</version>
+      <version>1.4.0</version>
       <scope>compile</scope>
     </dependency>
 
@@ -98,20 +98,7 @@
     <dependency>
       <groupId>org.primefaces</groupId>
       <artifactId>primefaces</artifactId>
-      <version>7.0</version>
-    </dependency>
-    <!-- https://mvnrepository.com/artifact/org.webjars/bootstrap -->
-    <dependency>
-      <groupId>org.webjars</groupId>
-      <artifactId>bootstrap</artifactId>
-      <version>5.1.3</version>
-    </dependency>
-
-
-    <dependency>
-      <groupId>joda-time</groupId>
-      <artifactId>joda-time</artifactId>
-      <version>2.9.9</version>
+      <version>6.2</version>
     </dependency>
     <!-- Test dependencies -->
     <dependency>
@@ -163,9 +150,9 @@
     </dependency>
 
     <dependency>
-      <groupId>org.jacoco</groupId>
-      <artifactId>jacoco-maven-plugin</artifactId>
-      <version>0.8.2</version>
+          <groupId>org.jacoco</groupId>
+          <artifactId>jacoco-maven-plugin</artifactId>
+          <version>0.8.2</version>
     </dependency>
     <dependency>
       <groupId>org.projectlombok</groupId>
@@ -177,6 +164,20 @@
       <groupId>org.glassfish</groupId>
       <artifactId>javax.faces</artifactId>
       <version>2.2.5</version>
+    </dependency>
+
+    <!-- https://mvnrepository.com/artifact/org.mockito/mockito-all -->
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-all</artifactId>
+      <version>2.0.2-beta</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>3.12.4</version>
+      <scope>test</scope>
     </dependency>
   </dependencies>
 
@@ -318,32 +319,38 @@
       </plugin>
 
       <!-- Jacoco embedded plugin. -->
-      <plugin>
-        <groupId>org.jacoco</groupId>
-        <artifactId>jacoco-maven-plugin</artifactId>
-        <version>0.8.2</version>
-        <executions>
-          <execution>
-            <goals>
-              <goal>prepare-agent</goal>
-            </goals>
-          </execution>
-          <execution>
-            <id>report</id>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>report</goal>
-            </goals>
-          </execution>
-        </executions>
-        <configuration>
-          <excludes>
-            <exclude>edu/eci/cvds/guice/*</exclude>
-            <exclude>edu/eci/cvds/persistence/*</exclude>
-            <exclude>edu/eci/cvds/*App*</exclude>
-          </excludes>
-        </configuration>
-      </plugin>
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.2</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>prepare-package</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                    <configuration>
+                      <outputDirectory>target/jacoco-report</outputDirectory>
+                    </configuration>
+                </execution>
+            </executions>
+            <configuration>
+                <excludes>
+                  <exclude>edu/eci/cvds/guice/*</exclude>
+                  <exclude>edu/eci/cvds/persistence/*</exclude>
+                  <exclude>edu/eci/cvds/*App*</exclude>
+                  <exclude>edu/eci/cvds/entities/</exclude>
+                  <exclude>edu/eci/cvds/security/</exclude>
+                  <exclude>edu/eci/cvds/persistence/mybatisimpl/</exclude>
+                </excludes>
+            </configuration>
+        </plugin>
 
     </plugins>
   </build>

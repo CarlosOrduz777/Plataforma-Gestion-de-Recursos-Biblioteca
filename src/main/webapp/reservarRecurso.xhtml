@@ -1,0 +1,115 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:b="http://bootsfaces.net/ui"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+    <title>Reservar Recurso</title>
+    <link rel="stylesheet" href="ReservarRecursos.css"/>
+</h:head>
+<h:body>
+
+    <div class="main-container">
+        <div id="sidemenu" class="menu-static">
+            <!-- Header -->
+            <div class="header">
+                <div class="title">
+                    <span>ECI-STUFF</span>
+                </div>
+            </div>
+            <!-- Logo -->
+            <div class="profile">
+                <h:form class="photo">
+                    <img src="https://cdn.discordapp.com/attachments/831560691252068372/971016806728888380/logo-eci-removebg-preview.png" alt="Logo Escuela"/>
+                    <h:outputText value="#{validatorBean.userMail}" rendered="#{validatorBean.authenticated()}"></h:outputText>
+                </h:form>
+            </div>
+            <!-- Items -->
+            <div class="menu-items">
+                <div class="item">
+                    <a href="/faces/index.xhtml">
+                        <div class="icon">
+                            <img src="https://cdn.discordapp.com/attachments/831560691252068372/972921286059778108/553376.png" alt="Inicio"/>
+                        </div>
+                        <div class="title">
+                            <span>Inicio</span>
+                        </div>
+                    </a>
+                </div>
+                <h:form class="item">
+                    <p:commandLink action="#{userBean.logOut}"  rendered="#{validatorBean.authenticated()}">
+                        <h:panelGroup  class="icon" layout="block">
+                            <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973033620744847380/unknown.png"/>
+                        </h:panelGroup>
+                        <h:panelGroup  class="title" layout="block">
+                            <h:panelGroup>Cerrar Sesion</h:panelGroup>
+                        </h:panelGroup>
+                    </p:commandLink>
+                </h:form>
+                <div class="item">
+                    <a href="/faces/consultarRecursos.xhtml">
+                        <div class="icon">
+                            <img src="https://cdn.discordapp.com/attachments/771508386452734003/973111524682006538/volver.png" alt="Regresar"/>
+                        </div>
+                        <div class="title">
+                            <span>Regresar</span>
+                        </div>
+                    </a>
+                </div>
+            </div>
+        </div>
+        <div class="formContainer">
+            <div class="backForm">
+                <b:form horizontal="false" id="bookingForm">
+                    <div class="formContainerFechas">
+                        <b:formGroup>
+                            <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaInicio}" required="true" label="Fecha Inicio:" label-col-sm="3" col-sm="6" ondtchange="ajax:test.updateTestField()" process="@this" update="bookingForm" ajax="true">
+                                <f:attribute name="minDate" value="#{bookingBean.getInicioDisponibilidad(userBean.idRecurso)}"/>
+                                <f:attribute name="maxDate" value="#{bookingBean.getFinDisponibilidad(userBean.idRecurso)}"/>
+                            </b:dateTimePicker>
+                            <b:message for="@previous" col-sm="9" />
+                        </b:formGroup>
+                        <b:formGroup>
+                            <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaFin}" required="true" label="Fecha Fin:" label-col-sm="3" col-sm="6">
+                                <f:attribute name="minDate" value="#{bookingBean.fechaInicio.toInstant().toString()}"/>
+                                <f:attribute name="maxDate" value="#{bookingBean.addTwoHours().toInstant().toString()}"/>
+                            </b:dateTimePicker>
+
+                            <b:message for="@previous" col-sm="9" />
+
+
+                        </b:formGroup>
+
+                    </div>
+                    <div class="formContainerTipoReserva">
+                        <b:selectOneMenu value="#{bookingBean.tipoReserva}" colMd="2" required="true" label="Tipo Reserva:" labelColMd="2"
+                                         select2="true">
+                            <f:selectItem itemLabel="Ninguno" itemValue="ninguno" />
+                            <f:selectItem itemLabel="Diaria" itemValue="diaria" />
+                            <f:selectItem itemLabel="Semanal" itemValue="semanal" />
+                            <f:selectItem itemLabel="Mensual" itemValue="mensual" />
+                        </b:selectOneMenu>
+                    </div>
+
+
+                    <div class="formContainerReservar">
+
+                        <b:commandButton value="reservar" update="@form" look="success"
+                                         action="#{bookingBean.registerBooking(bookingBean.fechaInicio,bookingBean.fechaFin,userBean.idUser,userBean.idRecurso,bookingBean.tipoReserva)}"
+                                         actionListener="{userBean.updateBookingsUser}"/>
+                    </div>
+
+
+                </b:form>
+            </div>
+
+        </div>
+
+    </div>
+
+</h:body>
+</html>
+

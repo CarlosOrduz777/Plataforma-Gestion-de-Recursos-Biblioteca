@@ -1,0 +1,119 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <meta charset="UTF-8"/>
+        <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        <title>ECI-STUFF</title>
+        <link rel="stylesheet" href="index.css" />
+    </h:head>
+    <h:body>
+        <div class="main-container">
+            <div id="sidemenu" class="menu-static">
+                <!-- Header -->
+                <div class="header">
+                    <div class="title">
+                        <span>ECI-STUFF</span>
+                    </div>
+                </div>
+                <!-- Logo -->
+                <div class="profile">
+                    <h:form class="photo">
+                        <img src="https://cdn.discordapp.com/attachments/831560691252068372/971016806728888380/logo-eci-removebg-preview.png" alt="Logo Escuela"/>
+                        <h:outputText value="#{validatorBean.userMail}" rendered="#{validatorBean.authenticated()}"></h:outputText>
+                    </h:form>
+                </div>
+                <!-- Items -->
+                <div class="menu-items">
+                    <div class="item">
+                        <a href="/faces/index.xhtml">
+                            <div class="icon">
+                                <img src="https://cdn.discordapp.com/attachments/831560691252068372/972921286059778108/553376.png" alt="Inicio"/>
+                            </div>
+                            <div class="title">
+                                <span>Inicio</span>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="item">
+                        <a href="/faces/consultarRecursos.xhtml">
+                            <div class="icon">
+                                <img src="https://cdn.discordapp.com/attachments/831560691252068372/972920761281024000/30659.png" alt="Inicio"/>
+                            </div>
+                            <div class="title">
+                                <span>Consultar Recursos</span>
+                            </div>
+                        </a>
+                    </div>
+                    <h:form class="item">
+                        <p:link outcome="/faces/reservasUsuario.xhtml" rendered="#{validatorBean.authenticated()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973021919504896040/661513.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Mis reservas</h:panelGroup>
+                            </h:panelGroup>
+                        </p:link>
+                    </h:form>
+                    <h:form class="item">
+                        <p:link outcome="/faces/registrarRecurso.xhtml" rendered="#{validatorBean.isAdmin()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973024543247585320/2921087.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>registrar Recurso</h:panelGroup>
+                            </h:panelGroup>
+                        </p:link>
+                    </h:form>
+                    <h:form class="item">
+                        <p:commandLink action="#{userBean.logOut}"  rendered="#{validatorBean.authenticated()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973033620744847380/unknown.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Cerrar Sesion</h:panelGroup>
+                            </h:panelGroup>
+                        </p:commandLink>
+                    </h:form>
+                    <h:form class="item">
+                        <p:link  outcome="/faces/login.xhtml" rendered="#{validatorBean.notAuthenticated()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973042223233007686/unknown.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Iniciar Sesion</h:panelGroup>
+                            </h:panelGroup>
+                        </p:link>
+                    </h:form>
+                    <h:form class="item">
+                        <p:link outcome="/faces/CambiarEstadoRecurso.xhtml" rendered="#{validatorBean.authenticatedAndAdmin()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/771508386452734003/976341233263849512/intercambiar.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Estado Recursos</h:panelGroup>
+                            </h:panelGroup>
+                        </p:link>
+                    </h:form>
+                </div>
+            </div>
+            <div class="main">
+                <div class="container">
+                    <div class="center">
+                      <button class="btn" onclick="window.location='/faces/consultarRecursos.xhtml'">
+                        <svg width="180px" height="60px" viewBox="0 0 180 60" class="border">
+                          <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
+                          <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
+                        </svg>
+                        <span>GESTIONAR</span>
+                      </button>
+                    </div>
+                  </div>
+            </div>
+        </div>
+    </h:body>
+</html>
