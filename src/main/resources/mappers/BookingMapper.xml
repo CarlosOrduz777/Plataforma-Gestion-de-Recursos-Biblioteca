@@ -14,8 +14,8 @@
     </resultMap>
 
     <insert id="registerBooking" parameterType="map">
-        INSERT INTO "ECIStuff".reservas (fechainicio,fechafin,usuario_id,recurso_id,tiporeserva)
-        VALUES (#{fI},#{fE},#{ui},#{ri},#{tr});
+        INSERT INTO "ECIStuff".reservas (fechainicio, fechafin, usuario_id, recurso_id, cancelada)
+        VALUES (#{fI},#{fE},#{ui},#{ri}, CAST(0 AS BIT));
     </insert>
 
     <select id="consultBooking" resultMap="BookingResult" parameterType="map">
@@ -28,17 +28,4 @@
         FROM "ECIStuff".reservas
         WHERE id=#{id}
     </select>
-
-    <select id="getInicioDisponibilidad" resultMap="ResourceResult" parameterType="int">
-        SELECT
-            iniciodisponibilidad,
-            findisponibilidad
-        FROM "ECIStuff".recursos
-        WHERE id=#{idRecurso}
-    </select>
-
-    <resultMap id="ResourceResult" type="Resource">
-        <result property="iDisp" column="iniciodisponibilidad"/>
-        <result property="fDisp" column="findisponibilidad"/>
-    </resultMap>
 </mapper>
