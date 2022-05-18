@@ -22,9 +22,10 @@
             </div>
             <!-- Logo -->
             <div class="profile">
-                <div class="photo">
+                <h:form class="photo">
                     <img src="https://cdn.discordapp.com/attachments/831560691252068372/971016806728888380/logo-eci-removebg-preview.png" alt="Logo Escuela"/>
-                </div>
+                    <h:outputText value="#{validatorBean.userMail}" rendered="#{validatorBean.authenticated()}"></h:outputText>
+                </h:form>
             </div>
             <!-- Items -->
             <div class="menu-items">

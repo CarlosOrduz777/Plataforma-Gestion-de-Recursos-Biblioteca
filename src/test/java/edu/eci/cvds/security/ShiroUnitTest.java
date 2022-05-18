@@ -1,4 +1,4 @@
-package edu.eci.cvds;
+package edu.eci.cvds.security;
 
 import com.github.sdorra.shiro.ShiroRule;
 import com.github.sdorra.shiro.SubjectAware;
@@ -14,6 +14,7 @@ public class ShiroUnitTest {
      * Test for Shiro
      * Equivalence domain(Authenticated - notAuthenticated)
      */
+    //Authenticated
     @Test
     @SubjectAware(
             username = "adminECI@mail.com",
@@ -24,6 +25,7 @@ public class ShiroUnitTest {
         Subject subject = SecurityUtils.getSubject();
         assertTrue(subject.isAuthenticated());
     }
+    //notAuthenticated
     @Test
     @SubjectAware(
             configuration = "classpath:shiro.ini"
@@ -31,10 +33,13 @@ public class ShiroUnitTest {
     public void testMethodnotAuthenticated(){
         assertFalse(SecurityUtils.getSubject().isAuthenticated());
     }
+
+
     /**
      * Test for Shiro
      * Equivalence domain(null - notnull)
      */
+    //null
     @Test
     @SubjectAware(
             username = "adminECI@mail.com",
@@ -45,6 +50,7 @@ public class ShiroUnitTest {
         Subject subject = SecurityUtils.getSubject();
         assertNotNull(subject);
     }
+    //notnull
     @Test
     @SubjectAware(
             configuration = "classpath:shiro.ini"

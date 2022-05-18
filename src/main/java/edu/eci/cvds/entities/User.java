@@ -11,6 +11,7 @@ public class User implements Serializable {
     @Getter @Setter private String email;
     @Getter @Setter private String role;
 
+
     public User(int id, String nombre, String email, String role){
         this.id = id;
         this.nombre = nombre;
