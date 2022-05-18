@@ -29,7 +29,7 @@
             role
         FROM "ECIStuff".usuarios WHERE id = #{id}
     </select>
-    <select id="getReportByAdmin" resultMap="ReportResult" parameterType="map">
+    <select id="getReportByAdmin" resultMap="ReportResult">
         SELECT  COUNT(recursos.id) numReservas, recursos.id,
         iniciodisponibilidad, findisponibilidad,
         usuarios.programa, recursos.tipo, recursos.nombre, recursos.ubicacion
@@ -39,6 +39,16 @@
         group by recursos.id, usuarios.programa
         order by numReservas desc;
     </select>
+    <resultMap id="ReportResult" type="Report">
+        <id property="recursoId" column="id"/>
+        <result property="numReservas" column="numreservas"/>
+        <result property="inicioDisp" column="iniciodisponibilidad"/>
+        <result property="finDisp" column="findisponibilidad"/>
+        <result property="programa" column="programa"/>
+        <result property="tipo" column="tipo"/>
+        <result property="nombre" column="nombre"/>
+        <result property="ubicacion" column="ubicacion"/>
+    </resultMap>
     <resultMap id="UserResult" type="User">
         <id property="id" column="id"/>
     </resultMap>

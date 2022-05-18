@@ -15,8 +15,8 @@ public class Report {
     @Getter @Setter private String nombre;
     @Getter @Setter private String ubicacion;
 
-    public Report(){
+    /*public Report(){
         super();
-    }
+    }*/
 
 }

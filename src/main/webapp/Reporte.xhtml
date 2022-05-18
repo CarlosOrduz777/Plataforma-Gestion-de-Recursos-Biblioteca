@@ -1,0 +1,74 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Reporte</title>
+        <link rel="stylesheet" href="Reporte.css"/>
+    </h:head>
+    <h:body>
+        <div class="main-container">
+            <div id="sidemenu" class="menu-static">
+                <!-- Header -->
+                <div class="header">
+                    <div class="title">
+                        <span>ECI-STUFF</span>
+                    </div>
+                </div>
+                <!-- Logo -->
+                <div class="profile">
+                    <h:form class="photo">
+                        <img src="https://cdn.discordapp.com/attachments/831560691252068372/971016806728888380/logo-eci-removebg-preview.png" alt="Logo Escuela"/>
+                        <h:outputText value="#{validatorBean.userMail}" rendered="#{validatorBean.authenticated()}"></h:outputText>
+                    </h:form>
+                </div>
+                <!-- Items -->
+                <div class="menu-items">
+                    <div class="item">
+                        <a href="/faces/index.xhtml">
+                            <div class="icon">
+                                <img src="https://cdn.discordapp.com/attachments/831560691252068372/972921286059778108/553376.png" alt="Inicio"/>
+                            </div>
+                            <div class="title">
+                                <span>Inicio</span>
+                            </div>
+                        </a>
+                    </div>
+                    <h:form class="item">
+                        <p:link outcome="/faces/reservasUsuario.xhtml" rendered="#{validatorBean.authenticated()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973021919504896040/661513.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Mis reservas</h:panelGroup>
+                            </h:panelGroup>
+                        </p:link>
+                    </h:form>
+                    <h:form class="item">
+                        <p:commandLink action="#{userBean.logOut}" immediate="true" rendered="#{validatorBean.authenticated()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973033620744847380/unknown.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Cerrar Sesion</h:panelGroup>
+                            </h:panelGroup>
+                        </p:commandLink>
+                    </h:form>
+                </div>
+            </div>
+            <div class="main">
+                <div class="container">
+                    <p:dataTable var="reportInf" value="#{UserBean.reports}">
+                        <p:column  headerText="Id">
+                            <h:outputText value="#{reportInf.recursoId}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </div>
+    </h:body>
+</html>
+
