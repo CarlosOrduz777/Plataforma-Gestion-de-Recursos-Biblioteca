@@ -2,6 +2,7 @@ package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Booking;
+import edu.eci.cvds.entities.Report;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.BookingDAO;
 import edu.eci.cvds.persistence.PersistenceException;
@@ -224,5 +225,10 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         }catch (Exception e){
             throw new ServicesException(e.getMessage());
         }
+    }
+
+    @Override
+    public List<Report> getReportByAdmin() {
+        return userDAO.getReportByAdmin();
     }
 }

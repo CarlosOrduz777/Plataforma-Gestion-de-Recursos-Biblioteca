@@ -1,6 +1,7 @@
 package edu.eci.cvds.managedbeans;
 
 import edu.eci.cvds.entities.Booking;
+import edu.eci.cvds.entities.Report;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.ECIStuffServices;
@@ -31,6 +32,7 @@ public class UserBean extends BasePageBean {
 	@Getter @Setter private String email;
 	@Getter @Setter private String password;
 	@Setter private List<Booking> bookingsUser;
+	@Getter @Setter List<Report> report;
 
 
 	@Inject
@@ -110,7 +112,6 @@ public class UserBean extends BasePageBean {
 		this.password = password;
 	}
 
-
 	public User getUserIdByEmail(int idRecurso) throws ServicesException{
 		this.idRecurso = idRecurso;
 
@@ -129,4 +130,10 @@ public class UserBean extends BasePageBean {
 		updateBookingsUser();
 		return bookingsUser;
 	}
+
+	public List<Report> getReport() throws Exception{
+		report = eciStuffServices.getReportByAdmin();
+		return report;
+	}
+
 }

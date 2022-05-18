@@ -2,6 +2,7 @@ package edu.eci.cvds.persistence.mybatisimpl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Booking;
+import edu.eci.cvds.entities.Report;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.persistence.PersistenceException;
 import edu.eci.cvds.persistence.UserDAO;
@@ -48,6 +49,11 @@ public class MyBatisUserDAO implements UserDAO {
         }catch(Exception e) {
             throw new PersistenceException("No se pudo consultar el horario" + e.getMessage());
         }
+    }
+
+    @Override
+    public List<Report> getReportByAdmin() {
+        return userMapper.getReportByAdmin();
     }
 
 
