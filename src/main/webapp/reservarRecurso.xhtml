@@ -8,7 +8,7 @@
 
 <h:head>
     <title>Reservar Recurso</title>
-    <link rel="stylesheet" href="reservarRec.css"/>
+    <link rel="stylesheet" href="ReservarRecursos.css"/>
 </h:head>
 <h:body>
 
@@ -61,20 +61,50 @@
             </div>
         </div>
         <div class="formContainer">
-            <b:form horizontal="false">
-                <b:formGroup>
-                    <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaInicio}" required="true" label="Fecha Inicio:" label-col-sm="3" col-sm="6"/>
-                    <b:message for="@previous" col-sm="9" />
-                </b:formGroup>
-                <b:formGroup>
-                    <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaFin}" required="true" label="Fecha Fin:" label-col-sm="3" col-sm="6"
-                                      disabledDates="'04/30/2022'"/>
-                    <b:message for="@previous" col-sm="9" />
-                </b:formGroup>
-                <b:commandButton value="reservar" update="@form" look="success"
-                                 action="#{bookingBean.registerBooking(bookingBean.fechaInicio,bookingBean.fechaFin,userBean.idUser,userBean.idRecurso)}"
-                                 actionListener="{userBean.updateBookingsUser}"/>
-            </b:form>
+            <div class="backForm">
+                <b:form horizontal="false" id="bookingForm">
+                    <div class="formContainerFechas">
+                        <b:formGroup>
+                            <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaInicio}" required="true" label="Fecha Inicio:" label-col-sm="3" col-sm="6" ondtchange="ajax:test.updateTestField()" process="@this" update="bookingForm" ajax="true">
+                                <f:attribute name="minDate" value="#{bookingBean.getInicioDisponibilidad(userBean.idRecurso)}"/>
+                                <f:attribute name="maxDate" value="#{bookingBean.getFinDisponibilidad(userBean.idRecurso)}"/>
+                            </b:dateTimePicker>
+                            <b:message for="@previous" col-sm="9" />
+                        </b:formGroup>
+                        <b:formGroup>
+                            <b:dateTimePicker mode="toggle-icon" showWeek="true" value="#{bookingBean.fechaFin}" required="true" label="Fecha Fin:" label-col-sm="3" col-sm="6">
+                                <f:attribute name="minDate" value="#{bookingBean.fechaInicio.toInstant().toString()}"/>
+                                <f:attribute name="maxDate" value="#{bookingBean.addTwoHours().toInstant().toString()}"/>
+                            </b:dateTimePicker>
+
+                            <b:message for="@previous" col-sm="9" />
+
+
+                        </b:formGroup>
+
+                    </div>
+                    <div class="formContainerTipoReserva">
+                        <b:selectOneMenu value="#{bookingBean.tipoReserva}" colMd="2" required="true" label="Tipo Reserva:" labelColMd="2"
+                                         select2="true">
+                            <f:selectItem itemLabel="Ninguno" itemValue="ninguno" />
+                            <f:selectItem itemLabel="Diaria" itemValue="diaria" />
+                            <f:selectItem itemLabel="Semanal" itemValue="semanal" />
+                            <f:selectItem itemLabel="Mensual" itemValue="mensual" />
+                        </b:selectOneMenu>
+                    </div>
+
+
+                    <div class="formContainerReservar">
+
+                        <b:commandButton value="reservar" update="@form" look="success"
+                                         action="#{bookingBean.registerBooking(bookingBean.fechaInicio,bookingBean.fechaFin,userBean.idUser,userBean.idRecurso,bookingBean.tipoReserva)}"
+                                         actionListener="{userBean.updateBookingsUser}"/>
+                    </div>
+
+
+                </b:form>
+            </div>
+
         </div>
 
     </div>

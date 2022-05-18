@@ -26,6 +26,7 @@ import lombok.Setter;
 @ApplicationScoped
 public class UserBean extends BasePageBean {
 	private int idRecurso;
+
 	private int idUser;
 	private String email;
 	private String password;
@@ -116,6 +117,8 @@ public class UserBean extends BasePageBean {
 		System.out.println(password);
 		this.password = password;
 	}
+
+
 
 	public User getUserIdByEmail(int idRecurso) throws ServicesException{
 		this.idRecurso = idRecurso;

@@ -8,6 +8,7 @@ import java.util.Date;
 
 public class Booking implements Serializable {
     @Getter @Setter private int id;
+    @Getter @Setter private String tipoReserva;
     @Getter @Setter private Date fechaInicio;
     @Getter @Setter private Date fechaFin;
     @Getter @Setter private int usuario_id;
@@ -32,12 +33,13 @@ public class Booking implements Serializable {
         this.fechaFin = fechaFin;
     }
 
-    public Booking(int id, Date fechaInicio, Date fechaFin, int usuario_id, int recurso_id){
+    public Booking(int id, Date fechaInicio, Date fechaFin, int usuario_id, int recurso_id, String tipoReserva){
         this.id = id;
         this.fechaInicio = fechaInicio;
         this.fechaFin = fechaFin;
         this.usuario_id = usuario_id;
         this.recurso_id = recurso_id;
+        this.tipoReserva = tipoReserva;
     }
 
     public Booking(Booking booking, String nombreUsuario, String emailUsuario, String nombreRecurso, String ubiRecurso, String tipoRecurso) {

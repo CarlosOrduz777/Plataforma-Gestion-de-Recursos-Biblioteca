@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -123,6 +124,19 @@ public class ResourceBean extends BasePageBean{
 
     public void setIdSeleccionado(int idSeleccionado) {
         this.idSeleccionado = idSeleccionado;
+    }
+
+    public Date parseToSqlDate(String date) throws ServicesException {
+        try{
+            System.out.println("Fecha:------"+date+"---------");
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            java.util.Date parsed = format.parse(date);
+            return new Date(parsed.getTime());
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+
+
     }
 
 }

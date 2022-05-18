@@ -16,9 +16,9 @@ public class MyBatisBookingDAO implements BookingDAO {
 
 
     @Override
-    public void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId) throws PersistenceException {
+    public void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId,String tipoReserva) throws PersistenceException {
         try {
-            bookingMapper.registerBooking(fechaInicio,fechaFin,userId,resourceId);
+            bookingMapper.registerBooking(fechaInicio,fechaFin,userId,resourceId,tipoReserva);
         }catch (Exception e){
             throw new PersistenceException(e.getMessage());
         }
@@ -28,6 +28,15 @@ public class MyBatisBookingDAO implements BookingDAO {
     public Booking consultBooking(int id) throws edu.eci.cvds.persistence.PersistenceException {
         try {
             return bookingMapper.consultBooking(id);
+        }catch (Exception e){
+            throw new edu.eci.cvds.persistence.PersistenceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public Resource getInicioDisponibilidad(int idRecurso) throws edu.eci.cvds.persistence.PersistenceException {
+        try {
+            return bookingMapper.getInicioDisponibilidad(idRecurso);
         }catch (Exception e){
             throw new edu.eci.cvds.persistence.PersistenceException(e.getMessage());
         }

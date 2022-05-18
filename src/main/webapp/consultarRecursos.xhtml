@@ -80,12 +80,12 @@
                     <b:dataTableColumn value="#{rb.capacidad}" />
                     <b:dataTableColumn  label="Inicio Disponibilidad" searchable="false">
                         <h:outputText value="#{rb.iDisp}" >
-                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
                     <b:dataTableColumn label="Fin Disponibilidad" searchable="false">
                         <h:outputText value="#{rb.fDisp}" >
-                            <f:convertDateTime pattern="dd.MM.yyyy HH:mm" />
+                            <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
                     <b:dataTableColumn label="Reserva" searchable="false" rendered="#{validatorBean.authenticated()}">

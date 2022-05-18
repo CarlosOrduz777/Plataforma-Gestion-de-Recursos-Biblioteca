@@ -48,6 +48,10 @@ public class Resource implements Serializable {
         this.tipo = tipo;
         this.fDisp = fDisp;
     }
+    public Resource(Date iDisp,Date fDisp){
+        this.iDisp = iDisp;
+        this.fDisp = fDisp;
+    }
 
     public Date getfDisp() {
         return this.fDisp;
