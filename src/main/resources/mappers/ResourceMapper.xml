@@ -9,16 +9,21 @@
         <result property="nombre" column="nombre"/>
         <result property="ubicacion" column="ubicacion"/>
         <result property="tipo" column="tipo"/>
-        <result property="capacidad" column="descripcion"/>
+        <result property="capacidad" column="capacidad"/>
+        <result property="descripcion" column="descripcion"/>
         <result property="iDisp" column="iniciodisponibilidad"/>
         <result property="fDisp" column="findisponibilidad"/>
+        <result property="disponible" column="disponibilidad"/>
     </resultMap>
 
     <insert id="registerResource" parameterType="map">
-        INSERT INTO "ECIStuff".recursos (nombre, ubicacion, tipo, descripcion, iniciodisponibilidad, findisponibilidad )
-        VALUES (#{r.nombre},#{r.ubicacion},#{r.tipo},#{r.capacidad},#{r.iDisp},#{r.fDisp});
+        INSERT INTO "ECIStuff".recursos (nombre, ubicacion, tipo, capacidad, descripcion,iniciodisponibilidad, findisponibilidad ,disponibilidad)
+        VALUES (#{r.nombre},#{r.ubicacion},#{r.tipo},#{r.capacidad},#{r.descripcion},#{r.iDisp},#{r.fDisp},#{r.disponible});
     </insert>
 
+    <update id="changeResourceState">
+        UPDATE "ECIStuff".recursos SET disponibilidad = NOT disponibilidad WHERE id= #{idResource};
+    </update>
 
     <select id="consultResources" resultMap="ResourceResult">
         SELECT
@@ -27,9 +32,25 @@
             ubicacion,
             tipo,
             descripcion,
+            capacidad,
             iniciodisponibilidad,
             findisponibilidad
-        FROM "ECIStuff".recursos;
+        FROM "ECIStuff".recursos
+        WHERE disponibilidad=true;
+    </select>
+
+    <select id="consultAllResources" resultMap="ResourceResult">
+        SELECT
+            id,
+            nombre,
+            ubicacion,
+            tipo,
+            descripcion,
+            capacidad,
+            iniciodisponibilidad,
+            findisponibilidad,
+            disponibilidad
+        FROM "ECIStuff".recursos
     </select>
 
     <select id="getResourceById" resultMap="ResourceResult" parameterType="map">
@@ -39,6 +60,7 @@
             ubicacion,
             tipo,
             descripcion,
+            capacidad,
             iniciodisponibilidad,
             findisponibilidad
         FROM "ECIStuff".recursos

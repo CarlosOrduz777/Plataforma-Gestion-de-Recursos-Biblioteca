@@ -68,29 +68,29 @@
         </div>
 
         <div class="formContain" style="overflow:auto;">
-            <h:form>
-                <b:dataTable value="#{resourceBean.result}"
+            <h:form id="resourceForm">
+                <b:dataTable value="#{resourceBean.consultALlResources()}"
                              var="rb"
                              searching="true"
-                             multiColumnSearch="true"
-                             multiColumnSearchPosition="top">
-                    <b:dataTableColumn value="#{rb.id}"  searchable="false"/>
-                    <b:dataTableColumn value="#{rb.nombre}" searchable="false"/>
+                             >
+                    <b:dataTableColumn value="#{rb.id}"/>
+                    <b:dataTableColumn value="#{rb.nombre}"/>
                     <b:dataTableColumn value="#{rb.ubicacion}" />
                     <b:dataTableColumn value="#{rb.tipo}" />
                     <b:dataTableColumn value="#{rb.capacidad}" />
-                    <b:dataTableColumn  label="Inicio Disponibilidad" searchable="false">
+                    <b:dataTableColumn  label="Inicio Disponibilidad" >
                         <h:outputText value="#{rb.iDisp}" >
                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
-                    <b:dataTableColumn label="Fin Disponibilidad" searchable="false">
+                    <b:dataTableColumn label="Fin Disponibilidad">
                         <h:outputText value="#{rb.fDisp}" >
                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
-                    <b:dataTableColumn label="Reserva" searchable="false" rendered="#{validatorBean.authenticated()}">
-                        <b:commandButton value="reservar" title="View" immediate="true" action="#{userBean.getUserIdByEmail(rb.id)}" process="@this" look="primary" ajax="false">
+                    <b:dataTableColumn value="#{rb.disponible}"/>
+                    <b:dataTableColumn label="Cambiar Estado" rendered="#{validatorBean.authenticated()}">
+                        <b:commandButton value="Cambiar Estado" title="View" immediate="true" action="#{resourceBean.changeResourceState(rb.id)}" process="@this" look="primary" ajax="false" update="resourceForm">
                             <h:messages/>
                         </b:commandButton>
 
