@@ -15,7 +15,7 @@
 
     <insert id="registerBooking" parameterType="map">
         INSERT INTO "ECIStuff".reservas (fechainicio, fechafin, usuario_id, recurso_id, cancelada)
-        VALUES (#{fI},#{fE},#{ui},#{ri}, CAST(0 AS BIT));
+        VALUES (#{fI},#{fE},#{ui},#{ri}, false, 'No recurrente');
     </insert>
 
     <select id="consultBooking" resultMap="BookingResult" parameterType="map">
