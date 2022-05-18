@@ -89,6 +89,16 @@
                             </h:panelGroup>
                         </p:link>
                     </h:form>
+                    <h:form class="item">
+                        <p:link outcome="/faces/CambiarEstadoRecurso.xhtml" rendered="#{validatorBean.authenticatedAndAdmin()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/771508386452734003/976341233263849512/intercambiar.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Estado Recursos</h:panelGroup>
+                            </h:panelGroup>
+                        </p:link>
+                    </h:form>
                 </div>
             </div>
             <div class="main">

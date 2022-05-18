@@ -35,11 +35,13 @@ public class BookingBean extends BasePageBean{
 
     public void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId,String tipoReserva) throws ServicesException, ParseException {
         try {
+
             long timeInMilliSeconds = fechaInicio.getTime();
             java.sql.Date date1 = new java.sql.Date(timeInMilliSeconds);
             long timeInMilliSeconds2 = fechaFin.getTime();
             java.sql.Date date2 = new java.sql.Date(timeInMilliSeconds2);
             eciStuffServices.registerBooking(date1,date2,userId,resourceId,tipoReserva);
+            eciStuffServices.changeResourceState(resourceId);
         }catch (Exception e){
             throw e;
         }

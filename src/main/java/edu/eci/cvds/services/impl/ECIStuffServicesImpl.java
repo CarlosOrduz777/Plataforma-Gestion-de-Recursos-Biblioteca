@@ -117,11 +117,20 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     }
 
     @Override
+    public List<Resource> consultAllResources() throws ServicesException {
+        try{
+            return resourceDAO.consultAllResources();
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
     public void registerResources(Resource resource) throws ServicesException {
         try{
             resourceDAO.registerResources(resource);
         }catch (Exception e){
-            throw new ServicesException("No se ha podido registrar el recurso", e);
+            throw new ServicesException(e.getMessage());
         }
     }
 
@@ -203,6 +212,15 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     public Resource getInicioDisponibilidad(int idRecurso) throws ServicesException {
         try{
             return bookingDAO.getInicioDisponibilidad(idRecurso);
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void changeResourceState(int idResource) throws ServicesException {
+        try{
+           resourceDAO.changeResourceState(idResource);
         }catch (Exception e){
             throw new ServicesException(e.getMessage());
         }

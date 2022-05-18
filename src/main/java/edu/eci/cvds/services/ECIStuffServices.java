@@ -15,6 +15,7 @@ public interface ECIStuffServices {
      */
     public void signIn(String email, String password) throws  ServicesException;
     List<Resource> consultResources() throws  ServicesException;
+    List<Resource> consultAllResources() throws  ServicesException;
     public void registerResources(Resource resource) throws  ServicesException;
     void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId,String tipoReserva) throws ServicesException;
     Booking consultBooking(int id) throws ServicesException;
@@ -27,5 +28,7 @@ public interface ECIStuffServices {
     public List<Booking> viewBookingUser() throws ServicesException;
 
     public Resource getInicioDisponibilidad(int idRecurso) throws ServicesException;
+
+    void changeResourceState(int idResource)throws ServicesException;
 
 }

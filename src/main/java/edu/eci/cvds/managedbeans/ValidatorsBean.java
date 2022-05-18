@@ -72,5 +72,8 @@ public class ValidatorsBean {
         Subject currentUser = SecurityUtils.getSubject();
         return (String) currentUser.getPrincipal();
     }
+    public boolean authenticatedAndAdmin(){
+        return authenticated() && isAdmin();
+    }
 
 }

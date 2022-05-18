@@ -33,20 +33,18 @@ public class UserBeanTest extends TestCase {
 
     public void setUp() throws Exception {
 
-        /**
-         * super.setUp();
-         *         MockitoAnnotations.initMocks(this);
-         *         User user = new User(1,"Francisco Rojas","Rojas-m", "Administrador");
-         *         //Resource
-         *         Resource resource = new Resource(1, "R1", "Ubi", "si","Sala");
-         *         //Bookings
-         *         booking = new Booking(1,new Date(122, 5,3),
-         *                 new Date(122, 6,3), user.getId(),resource.getId());
-         *         booking1 = new Booking(2,new Date(122, 5,3),
-         *                 new Date(122, 6,3), user.getId(),resource.getId());
-         *         booking2 = new Booking(3,new Date(122, 5,3),
-         *                 new Date(122, 6,3), user.getId(),resource.getId());
-         */
+        super.setUp();
+        MockitoAnnotations.initMocks(this);
+        User user = new User(1,"Francisco Rojas","Rojas-m", "Administrador");
+        //Resource
+        Resource resource = new Resource(1, "R1", "Ubi", 54,"Sala");
+        //Bookings
+        booking = new Booking(1,new Date(122, 5,3),
+                new Date(122, 6,3), user.getId(),resource.getId(),"diaria");
+        booking1 = new Booking(2,new Date(122, 5,3),
+                new Date(122, 6,3), user.getId(),resource.getId(),"mensual");
+        booking2 = new Booking(3,new Date(122, 5,3),
+                new Date(122, 6,3), user.getId(),resource.getId(),"semanal");
 
     }
 
