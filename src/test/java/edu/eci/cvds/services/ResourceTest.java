@@ -23,6 +23,7 @@ public class ResourceTest {
     @Before
     public void setUp() {
         try {
+
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date parsed = format.parse("2022-03-01");
             Date inicio = new Date(parsed.getTime());
