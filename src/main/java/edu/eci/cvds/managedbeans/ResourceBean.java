@@ -32,6 +32,8 @@ public class ResourceBean extends BasePageBean{
     private String iDisp;
     private String fDisp;
 
+    private String descripcion;
+
     private String disponible;
 
     public void registerResource() throws ServicesException{
@@ -45,7 +47,7 @@ public class ResourceBean extends BasePageBean{
 
             boolean disponibilidad = Boolean.parseBoolean(disponible);
             System.out.println("---------------Disponibilidad-------------------------: "+disponibilidad);
-            Resource resource = new Resource(this.nombre, this.ubicacion, this.capacidad, this.tipo , iDispSql, fDispSql,disponibilidad);
+            Resource resource = new Resource(this.nombre, this.ubicacion,this.descripcion, Integer.parseInt(this.capacidad), this.tipo , iDispSql, fDispSql,disponibilidad);
 
             eciStuffServices.registerResources(resource);
 
@@ -147,6 +149,14 @@ public class ResourceBean extends BasePageBean{
 
     public void setDisponible(String disponible) {
         this.disponible = disponible;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
     }
 
     public void setIdSeleccionado(int idSeleccionado) {

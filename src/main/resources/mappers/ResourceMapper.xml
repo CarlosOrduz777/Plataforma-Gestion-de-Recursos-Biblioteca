@@ -10,14 +10,15 @@
         <result property="ubicacion" column="ubicacion"/>
         <result property="tipo" column="tipo"/>
         <result property="capacidad" column="capacidad"/>
+        <result property="descripcion" column="descripcion"/>
         <result property="iDisp" column="iniciodisponibilidad"/>
         <result property="fDisp" column="findisponibilidad"/>
         <result property="disponible" column="disponibilidad"/>
     </resultMap>
 
     <insert id="registerResource" parameterType="map">
-        INSERT INTO "ECIStuff".recursos (nombre, ubicacion, tipo, capacidad, iniciodisponibilidad, findisponibilidad ,disponibilidad)
-        VALUES (#{r.nombre},#{r.ubicacion},#{r.tipo},#{r.capacidad},#{r.iDisp},#{r.fDisp},#{r.disponible});
+        INSERT INTO "ECIStuff".recursos (nombre, ubicacion, tipo, capacidad, descripcion,iniciodisponibilidad, findisponibilidad ,disponibilidad)
+        VALUES (#{r.nombre},#{r.ubicacion},#{r.tipo},#{r.capacidad},#{r.descripcion},#{r.iDisp},#{r.fDisp},#{r.disponible});
     </insert>
 
     <update id="changeResourceState">
@@ -31,6 +32,7 @@
             ubicacion,
             tipo,
             descripcion,
+            capacidad,
             iniciodisponibilidad,
             findisponibilidad
         FROM "ECIStuff".recursos
@@ -44,6 +46,7 @@
             ubicacion,
             tipo,
             descripcion,
+            capacidad,
             iniciodisponibilidad,
             findisponibilidad,
             disponibilidad
@@ -57,6 +60,7 @@
             ubicacion,
             tipo,
             descripcion,
+            capacidad,
             iniciodisponibilidad,
             findisponibilidad
         FROM "ECIStuff".recursos

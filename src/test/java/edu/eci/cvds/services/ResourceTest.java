@@ -31,7 +31,7 @@ public class ResourceTest {
             parsed = format.parse("2022-03-20");
             Date fin = new Date(parsed.getTime());
 
-            this.resource = new Resource("Nombre", "Ubicacion", "5", "sala", inicio, fin,false);
+            this.resource = new Resource(4,"Nombre", "Ubicacion", 5, "sala", inicio, fin,true);
         } catch (ParseException e) {
             e.printStackTrace();
         }
