@@ -32,6 +32,8 @@ public class ResourceBean extends BasePageBean{
     private String iDisp;
     private String fDisp;
 
+    private String disponible;
+
     public void registerResource() throws ServicesException{
         try{
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -41,7 +43,9 @@ public class ResourceBean extends BasePageBean{
             parsed = format.parse(fDisp);
             Date fDispSql = new Date(parsed.getTime());
 
-            Resource resource = new Resource(this.nombre, this.ubicacion, this.capacidad, this.tipo , iDispSql, fDispSql);
+            boolean disponibilidad = Boolean.parseBoolean(disponible);
+            System.out.println("---------------Disponibilidad-------------------------: "+disponibilidad);
+            Resource resource = new Resource(this.nombre, this.ubicacion, this.capacidad, this.tipo , iDispSql, fDispSql,disponibilidad);
 
             eciStuffServices.registerResources(resource);
 
@@ -56,6 +60,21 @@ public class ResourceBean extends BasePageBean{
         try {
             result =  eciStuffServices.consultResources();
             return result;
+        } catch (ServicesException ex) {
+            throw new ServicesException(ex.getMessage());
+        }
+    }
+
+    public List<Resource> consultALlResources() throws ServicesException {
+        try {
+            return   eciStuffServices.consultAllResources();
+        } catch (ServicesException ex) {
+            throw new ServicesException(ex.getMessage());
+        }
+    }
+    public void changeResourceState(int idResource) throws ServicesException{
+        try {
+            eciStuffServices.changeResourceState(idResource);
         } catch (ServicesException ex) {
             throw new ServicesException(ex.getMessage());
         }
@@ -120,6 +139,14 @@ public class ResourceBean extends BasePageBean{
 
     public void setfDisp(String fDisp) {
         this.fDisp = fDisp;
+    }
+
+    public String getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(String disponible) {
+        this.disponible = disponible;
     }
 
     public void setIdSeleccionado(int idSeleccionado) {

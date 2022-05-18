@@ -63,6 +63,13 @@
             <p:inputText id="iFechaF" class="input" type="date" value="#{resourceBean.fDisp}" /><br/>
         </div>
 
+            <div class="formItem">
+                <p:selectOneMenu class="select"  value="#{resourceBean.disponible}" >
+                    <f:selectItem itemLabel="Disponible" itemValue="true"/>
+                    <f:selectItem itemLabel="No Disponible" itemValue="false"/>
+                </p:selectOneMenu><br/>
+            </div>
+
         <p:commandButton class="submit-btn" id="register-btn" value="Registrar" actionListener="#{resourceBean.registerResource}" update="registerResourceForm" />
             <p:commandButton class="submit-btn" value="Cerrar Sesion"  action="#{userBean.logOut}"/>
         </h:form>
