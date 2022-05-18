@@ -17,7 +17,7 @@
     <session-timeout>30</session-timeout>
   </session-config>
   <welcome-file-list>
-    <welcome-file>faces/Horarios.xhtml</welcome-file>
+    <welcome-file>faces/Login.xhtml</welcome-file>
   </welcome-file-list>
   <listener>
     <listener-class>edu.eci.cvds.guice.GuiceContextListener</listener-class>

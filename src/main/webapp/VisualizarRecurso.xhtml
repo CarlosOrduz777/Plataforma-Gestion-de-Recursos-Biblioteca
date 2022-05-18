@@ -32,7 +32,7 @@
     <div class="container">
         <h:form id="Horarios">
             <p:panel header="Recursos Disponibles" toggleable="true" toggleSpeed="500" widgetVar="panel" style="text-align: center" name="panel" id="panel1">
-                <p:dataTable  id="recursoDT" var="horario" value="#{HorarioBean.consultarHorariosDisponibles()}" selectionMode="single" selection="#{HorarioBean.horario}" rowKey="#{horario.idhorario}" rows="10" paginator="true"
+                <p:dataTable  id="recursoDT" var="horario" value="#{calendarView.getHorarios()}" selectionMode="single" selection="#{calendarView.horario}" rowKey="#{horario.idhorario}" rows="10" paginator="true"
                               paginatorTemplate="{CurrentPageReport} {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink}" currentPageReportTemplate="{startRecord}-{endRecord} of {totalRecords} records" style="text-align: left; align: center">
                     <p:column headerText="ID">
                         <h:outputText value="#{horario.idhorario}" />

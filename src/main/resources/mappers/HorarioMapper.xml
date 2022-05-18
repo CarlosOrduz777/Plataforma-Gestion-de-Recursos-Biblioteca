@@ -3,7 +3,7 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="edu.eci.cvds.sampleprj.dao.mybatis.mappers.HorarioMapper">
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.HorarioMapper">
     <!--
     <select parameterType="map" id="consultarRecurso" resultMap="RecursoResult">
         SELECT
@@ -19,24 +19,36 @@
     </select>
     -->
 
-    <select parameterType="map" id="consultarHorariosDisponibles" resultMap="HorarioResult">
+    <select parameterType="map" id="consultarHorarios" resultMap="HorarioResult">
         SELECT
-        h.idhorario AS h_idhorario,
-        h.idusuario AS h_idusuario,
-        h.idrecurso AS h_idrecurso,
-        h.fecha AS h_fecha,
-        h.horainicial AS h_horainicial,
-        h.horafinal AS h_horafinal
+        h.idhorario,
+        h.idusuario,
+        h.idrecurso,
+        h.fecha,
+        h.horainicial,
+        h.horafinal,
+        h.estado,
+        h.recurrencia,
+        h.fecharecurrencia
+
         FROM "ECIStuff".horarios as h;
     </select>
 
+    <!--
+    <insert id="reservarRecurso" parameterType="map">
+        insert into Reservas(Fecha, Horaini, Horafin, recurso, usuario, recurrencia, fecharecurrencia,estado) values (#{fecha}, #{horaini}, #{horafin}, #{recurso}, #{carnet}, #{recurrencia}, #{fecharecurrencia},#{estado})
+    </insert>
+    -->
 
     <resultMap type='Horario' id='HorarioResult'>
-        <id property='idhorario' column='r_idhorario'/>
-        <result property='idusuario' column='h_idusuario'/>
-        <result property='idrecurso' column='h_idrecurso'/>
-        <result property='fecha' column='h_fecha'/>
-        <result property='horainicial' column='h_horainicial'/>
-        <result property='horafinal' column='h_horafinal'/>
+        <id property='idhorario' column='idhorario'/>
+        <result property='idusuario' column='idusuario'/>
+        <result property='idrecurso' column='idrecurso'/>
+        <result property='fecha' column='fecha'/>
+        <result property='horainicial' column='horainicial'/>
+        <result property='horafinal' column='horafinal'/>
+        <result property='estado' column='estado'/>
+        <result property='recurrencia' column='recurrencia'/>
+        <result property='fecharecurrencia' column='fecharecurrencia'/>
     </resultMap>
 </mapper>
