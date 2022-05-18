@@ -12,6 +12,7 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.IOException;
 import java.sql.Date;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.List;
 
@@ -31,6 +32,10 @@ public class ResourceBean extends BasePageBean{
     private String iDisp;
     private String fDisp;
 
+    private String descripcion;
+
+    private String disponible;
+
     public void registerResource() throws ServicesException{
         try{
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
@@ -40,7 +45,9 @@ public class ResourceBean extends BasePageBean{
             parsed = format.parse(fDisp);
             Date fDispSql = new Date(parsed.getTime());
 
-            Resource resource = new Resource(this.nombre, this.ubicacion, this.capacidad, this.tipo , iDispSql, fDispSql);
+            boolean disponibilidad = Boolean.parseBoolean(disponible);
+            System.out.println("---------------Disponibilidad-------------------------: "+disponibilidad);
+            Resource resource = new Resource(this.nombre, this.ubicacion,this.descripcion, Integer.parseInt(this.capacidad), this.tipo , iDispSql, fDispSql,disponibilidad);
 
             eciStuffServices.registerResources(resource);
 
@@ -55,6 +62,21 @@ public class ResourceBean extends BasePageBean{
         try {
             result =  eciStuffServices.consultResources();
             return result;
+        } catch (ServicesException ex) {
+            throw new ServicesException(ex.getMessage());
+        }
+    }
+
+    public List<Resource> consultALlResources() throws ServicesException {
+        try {
+            return   eciStuffServices.consultAllResources();
+        } catch (ServicesException ex) {
+            throw new ServicesException(ex.getMessage());
+        }
+    }
+    public void changeResourceState(int idResource) throws ServicesException{
+        try {
+            eciStuffServices.changeResourceState(idResource);
         } catch (ServicesException ex) {
             throw new ServicesException(ex.getMessage());
         }
@@ -121,8 +143,37 @@ public class ResourceBean extends BasePageBean{
         this.fDisp = fDisp;
     }
 
+    public String getDisponible() {
+        return disponible;
+    }
+
+    public void setDisponible(String disponible) {
+        this.disponible = disponible;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
     public void setIdSeleccionado(int idSeleccionado) {
         this.idSeleccionado = idSeleccionado;
+    }
+
+    public Date parseToSqlDate(String date) throws ServicesException {
+        try{
+            System.out.println("Fecha:------"+date+"---------");
+            SimpleDateFormat format = new SimpleDateFormat("dd-MM-yyyy");
+            java.util.Date parsed = format.parse(date);
+            return new Date(parsed.getTime());
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+
+
     }
 
 }

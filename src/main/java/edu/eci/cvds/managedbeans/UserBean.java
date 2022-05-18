@@ -25,11 +25,13 @@ import lombok.Setter;
 @ManagedBean(name = "userBean")
 @ApplicationScoped
 public class UserBean extends BasePageBean {
+
 	@Getter @Setter private int idRecurso;
 	@Getter @Setter private int idUser;
 	@Getter @Setter private String email;
 	@Getter @Setter private String password;
 	@Setter private List<Booking> bookingsUser;
+
 
 	@Inject
 	private ECIStuffServices eciStuffServices;
@@ -73,6 +75,41 @@ public class UserBean extends BasePageBean {
 			  throw ex;
 		}
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public int getIdRecurso() {
+		return idRecurso;
+	}
+
+	public void setIdRecurso(int idRecurso) {
+		this.idRecurso = idRecurso;
+	}
+
+	public int getIdUser() {
+		return idUser;
+	}
+
+	public void setIdUser(int idUser) {
+		this.idUser = idUser;
+	}
+
+	public void setEmail(String email) {
+		System.out.println(email);
+		this.email = email;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		System.out.println(password);
+		this.password = password;
+	}
+
 
 	public User getUserIdByEmail(int idRecurso) throws ServicesException{
 		this.idRecurso = idRecurso;

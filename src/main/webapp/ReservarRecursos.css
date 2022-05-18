@@ -185,8 +185,34 @@ svg {
     font-weight: 100;
 }
 .formContainer{
+    display: grid;
+    align-content: stretch;
+    justify-content: end;
+    align-items: center;
     background-image: url("https://cdn.discordapp.com/attachments/771508386452734003/972947606185586818/sala.jpg");
     background-size: cover;
-    height: 70%;
-    width: 70%;
+    height: 80%;
+    width: 80%;
+}
+.backForm{
+    position: absolute;
+    height: 300px;
+    width: 600px;
+    background-color: #ffffff;
+}
+.formContainerFechas{
+    height: 100px;
+    width: 700px;
+}
+.formContainerTipoReserva{
+    height: 100px;
+    width: 700px;
+}
+.formContainerReservar{
+    margin-left: 2px;
+}
+@media (min-width: 992px) {
+    .col-md-2 {
+        width: 39.666667%;
+    }
 }

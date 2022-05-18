@@ -30,9 +30,27 @@ public class MyBatisResourceDAO implements ResourceDAO {
     }
 
     @Override
+    public List<Resource> consultAllResources() throws edu.eci.cvds.persistence.PersistenceException {
+        try {
+            return resourceMapper.consultAllResources();
+        }catch (Exception e){
+            throw new edu.eci.cvds.persistence.PersistenceException(e.getMessage());
+        }
+    }
+
+    @Override
     public Resource getResourceById(int id) {
         try {
             return resourceMapper.getResourceById(id);
+        }catch (Exception e){
+            throw new PersistenceException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void changeResourceState(int idResource) throws edu.eci.cvds.persistence.PersistenceException {
+        try {
+            resourceMapper.changeResourceState(idResource);
         }catch (Exception e){
             throw new PersistenceException(e.getMessage());
         }

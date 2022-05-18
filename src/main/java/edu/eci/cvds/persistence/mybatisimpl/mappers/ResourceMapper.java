@@ -9,6 +9,9 @@ import java.util.List;
 public interface ResourceMapper {
     void registerResource(@Param("r") Resource resource);
     List<Resource> consultResources();
+    List<Resource> consultAllResources();
 
     Resource getResourceById(@Param("id") int id);
+
+    void changeResourceState(@Param("idResource")int idResource);
 }

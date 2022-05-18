@@ -8,6 +8,7 @@ import org.junit.*;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.List;
 
 public class ResourceTest {
     @Inject
@@ -22,6 +23,7 @@ public class ResourceTest {
     @Before
     public void setUp() {
         try {
+
             SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
             java.util.Date parsed = format.parse("2022-03-01");
             Date inicio = new Date(parsed.getTime());
@@ -29,7 +31,7 @@ public class ResourceTest {
             parsed = format.parse("2022-03-20");
             Date fin = new Date(parsed.getTime());
 
-            this.resource = new Resource("Nombre", "Ubicacion", "5", "sala", inicio, fin);
+            this.resource = new Resource(4,"Nombre", "Ubicacion", 5, "sala", inicio, fin,true);
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -44,6 +46,25 @@ public class ResourceTest {
             eciStuffServices.consultResources();
 
             //Assert.assertEquals(eciStuffServices.consultResources().size() , initialSize++);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Test
+    public void changeResourceStateTest(){
+        try{
+
+           List<Resource> result =  eciStuffServices.consultResources();
+           Resource resource1 = result.get(0);
+
+           int idResource = resource1.getId();
+           boolean disponibilidad1 = resource1.isDisponible();
+            eciStuffServices.changeResourceState(idResource);
+            boolean disponibilidad2 = resource1.isDisponible();
+
+           Assert.assertEquals(disponibilidad1,!disponibilidad2);
+
         } catch (Exception e) {
             e.printStackTrace();
         }

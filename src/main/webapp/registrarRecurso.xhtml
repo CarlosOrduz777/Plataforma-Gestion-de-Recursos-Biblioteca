@@ -45,6 +45,12 @@
             </p:selectOneMenu><br/>
         </div>
 
+            <!-- Campo Descripcion -->
+            <div class="formItem">
+                <label>Descripcion</label><br/>
+                <p:inputText id="iDesc" class="input" type="text" placeholder="Capacidad" value="#{resourceBean.descripcion}" /><br/>
+            </div>
+
             <!-- Campo Capacidad -->
         <div class="formItem">
             <label>Capacidad</label><br/>
@@ -62,6 +68,13 @@
             <label>Fin Disponibilidad</label><br/>
             <p:inputText id="iFechaF" class="input" type="date" value="#{resourceBean.fDisp}" /><br/>
         </div>
+
+            <div class="formItem">
+                <p:selectOneMenu class="select"  value="#{resourceBean.disponible}" >
+                    <f:selectItem itemLabel="Disponible" itemValue="true"/>
+                    <f:selectItem itemLabel="No Disponible" itemValue="false"/>
+                </p:selectOneMenu><br/>
+            </div>
 
         <p:commandButton class="submit-btn" id="register-btn" value="Registrar" actionListener="#{resourceBean.registerResource}" update="registerResourceForm" />
             <p:commandButton class="submit-btn" value="Cerrar Sesion"  action="#{userBean.logOut}"/>
