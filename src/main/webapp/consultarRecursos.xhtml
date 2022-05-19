@@ -74,22 +74,22 @@
                              searching="true"
                              multiColumnSearch="true"
                              multiColumnSearchPosition="top">
-                    <b:dataTableColumn value="#{rb.id}"  searchable="false"/>
-                    <b:dataTableColumn value="#{rb.nombre}" searchable="false"/>
-                    <b:dataTableColumn value="#{rb.ubicacion}" />
-                    <b:dataTableColumn value="#{rb.tipo}" />
-                    <b:dataTableColumn value="#{rb.capacidad}" />
-                    <b:dataTableColumn  label="Inicio Disponibilidad" searchable="false">
+                    <b:dataTableColumn value="#{rb.id}"  />
+                    <b:dataTableColumn value="#{rb.nombre}" />
+                    <b:dataTableColumn value="#{rb.ubicacion}" searchable="true"/>
+                    <b:dataTableColumn value="#{rb.tipo}" searchable="true"/>
+                    <b:dataTableColumn value="#{rb.capacidad}" searchable="true"/>
+                    <b:dataTableColumn  label="Inicio Disponibilidad">
                         <h:outputText value="#{rb.iDisp}" >
                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
-                    <b:dataTableColumn label="Fin Disponibilidad" searchable="false">
+                    <b:dataTableColumn label="Fin Disponibilidad">
                         <h:outputText value="#{rb.fDisp}" >
                             <f:convertDateTime pattern="dd/MM/yyyy HH:mm" />
                         </h:outputText>
                     </b:dataTableColumn>
-                    <b:dataTableColumn label="Reserva" searchable="false" rendered="#{validatorBean.authenticated()}">
+                    <b:dataTableColumn label="Reserva" rendered="#{validatorBean.authenticated()}">
                         <b:commandButton value="reservar" title="View" immediate="true" action="#{userBean.getUserIdByEmail(rb.id)}" process="@this" look="primary" ajax="false">
                             <h:messages/>
                         </b:commandButton>

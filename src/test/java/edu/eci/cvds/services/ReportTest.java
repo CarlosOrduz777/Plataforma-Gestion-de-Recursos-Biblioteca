@@ -23,17 +23,13 @@ import java.util.Date;
 
 import static org.mockito.Mockito.when;
 
-public class UserTest {
+public class ReportTest {
     @Mock
     private UserDAO userDAO;
     @Mock
     private SecurityUtils securityUtils;
     @InjectMocks
     private ECIStuffServicesImpl eciStuffServices;
-
-    private Booking booking;
-    private Booking booking1;
-    private Booking booking2;
 
     @Before
     public void setUp() throws Exception {
@@ -43,32 +39,19 @@ public class UserTest {
         User user = new User(1,"Francisco Rojas","Rojas-m", "Administrador");
         //Resource
         Resource resource = new Resource(1, "R1", "Ubi", 54,"Sala");
-        //Bookings
-        booking = new Booking(1,new Date(122, 5,3),
-                new Date(122, 6,3), user.getId(),resource.getId(),"diaria");
-        booking1 = new Booking(2,new Date(122, 5,3),
-                new Date(122, 6,3), user.getId(),resource.getId(),"semanal");
-        booking2 = new Booking(3,new Date(122, 5,3),
-                new Date(122, 6,3), user.getId(),resource.getId(),"mensual");
-
 
     }
 
-    /**
-     * Test for testViewBookingUser
-     * Equivalence domain(null - notnull - Exception)
-     **/
-    //notnull
     @Test
     @SubjectAware(
             username = "adminECI@mail.com",
             password = "admin",
             configuration = "classpath:shiro.ini"
     )
-    public void testViewBookingUserNotNull() {
+    public void testGetReportByResourceMan() {
         try {
-            when(userDAO.viewBookingUser(null)).thenReturn(Arrays.asList(booking, booking1, booking2));
-            Assert.assertNotNull(eciStuffServices.viewBookingUser());
+            when(userDAO.getReportByResourceMan()).thenReturn(Arrays.asList());
+            Assert.assertEquals(Arrays.asList(),eciStuffServices.getReportByResourceMan());
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -81,24 +64,36 @@ public class UserTest {
             password = "admin",
             configuration = "classpath:shiro.ini"
     )
-    public void testViewBookingUserNull() {
+    public void testgetReportByResourceMen() {
         try {
-            when(userDAO.viewBookingUser("None")).thenReturn(Arrays.asList());
-            Assert.assertEquals(Arrays.asList(),eciStuffServices.viewBookingUser());
+            when(userDAO.getReportByResourceMen()).thenReturn(Arrays.asList());
+            Assert.assertEquals(Arrays.asList(),eciStuffServices.getReportByResourceMen());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void testViewBookingUserException() {
+    public void testGetReportByResourceRec() {
         try {
-            when(userDAO.viewBookingUser("None")).thenReturn(Arrays.asList());
-            Assert.assertEquals(Arrays.asList(),eciStuffServices.viewBookingUser());
+            when(userDAO.getReportByResourceRec()).thenReturn(Arrays.asList());
+            Assert.assertEquals(Arrays.asList(),eciStuffServices.getReportByResourceRec());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void testGetReportByResourceCan() {
+        try {
+            when(userDAO.getReportByResourceCan()).thenReturn(Arrays.asList());
+            Assert.assertEquals(Arrays.asList(),eciStuffServices.getReportByResourceCan());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+
     @Rule
     public ShiroRule rule = new ShiroRule();
 }
+

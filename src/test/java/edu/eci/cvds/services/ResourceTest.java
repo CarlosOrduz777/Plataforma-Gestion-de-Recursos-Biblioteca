@@ -1,74 +1,105 @@
 package edu.eci.cvds.services;
 
+import com.github.sdorra.shiro.ShiroRule;
+import com.github.sdorra.shiro.SubjectAware;
 import com.google.inject.Inject;
+import edu.eci.cvds.entities.Booking;
 import edu.eci.cvds.entities.Resource;
+import edu.eci.cvds.entities.User;
+import edu.eci.cvds.persistence.ResourceDAO;
+import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.services.ECIStuffServices;
+import edu.eci.cvds.services.impl.ECIStuffServicesImpl;
+import org.apache.shiro.SecurityUtils;
 import org.junit.*;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
 
-import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Arrays;
+import java.util.Date;
 import java.util.List;
 
+import static org.mockito.Mockito.when;
+
 public class ResourceTest {
-    @Inject
-    ECIStuffServices eciStuffServices;
+    @Mock
+    private ResourceDAO resourceDAO;
+    @Mock
+    private SecurityUtils securityUtils;
+    @InjectMocks
+    private ECIStuffServicesImpl eciStuffServices;
 
-    Resource resource;
-
-    public ResourceTest() {
-
-    }
+    private Booking booking;
+    private Booking booking1;
+    private Booking booking2;
 
     @Before
-    public void setUp() {
+    public void setUp() throws Exception {
+
+        MockitoAnnotations.initMocks(this);
+        //User
+        User user = new User(1,"Francisco Rojas","Rojas-m", "Administrador");
+        //Resource
+        Resource resource = new Resource(1, "R1", "Ubi", 54,"Sala");
+        //Bookings
+        booking = new Booking(1,new java.util.Date(122, 5,3),
+                new java.util.Date(122, 6,3), user.getId(),resource.getId(),"diaria");
+        booking1 = new Booking(2,new java.util.Date(122, 5,3),
+                new java.util.Date(122, 6,3), user.getId(),resource.getId(),"semanal");
+        booking2 = new Booking(3,new java.util.Date(122, 5,3),
+                new Date(122, 6,3), user.getId(),resource.getId(),"mensual");
+
+
+    }
+
+    @Test
+    @SubjectAware(
+            username = "adminECI@mail.com",
+            password = "admin",
+            configuration = "classpath:shiro.ini"
+    )
+    public void testConsultResources() {
         try {
-
-            SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd");
-            java.util.Date parsed = format.parse("2022-03-01");
-            Date inicio = new Date(parsed.getTime());
-
-            parsed = format.parse("2022-03-20");
-            Date fin = new Date(parsed.getTime());
-
-            this.resource = new Resource(4,"Nombre", "Ubicacion", 5, "sala", inicio, fin,true);
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-
-    }
-
-    @Test
-    public void registerResourceTest() {
-        try{
-            //int initialSize = eciStuffServices.consultResources().size();
-
-            eciStuffServices.consultResources();
-
-            //Assert.assertEquals(eciStuffServices.consultResources().size() , initialSize++);
+            when(resourceDAO.consultResources()).thenReturn(Arrays.asList());
+            Assert.assertNotNull(eciStuffServices.consultResources());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void changeResourceStateTest(){
-        try{
-
-           List<Resource> result =  eciStuffServices.consultResources();
-           Resource resource1 = result.get(0);
-
-           int idResource = resource1.getId();
-           boolean disponibilidad1 = resource1.isDisponible();
-            eciStuffServices.changeResourceState(idResource);
-            boolean disponibilidad2 = resource1.isDisponible();
-
-           Assert.assertEquals(disponibilidad1,!disponibilidad2);
-
+    @SubjectAware(
+            username = "adminECI@mail.com",
+            password = "admin",
+            configuration = "classpath:shiro.ini"
+    )
+    public void testConsultAllResources() {
+        try {
+            when(resourceDAO.consultAllResources()).thenReturn(Arrays.asList());
+            Assert.assertNotNull(eciStuffServices.consultAllResources());
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
+    @Test
+    @SubjectAware(
+            username = "adminECI@mail.com",
+            password = "admin",
+            configuration = "classpath:shiro.ini"
+    )
+    public void testResourceById() {
+        try {
+            when(resourceDAO.getResourceById(1)).thenReturn((Resource) Arrays.asList());
+            Assert.assertEquals(Arrays.asList(),eciStuffServices.getResourceById(1));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
+    @Rule
+    public ShiroRule rule = new ShiroRule();
 }

@@ -12,4 +12,7 @@ public interface BookingMapper {
     public Booking consultBooking(@Param("id") int id);
 
     public Resource getInicioDisponibilidad(@Param("idRecurso") int idRecurso);
+    void cancelBooking(@Param("idBooking")int idBooking);
+
+
 }

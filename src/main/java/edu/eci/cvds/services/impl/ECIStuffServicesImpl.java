@@ -36,12 +36,13 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     @Inject
     private BookingDAO bookingDAO;
 
+    private final static Logger log = LoggerFactory.getLogger(ECIStuffServices.class);
+
     @Override
     @lombok.Generated
     public void signIn(String email, String password) throws ServicesException{
         System.out.println("--------ECIStuffServicesImpl--------");
         System.out.println("--------SignIn--------");
-        Logger log = LoggerFactory.getLogger(ECIStuffServices.class);
         Subject currentUser = SecurityUtils.getSubject();
         // Do some stuff with a Session (no need for a web or EJB container!!!)
         Session session = currentUser.getSession();
@@ -130,8 +131,11 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     public void registerResources(Resource resource) throws ServicesException {
         try{
             resourceDAO.registerResources(resource);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/consultarRecursos.xhtml");
         }catch (Exception e){
-            throw new ServicesException(e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se ha podido registrar el recurso"));
+            log.info("No se ha podido registrar el recurso");
+            throw new ServicesException("No se ha podido registrar el recurso", e);
         }
     }
 
@@ -205,7 +209,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             System.out.print(']');
             return bookings;
         }catch (Exception e){
-            throw new ServicesException("No se ha podido traer Reservas para el usuario Actual", e);
+            throw new ServicesException(e.getMessage());
         }
     }
 
@@ -222,6 +226,15 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     public void changeResourceState(int idResource) throws ServicesException {
         try{
            resourceDAO.changeResourceState(idResource);
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void cancelBooking(int idBooking) throws ServicesException {
+        try{
+            bookingDAO.cancelBooking(idBooking);
         }catch (Exception e){
             throw new ServicesException(e.getMessage());
         }

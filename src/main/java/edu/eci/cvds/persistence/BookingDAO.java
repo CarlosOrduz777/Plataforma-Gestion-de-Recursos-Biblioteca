@@ -11,4 +11,8 @@ public interface BookingDAO {
     public Booking consultBooking(int id) throws edu.eci.cvds.persistence.PersistenceException;
 
     public Resource getInicioDisponibilidad(int idRecurso) throws edu.eci.cvds.persistence.PersistenceException;
+
+    public void cancelBooking(int idBooking) throws edu.eci.cvds.persistence.PersistenceException;
+
+
 }

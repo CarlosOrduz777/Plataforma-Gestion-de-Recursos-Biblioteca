@@ -9,6 +9,9 @@
     <link rel="stylesheet" href="reservasUsuario.css"/>
 </h:head>
 <h:body>
+    <p:messages id="messages" showDetail="true" closable="true">
+        <p:autoUpdate/>
+    </p:messages>
     <p:button outcome="/faces/consultarRecursos.xhtml" value="Regresar"/>
     <div class="container">
         <div class="sidebar">
@@ -17,7 +20,7 @@
         </div>
             <div class="bookings">
                 <h1 class="titulo">Consultar Reservas de Usuario</h1>
-                <p:dataTable var="Booking" value="#{userBean.bookingsUser}">
+                <p:dataTable var="Booking" value="#{userBean.bookingsUser}" id="bookingData">
 
                     <p:column field="Booking.id" headerText="Id Reserva">
                         <h:outputText value="#{Booking.id}" />
@@ -32,7 +35,17 @@
                         <h:outputText value="#{Booking.recurso_id}" />
                     </p:column>
                     <p:column field="CancelarBooking" headerText="Cancelar">
-                        <h:commandButton value="Cancelar" onclick="alert('Funcionalidad en Desarrollo');"/>
+                        <h:form>
+                            <p:growl id="message" showDetail="true"/>
+                            <p:commandButton value="Cancelar" action="#{bookingBean.cancelBooking(Booking.id)}" update="message" styleClass="p-mr-2" icon="pi pi-check" immediate="true">
+                                <p:confirm header="Confirmation" message="Are you sure you want to proceed?" icon="pi pi-exclamation-triangle"/>
+                            </p:commandButton>
+
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" update="bookingData" immediate="true"/>
+                            </p:confirmDialog>
+                        </h:form>
                     </p:column>
                     <p:column field="verBooking" headerText="Ver">
                         <p:button value="Ver" outcome="/faces/consultarReserva.xhtml?id=#{Booking.id}"/>

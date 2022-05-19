@@ -4,6 +4,7 @@ import com.github.sdorra.shiro.ShiroRule;
 import edu.eci.cvds.entities.Booking;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
+import edu.eci.cvds.persistence.BookingDAO;
 import edu.eci.cvds.persistence.ResourceDAO;
 import edu.eci.cvds.persistence.UserDAO;
 import edu.eci.cvds.services.impl.ECIStuffServicesImpl;
@@ -23,9 +24,9 @@ import java.util.Date;
 
 import static org.mockito.Mockito.when;
 
-public class UserTest {
+public class BookingTest {
     @Mock
-    private UserDAO userDAO;
+    private BookingDAO bookingDAO;
     @Mock
     private SecurityUtils securityUtils;
     @InjectMocks
@@ -54,51 +55,22 @@ public class UserTest {
 
     }
 
-    /**
-     * Test for testViewBookingUser
-     * Equivalence domain(null - notnull - Exception)
-     **/
-    //notnull
     @Test
     @SubjectAware(
             username = "adminECI@mail.com",
             password = "admin",
             configuration = "classpath:shiro.ini"
     )
-    public void testViewBookingUserNotNull() {
+    public void testConsultBooking() {
         try {
-            when(userDAO.viewBookingUser(null)).thenReturn(Arrays.asList(booking, booking1, booking2));
-            Assert.assertNotNull(eciStuffServices.viewBookingUser());
+            when(bookingDAO.consultBooking(1)).thenReturn(booking);
+            Assert.assertNotNull(eciStuffServices.consultBooking(1));
         } catch (Exception e) {
             e.printStackTrace();
         }
     }
 
-    //null or <[]>
-    @Test
-    @SubjectAware(
-            username = "adminECI@mail.com",
-            password = "admin",
-            configuration = "classpath:shiro.ini"
-    )
-    public void testViewBookingUserNull() {
-        try {
-            when(userDAO.viewBookingUser("None")).thenReturn(Arrays.asList());
-            Assert.assertEquals(Arrays.asList(),eciStuffServices.viewBookingUser());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Test
-    public void testViewBookingUserException() {
-        try {
-            when(userDAO.viewBookingUser("None")).thenReturn(Arrays.asList());
-            Assert.assertEquals(Arrays.asList(),eciStuffServices.viewBookingUser());
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
     @Rule
     public ShiroRule rule = new ShiroRule();
 }
+

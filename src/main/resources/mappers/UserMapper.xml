@@ -19,7 +19,9 @@
         SELECT * from "ECIStuff".reservas
         WHERE usuario_id  = (SELECT id
         FROM "ECIStuff".usuarios
-        WHERE email = #{email}) order by fechainicio;
+        WHERE email = #{email})
+        AND cancelada = false
+        order by fechainicio;
     </select>
     <select id="getUserById" resultMap="UserResult" parameterType="map">
         SELECT

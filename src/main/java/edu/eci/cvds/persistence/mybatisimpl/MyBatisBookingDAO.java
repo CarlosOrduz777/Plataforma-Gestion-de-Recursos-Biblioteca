@@ -41,4 +41,15 @@ public class MyBatisBookingDAO implements BookingDAO {
             throw new edu.eci.cvds.persistence.PersistenceException(e.getMessage());
         }
     }
+
+    @Override
+    public void cancelBooking(int idBooking) throws edu.eci.cvds.persistence.PersistenceException {
+        try {
+            bookingMapper.cancelBooking(idBooking);
+        }catch (Exception e){
+            throw new edu.eci.cvds.persistence.PersistenceException(e.getMessage());
+        }
+    }
+
+
 }
