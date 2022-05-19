@@ -1,13 +1,13 @@
 
 body {
-    background-color: #131112;
     display: grid;
     width: 100vw;
     height: 100vh;
     font-family: "Arial";
     font-weight: bold;
-    color: white;
+    color: black;
     margin: 0px;
+    background-color: #8d93ea;
 }
 
 .main-container {
@@ -26,6 +26,8 @@ body {
     justify-content: flex-start;
     align-items: stretch;
     height:99vh;
+    min-width: 0;
+    max-width: 20vw;
 }
 
 #sidemenu a{
@@ -75,7 +77,7 @@ body {
 }
 
 #sidemenu .menu-items{
-    overflow: hidden;    
+    overflow: hidden;
 }
 #sidemenu .menu-items .item{
     width: var(30px);
@@ -99,7 +101,6 @@ body {
 
 #sidemenu .menu-items .item a:hover{
     background-color:#131112
-
 }
 
 #sidemenu .menu-items .item .icon{
@@ -146,18 +147,20 @@ body {
     width: 180px;
     height: 60px;
     position: relative;
-  }
-  
-  .btn {
+}
+
+.btn {
     width: 180px;
+    height: 60px;
     cursor: pointer;
-    background: transparent;
+    background: #cc5a65;
+    color: black;
     border: 2px solid #990000;
     outline: none;
     transition: 1s ease-in-out;
-  }
-  
-  svg {
+}
+
+svg {
     position: absolute;
     left: 0;
     top: 0;
@@ -166,19 +169,51 @@ body {
     stroke-dasharray: 150 480;
     stroke-dashoffset: 150;
     transition: 1s ease-in-out;
-  }
-  
-  .btn:hover {
+}
+
+.btn:hover {
     transition: 1s ease-in-out;
     background: #990000;
-  }
-  
-  .btn:hover svg {
+}
+
+.btn:hover svg {
     stroke-dashoffset: -480;
-  }
-  
-  .btn span {
+}
+
+.btn span {
     color: white;
-    font-size: 25px;
+    font-size: 18px;
     font-weight: 100;
-  }
+}
+.formContainer{
+    display: grid;
+    align-content: stretch;
+    justify-content: end;
+    align-items: center;
+    background-image: url("https://cdn.discordapp.com/attachments/771508386452734003/972947606185586818/sala.jpg");
+    background-size: cover;
+    height: 80%;
+    width: 80%;
+}
+.backForm{
+    position: absolute;
+    height: 300px;
+    width: 600px;
+    background-color: #ffffff;
+}
+.formContainerFechas{
+    height: 100px;
+    width: 700px;
+}
+.formContainerTipoReserva{
+    height: 100px;
+    width: 700px;
+}
+.formContainerReservar{
+    margin-left: 2px;
+}
+@media (min-width: 992px) {
+    .col-md-2 {
+        width: 39.666667%;
+    }
+}

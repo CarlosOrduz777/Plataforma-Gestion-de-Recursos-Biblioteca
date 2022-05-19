@@ -2,6 +2,7 @@ package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Booking;
+import edu.eci.cvds.entities.Report;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.BookingDAO;
 import edu.eci.cvds.persistence.PersistenceException;
@@ -118,6 +119,15 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     }
 
     @Override
+    public List<Resource> consultAllResources() throws ServicesException {
+        try{
+            return resourceDAO.consultAllResources();
+        }catch (PersistenceException e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
     public void registerResources(Resource resource) throws ServicesException {
         try{
             resourceDAO.registerResources(resource);
@@ -130,9 +140,9 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     }
 
     @Override
-    public void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId) throws ServicesException {
+    public void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId,String tipoReserva) throws ServicesException {
         try{
-            bookingDAO.registerBooking(fechaInicio,fechaFin,userId,resourceId);
+            bookingDAO.registerBooking(fechaInicio,fechaFin,userId,resourceId,tipoReserva);
         }catch (Exception e){
             throw new ServicesException("No se ha podido registrar la reserva", e);
         }
@@ -201,5 +211,28 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         }catch (Exception e){
             throw new ServicesException("No se ha podido traer Reservas para el usuario Actual", e);
         }
+    }
+
+    @Override
+    public Resource getInicioDisponibilidad(int idRecurso) throws ServicesException {
+        try{
+            return bookingDAO.getInicioDisponibilidad(idRecurso);
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public void changeResourceState(int idResource) throws ServicesException {
+        try{
+           resourceDAO.changeResourceState(idResource);
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    @Override
+    public List<Report> getReportByAdmin() {
+        return userDAO.getReportByAdmin();
     }
 }

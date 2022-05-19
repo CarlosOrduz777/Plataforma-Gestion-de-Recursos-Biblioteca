@@ -11,12 +11,46 @@ public class Resource implements Serializable {
     @Getter @Setter private int id;
     @Getter @Setter private String nombre;
     @Getter @Setter private String ubicacion;
-    @Getter @Setter private String capacidad;
+    @Getter @Setter private int capacidad;
+    @Getter @Setter private String descripcion;
     @Getter @Setter private String tipo;
     @Getter @Setter private Date iDisp;
     @Getter @Setter private Date fDisp;
+    @Getter @Setter private boolean disponible;
 
-    public Resource(String nombre, String ubicacion, String capacidad, String tipo, Date iDisp, Date fDisp){
+    public Resource(String nombre, String ubicacion,String descripcion, int capacidad, String tipo, Date iDisp, Date fDisp,boolean disponible){
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+        this.capacidad = capacidad;
+        this.tipo = tipo;
+        this.iDisp = iDisp;
+        this.fDisp = fDisp;
+        this.disponible = disponible;
+        this.descripcion = descripcion;
+    }
+    public Resource(int id,String nombre, String ubicacion, String tipo,String descripcion, int capacidad, Date iDisp, Date fDisp,boolean disponible){
+        this.id=id;
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+        this.capacidad = capacidad;
+        this.tipo = tipo;
+        this.iDisp = iDisp;
+        this.fDisp = fDisp;
+        this.disponible = disponible;
+        this.descripcion = descripcion;
+    }
+    public Resource(int id,String nombre, String ubicacion, String tipo,String descripcion, int capacidad, Date iDisp, Date fDisp){
+        this.id=id;
+        this.nombre = nombre;
+        this.ubicacion = ubicacion;
+        this.capacidad = capacidad;
+        this.tipo = tipo;
+        this.iDisp = iDisp;
+        this.fDisp = fDisp;
+        this.descripcion = descripcion;
+    }
+    public Resource(int id, String nombre, String ubicacion, int capacidad, String tipo, Date iDisp, Date fDisp){
+        this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.capacidad = capacidad;
@@ -24,7 +58,7 @@ public class Resource implements Serializable {
         this.iDisp = iDisp;
         this.fDisp = fDisp;
     }
-    public Resource(int id, String nombre, String ubicacion, String capacidad, String tipo, Date iDisp, Date fDisp){
+    public Resource(int id, String nombre, String ubicacion, int capacidad, String tipo, Date iDisp, Date fDisp,boolean disponible){
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
@@ -32,20 +66,25 @@ public class Resource implements Serializable {
         this.tipo = tipo;
         this.iDisp = iDisp;
         this.fDisp = fDisp;
+        this.disponible = disponible;
     }
-    public Resource(int id, String nombre, String ubicacion, String capacidad, String tipo){
+    public Resource(int id, String nombre, String ubicacion, int capacidad, String tipo){
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.capacidad = capacidad;
         this.tipo = tipo;
     }
-    public Resource(int id, String nombre, String ubicacion, String capacidad, String tipo, Date fDisp){
+    public Resource(int id, String nombre, String ubicacion, int capacidad, String tipo, Date fDisp){
         this.id = id;
         this.nombre = nombre;
         this.ubicacion = ubicacion;
         this.capacidad = capacidad;
         this.tipo = tipo;
+        this.fDisp = fDisp;
+    }
+    public Resource(Date iDisp,Date fDisp){
+        this.iDisp = iDisp;
         this.fDisp = fDisp;
     }
 

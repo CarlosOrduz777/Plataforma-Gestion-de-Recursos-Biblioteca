@@ -39,16 +39,16 @@
                             </div>
                         </a>
                     </div>
-                    <div class="item">
-                        <a href="/faces/consultarRecursos.xhtml">
-                            <div class="icon">
-                                <img src="https://cdn.discordapp.com/attachments/831560691252068372/972920761281024000/30659.png" alt="Inicio"/>
-                            </div>
-                            <div class="title">
-                                <span>Consultar Recursos</span>
-                            </div>
-                        </a>
-                    </div>
+                    <h:form class="item">
+                        <p:link outcome="/faces/Reporte.xhtml" rendered="#{validatorBean.isAdmin()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/976569369293389874/unknown.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Reporte Ocupación</h:panelGroup>
+                            </h:panelGroup>
+                        </p:link>
+                    </h:form>
                     <h:form class="item">
                         <p:link outcome="/faces/reservasUsuario.xhtml" rendered="#{validatorBean.authenticated()}">
                             <h:panelGroup  class="icon" layout="block">
@@ -89,6 +89,16 @@
                             </h:panelGroup>
                         </p:link>
                     </h:form>
+                    <h:form class="item">
+                        <p:link outcome="/faces/CambiarEstadoRecurso.xhtml" rendered="#{validatorBean.authenticatedAndAdmin()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/771508386452734003/976341233263849512/intercambiar.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Estado Recursos</h:panelGroup>
+                            </h:panelGroup>
+                        </p:link>
+                    </h:form>
                 </div>
             </div>
             <div class="main">
@@ -99,7 +109,7 @@
                           <polyline points="179,1 179,59 1,59 1,1 179,1" class="bg-line" />
                           <polyline points="179,1 179,59 1,59 1,1 179,1" class="hl-line" />
                         </svg>
-                        <span>GESTIONAR</span>
+                        <span>Consultar Recursos</span>
                       </button>
                     </div>
                   </div>

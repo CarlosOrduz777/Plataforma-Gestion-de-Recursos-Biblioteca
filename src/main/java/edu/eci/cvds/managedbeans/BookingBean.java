@@ -14,6 +14,8 @@ import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import javax.servlet.http.HttpServletRequest;
 import javax.sound.midi.Soundbank;
+import java.text.DateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
@@ -24,18 +26,22 @@ import java.util.List;
 public class BookingBean extends BasePageBean{
     private Date fechaInicio;
     private Date fechaFin;
+
+    @Getter @Setter private String tipoReserva;
     @Inject
     private ECIStuffServices eciStuffServices;
 
     @Setter @Getter private Booking booking;
 
-    public void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId) throws ServicesException, ParseException {
+    public void registerBooking(Date fechaInicio, Date fechaFin,int userId,int resourceId,String tipoReserva) throws ServicesException, ParseException {
         try {
+
             long timeInMilliSeconds = fechaInicio.getTime();
             java.sql.Date date1 = new java.sql.Date(timeInMilliSeconds);
             long timeInMilliSeconds2 = fechaFin.getTime();
             java.sql.Date date2 = new java.sql.Date(timeInMilliSeconds2);
-            eciStuffServices.registerBooking(date1,date2,userId,resourceId);
+            eciStuffServices.registerBooking(date1,date2,userId,resourceId,tipoReserva);
+            eciStuffServices.changeResourceState(resourceId);
         }catch (Exception e){
             throw e;
         }
@@ -52,6 +58,39 @@ public class BookingBean extends BasePageBean{
             throw new ServicesException(ex.getMessage());
         }
     }
+    public String getInicioDisponibilidad(int idRecurso) throws ServicesException{
+        try {
+            System.out.println("--------------------"+idRecurso+"-----------------------");
+            System.out.println("-----------"+eciStuffServices.getInicioDisponibilidad(idRecurso)+"-----------------");
+            System.out.println("----------------------"+eciStuffServices.getInicioDisponibilidad(idRecurso).getiDisp()+"--------------------");
+            System.out.println("-----------------"+eciStuffServices.getInicioDisponibilidad(idRecurso).getiDisp().toString()+"----------------------------");
+            return eciStuffServices.getInicioDisponibilidad(idRecurso).getiDisp().toString();
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+    public String getFinDisponibilidad(int idRecurso) throws ServicesException{
+        try {
+            return eciStuffServices.getInicioDisponibilidad(idRecurso).getfDisp().toString();
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+    public Date addTwoHours(){
+        if(fechaInicio != null){
+            SimpleDateFormat formatoFecha = new SimpleDateFormat("dd/MM/yyyy : HH.mm");
+            Calendar ahora = Calendar.getInstance();
+            ahora.setTime(fechaInicio);
+            ahora.add(Calendar.HOUR, 2);
+            Date fecha = ahora.getTime();
+
+            return fecha;
+        }
+        return new Date();
+    }
+
+
 
     public Date getFechaFin() {
         return fechaFin;
