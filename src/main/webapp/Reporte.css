@@ -1,7 +1,6 @@
 
 body {
-    background-color: #131112;
-    display: grid;
+    background-color: #413939;
     width: 100vw;
     height: 100vh;
     font-family: "Arial";
@@ -99,7 +98,6 @@ body {
 
 #sidemenu .menu-items .item a:hover{
     background-color:#131112
-    color: #FFFFFF;
 }
 
 #sidemenu .menu-items .item .icon{
@@ -117,6 +115,7 @@ body {
 }
 
 .main {
+    margin-left: 20px;
     flex: 4;
     display: flex;
     flex-direction: column;
@@ -126,33 +125,36 @@ body {
 }
 
 
-.main .container {
-    height: 300px;
-    border: 0px solid blue;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-around;
-    background-image: url("https://cdn.discordapp.com/attachments/831560691252068372/976601499444609055/Diseno_sin_titulo.jpg");
-    background-size: cover;
-    width: 700px;
-    border-radius: 1rem;
-    padding:15rem;
+.main .tablaReporte {
+    margin-top: 20px;
+    background-color: rgba(208, 192, 138, 0.581);
+    color:rgba(0, 0, 0, 0.908);
+    border: 5px solid #990000;
+    border-radius: solid 10px #F00000;
 
+}
+.main .tablaReporte .col {
 
 }
 
-.center {
-    align-self: center;
-    width: 180px;
-    height: 60px;
-    position: relative;
-  }
+.ui-tabs.ui-tabs-top > .ui-tabs-nav {
+  padding: 1em 1.4em;
+  background-color:transparent;
+  display: flex;
+  justify-content: space-between;
+}
+.ui-tabs.ui-tabs-top > .ui-tabs-nav li {
+    border: 3px #990000;
+    border-style: solid;
+}
 
-.btn {
-    width: 180px;
-    cursor: pointer;
-    background: transparent;
-    border: 2px solid #990000;
-    outline: none;
-    transition: 1s ease-in-out;
+.ui-tabs.ui-tabs-top > .ui-tabs-nav a {
+  color: black;
+  background-color: rgba(208, 192, 138, 0.581);
+}
+
+.ui-tabs.ui-tabs-top > .ui-tabs-nav a:hover {
+    color: black;
+    box-shadow: 1px 1px 5px 5px #990000;
+    text-shadow: 1px 1px 10px rgb(53, 50, 38);
   }

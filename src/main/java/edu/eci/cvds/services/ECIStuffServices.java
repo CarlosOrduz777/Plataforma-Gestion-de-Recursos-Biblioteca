@@ -32,5 +32,11 @@ public interface ECIStuffServices {
 
     void changeResourceState(int idResource)throws ServicesException;
 
-    List<Report> getReportByAdmin();
+    List<Report> getReportByResourceMan();
+
+    List<Report> getReportByResourceMen();
+
+    List<Report> getReportByResourceRec();
+
+    List<Report> getReportByResourceCan();
 }

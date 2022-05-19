@@ -15,6 +15,7 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,7 +33,11 @@ public class UserBean extends BasePageBean {
 	@Getter @Setter private String email;
 	@Getter @Setter private String password;
 	@Setter private List<Booking> bookingsUser;
-	@Setter List<Report> reports;
+	@Setter private List<Report> reportsMasU;
+	@Setter private List<Report> reportsMenU;
+	@Setter private List<Report> reportsRec;
+	@Setter private List<Report> reportsCan;
+	@Getter @Setter private ArrayList<Report> reportsFilter = new ArrayList<>();
 
 
 	@Inject
@@ -131,12 +136,21 @@ public class UserBean extends BasePageBean {
 		return bookingsUser;
 	}
 
-	public List<Report> getReport() throws Exception{
-		for(Report r: reports){
-			System.out.println(r.getRecursoId());
-		}
-		reports = eciStuffServices.getReportByAdmin();
-		return reports;
+	public List<Report> getReportsMasU() throws Exception{
+		reportsMasU = eciStuffServices.getReportByResourceMan();
+		return reportsMasU;
+	}
+	public List<Report> getReportsMenU() throws Exception{
+		reportsMenU = eciStuffServices.getReportByResourceMen();
+		return reportsMenU;
+	}
+	public List<Report> getReportsRec() throws Exception{
+		reportsRec = eciStuffServices.getReportByResourceRec();
+		return reportsRec;
+	}
+	public List<Report> getReportsCan() throws Exception{
+		reportsCan = eciStuffServices.getReportByResourceCan();
+		return reportsCan;
 	}
 
 }

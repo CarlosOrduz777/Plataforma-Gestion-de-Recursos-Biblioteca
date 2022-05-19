@@ -17,5 +17,11 @@ public interface UserDAO {
 
     User getUserById(int id) throws PersistenceException;
 
-    List<Report> getReportByAdmin();
+    List<Report> getReportByResourceMan();
+
+    List<Report> getReportByResourceMen();
+
+    List<Report> getReportByResourceRec();
+
+    List<Report> getReportByResourceCan();
 }

@@ -13,5 +13,8 @@ public interface UserMapper {
     User getUserIdByEmail(@Param("email")String email);
     List<Booking> viewBookingUser(@Param("email")String email);
     User getUserById(@Param("id") int id);
-    List<Report> getReportByAdmin();
+    List<Report> getReportByResourceMan();
+    List<Report> getReportByResourceMen();
+    List<Report> getReportByResourceRec();
+    List<Report> getReportByResourceCan();
 }

@@ -14,6 +14,7 @@ public class Report {
     @Getter @Setter private String tipo;
     @Getter @Setter private String nombre;
     @Getter @Setter private String ubicacion;
+    @Getter @Setter private int numReservas;
 
     /*public Report(){
         super();

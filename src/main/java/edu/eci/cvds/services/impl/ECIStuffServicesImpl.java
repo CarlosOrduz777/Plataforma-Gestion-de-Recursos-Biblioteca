@@ -228,7 +228,22 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     }
 
     @Override
-    public List<Report> getReportByAdmin() {
-        return userDAO.getReportByAdmin();
+    public List<Report> getReportByResourceMan() {
+        return userDAO.getReportByResourceMan();
+    }
+
+    @Override
+    public List<Report> getReportByResourceMen() {
+        return userDAO.getReportByResourceMen();
+    }
+
+    @Override
+    public List<Report> getReportByResourceRec() {
+        return userDAO.getReportByResourceRec();
+    }
+
+    @Override
+    public List<Report> getReportByResourceCan() {
+        return userDAO.getReportByResourceCan();
     }
 }
