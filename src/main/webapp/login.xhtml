@@ -1,44 +1,48 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:c="http://java.sun.com/jsp/jstl/core"
       xmlns:p="http://primefaces.org/ui">
-
 <h:head>
-    <title>LOGIN</title>
-    <link rel="stylesheet" href="login.css"/>
+    <title> Recursos Reservados </title>
+
+    <link href="login.css" rel="stylesheet" type="text/css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"/>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.7/dist/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+
 </h:head>
-<h:body>
+
+<body>
     <div class="container">
-        <div class="sidebar">
-            <img src="https://cdn.discordapp.com/attachments/831560691252068372/971016806728888380/logo-eci-removebg-preview.png" alt="Logo Escuela"/>
-            <span>ECI - STUFF</span>
-        </div>
-        <div class="main">
-            <h2 class="title">Sign In</h2>
-            <h:form class="form_container" id="LogIn">
-                <div class="row">
-                    <label class="label" for="iName">Correo</label>
-                    <p:inputText id="correo" class="input" type="text"  value="#{userBean.email}" required="true"
+        <div class="abs-center">
+            <p style = "font-family:courier,arial,helvética;">
+                <font size="20">
+                Iniciar Sesión
+                </font>
+            </p>
+            <h:form action="#" class="border p-4 form">
+                <div class="form-group">
+                    <label for="">Email</label>
+                    <p:inputText type="email" name="email" id="email" class="form-control"  value="#{userBean.email}" required="true"
                                  requiredMessage="Campo correo es requerido"
                                  validator="#{validatorBean.validateEmail}">
                     </p:inputText>
                 </div>
-                <div class="row">
-                    <label class="label" for="iName">Contraseña</label>
-                    <p:password id="password" class="input" type="String" value="#{userBean.password}" required="true"
+                <div class="form-group">
+                    <label for="">Contraseña</label>
+                    <p:password type="password" name="password" id="password" class="form-control" value="#{userBean.password}" required="true"
                                 requiredMessage="Campo contraseña es requerido"
                                 validator="#{validatorBean.validatePassword}">
                     </p:password>
-
                 </div>
-                <div class="row">
-                    <p:commandButton  class="btn-ingresar" value="Ingresar" update="LogIn" action="#{userBean.signIn}"/>
-                </div>
-                <h:messages style="color:#F00000; margin:10px; font-size:1.5rem"/>
+                <p:commandButton  class="btn btn-dark" value="Ingresar" action="#{userBean.signIn}"/>
             </h:form>
         </div>
     </div>
-</h:body>
+</body>
+
 </html>
