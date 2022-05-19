@@ -52,8 +52,23 @@ public class MyBatisUserDAO implements UserDAO {
     }
 
     @Override
-    public List<Report> getReportByAdmin() {
-        return userMapper.getReportByAdmin();
+    public List<Report> getReportByResourceMan() {
+        return userMapper.getReportByResourceMan();
+    }
+
+    @Override
+    public List<Report> getReportByResourceMen() {
+        return userMapper.getReportByResourceMen();
+    }
+
+    @Override
+    public List<Report> getReportByResourceRec() {
+        return userMapper.getReportByResourceRec();
+    }
+
+    @Override
+    public List<Report> getReportByResourceCan() {
+        return userMapper.getReportByResourceCan();
     }
 
 
