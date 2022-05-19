@@ -19,6 +19,8 @@ import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
+import org.primefaces.model.chart.PieChartModel;
+import javax.faces.bean.ManagedBean;
 
 /**
  * Bean para la interfaz de usuario de los Usuarios
@@ -38,7 +40,22 @@ public class UserBean extends BasePageBean {
 	@Setter private List<Report> reportsRec;
 	@Setter private List<Report> reportsCan;
 	@Getter @Setter private ArrayList<Report> reportsFilter = new ArrayList<>();
+	@Getter @Setter private PieChartModel model;
 
+	@lombok.Generated
+	public UserBean() {
+		model = new PieChartModel();
+		try {
+			getReportsMasU();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		model.setTitle("Recursos con mayores y menores reservas");
+		model.setLegendPosition("e");
+		model.setFill(true);
+		model.setShowDataLabels(true);
+		model.setDiameter(250);
+	}
 
 	@Inject
 	private ECIStuffServices eciStuffServices;
@@ -138,6 +155,9 @@ public class UserBean extends BasePageBean {
 
 	public List<Report> getReportsMasU() throws Exception{
 		reportsMasU = eciStuffServices.getReportByResourceMan();
+		for (Report r: reportsMasU) {
+			model.set(r.getNombre(), r.getNumReservas());
+		}
 		return reportsMasU;
 	}
 	public List<Report> getReportsMenU() throws Exception{
