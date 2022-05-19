@@ -8,6 +8,7 @@ import edu.eci.cvds.services.ServicesException;
 import lombok.Getter;
 import lombok.Setter;
 
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
@@ -89,7 +90,13 @@ public class BookingBean extends BasePageBean{
         }
         return new Date();
     }
-
+    public void cancelBooking(int idBooking)throws ServicesException{
+        try {
+            eciStuffServices.cancelBooking(idBooking);
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
 
 
     public Date getFechaFin() {
@@ -106,5 +113,10 @@ public class BookingBean extends BasePageBean{
 
     public void setFechaInicio(Date fechaInicio) {
         this.fechaInicio = fechaInicio;
+    }
+
+    public void showErrors(String error){
+        FacesContext.getCurrentInstance().addMessage(null,
+                new FacesMessage(FacesMessage.SEVERITY_ERROR, "Intente de nuevo: ", error));
     }
 }

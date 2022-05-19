@@ -26,7 +26,8 @@
             usuario_id,
             recurso_id
         FROM "ECIStuff".reservas
-        WHERE id=#{id}
+        WHERE
+            id=#{id}
     </select>
 
     <select id="getInicioDisponibilidad" resultMap="ResourceResult" parameterType="int">
@@ -41,4 +42,11 @@
         <result property="iDisp" column="iniciodisponibilidad"/>
         <result property="fDisp" column="findisponibilidad"/>
     </resultMap>
+
+    <update id="cancelBooking" parameterType="int">
+        UPDATE "ECIStuff".reservas SET cancelada = true WHERE id= #{idBooking};
+    </update>
+
+
+
 </mapper>
