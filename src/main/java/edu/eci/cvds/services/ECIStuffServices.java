@@ -31,4 +31,7 @@ public interface ECIStuffServices {
 
     void changeResourceState(int idResource)throws ServicesException;
 
+    void cancelBooking(int idBooking) throws ServicesException;
+
+
 }

@@ -76,6 +76,10 @@ public class Booking implements Serializable {
         this.tipoRecurso = tipoRecurso;
     }
 
+    public Booking(Date fechaInicio){
+        this.fechaInicio = fechaInicio;
+    }
+
     @Override
     public String toString() {
         return "Booking{" +

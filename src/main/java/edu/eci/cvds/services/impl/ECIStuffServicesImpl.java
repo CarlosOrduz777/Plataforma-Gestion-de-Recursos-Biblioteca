@@ -204,7 +204,7 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             System.out.print(']');
             return bookings;
         }catch (Exception e){
-            throw new ServicesException("No se ha podido traer Reservas para el usuario Actual", e);
+            throw new ServicesException(e.getMessage());
         }
     }
 
@@ -225,4 +225,15 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
             throw new ServicesException(e.getMessage());
         }
     }
+
+    @Override
+    public void cancelBooking(int idBooking) throws ServicesException {
+        try{
+            bookingDAO.cancelBooking(idBooking);
+        }catch (Exception e){
+            throw new ServicesException(e.getMessage());
+        }
+    }
+
+
 }
