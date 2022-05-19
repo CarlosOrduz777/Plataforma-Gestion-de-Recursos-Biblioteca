@@ -1,6 +1,7 @@
 package edu.eci.cvds.managedbeans;
 
 import edu.eci.cvds.entities.Booking;
+import edu.eci.cvds.entities.Report;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.services.ECIStuffServices;
@@ -14,6 +15,7 @@ import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,6 +33,11 @@ public class UserBean extends BasePageBean {
 	@Getter @Setter private String email;
 	@Getter @Setter private String password;
 	@Setter private List<Booking> bookingsUser;
+	@Setter private List<Report> reportsMasU;
+	@Setter private List<Report> reportsMenU;
+	@Setter private List<Report> reportsRec;
+	@Setter private List<Report> reportsCan;
+	@Getter @Setter private ArrayList<Report> reportsFilter = new ArrayList<>();
 
 
 	@Inject
@@ -110,7 +117,6 @@ public class UserBean extends BasePageBean {
 		this.password = password;
 	}
 
-
 	public User getUserIdByEmail(int idRecurso) throws ServicesException{
 		this.idRecurso = idRecurso;
 
@@ -129,4 +135,22 @@ public class UserBean extends BasePageBean {
 		updateBookingsUser();
 		return bookingsUser;
 	}
+
+	public List<Report> getReportsMasU() throws Exception{
+		reportsMasU = eciStuffServices.getReportByResourceMan();
+		return reportsMasU;
+	}
+	public List<Report> getReportsMenU() throws Exception{
+		reportsMenU = eciStuffServices.getReportByResourceMen();
+		return reportsMenU;
+	}
+	public List<Report> getReportsRec() throws Exception{
+		reportsRec = eciStuffServices.getReportByResourceRec();
+		return reportsRec;
+	}
+	public List<Report> getReportsCan() throws Exception{
+		reportsCan = eciStuffServices.getReportByResourceCan();
+		return reportsCan;
+	}
+
 }

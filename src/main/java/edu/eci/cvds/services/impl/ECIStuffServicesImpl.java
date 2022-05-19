@@ -2,6 +2,7 @@ package edu.eci.cvds.services.impl;
 
 import com.google.inject.Inject;
 import edu.eci.cvds.entities.Booking;
+import edu.eci.cvds.entities.Report;
 import edu.eci.cvds.entities.User;
 import edu.eci.cvds.persistence.BookingDAO;
 import edu.eci.cvds.persistence.PersistenceException;
@@ -35,12 +36,13 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     @Inject
     private BookingDAO bookingDAO;
 
+    private final static Logger log = LoggerFactory.getLogger(ECIStuffServices.class);
+
     @Override
     @lombok.Generated
     public void signIn(String email, String password) throws ServicesException{
         System.out.println("--------ECIStuffServicesImpl--------");
         System.out.println("--------SignIn--------");
-        Logger log = LoggerFactory.getLogger(ECIStuffServices.class);
         Subject currentUser = SecurityUtils.getSubject();
         // Do some stuff with a Session (no need for a web or EJB container!!!)
         Session session = currentUser.getSession();
@@ -129,8 +131,11 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
     public void registerResources(Resource resource) throws ServicesException {
         try{
             resourceDAO.registerResources(resource);
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/consultarRecursos.xhtml");
         }catch (Exception e){
-            throw new ServicesException(e.getMessage());
+            FacesContext.getCurrentInstance().addMessage(null, new FacesMessage("No se ha podido registrar el recurso"));
+            log.info("No se ha podido registrar el recurso");
+            throw new ServicesException("No se ha podido registrar el recurso", e);
         }
     }
 
@@ -235,5 +240,23 @@ public class ECIStuffServicesImpl implements ECIStuffServices {
         }
     }
 
+    @Override
+    public List<Report> getReportByResourceMan() {
+        return userDAO.getReportByResourceMan();
+    }
 
+    @Override
+    public List<Report> getReportByResourceMen() {
+        return userDAO.getReportByResourceMen();
+    }
+
+    @Override
+    public List<Report> getReportByResourceRec() {
+        return userDAO.getReportByResourceRec();
+    }
+
+    @Override
+    public List<Report> getReportByResourceCan() {
+        return userDAO.getReportByResourceCan();
+    }
 }

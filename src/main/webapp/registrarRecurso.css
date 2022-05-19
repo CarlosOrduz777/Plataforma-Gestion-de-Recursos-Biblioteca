@@ -135,3 +135,18 @@ input[type=number] {
     background-size: cover;
 
 }
+
+.ui-datepicker{
+    background-color: white;
+}
+
+.ui-inputfield{
+    background-color: transparent;
+    color: white;
+
+    border: 1px solid #635959;
+
+    margin-top: 10px;
+
+    font: inherit;
+}
