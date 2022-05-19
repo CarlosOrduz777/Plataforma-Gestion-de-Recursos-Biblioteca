@@ -22,45 +22,56 @@
         <h1 class="titulo">Registrar Recurso</h1>
 
         <h:form id="registerResourceForm">
-
             <!-- Campo Nombre -->
         <div class="formItem">
             <label>Nombre</label><br/>
-            <p:inputText id="iName" class="input" type="text" placeholder="Nombre" value="#{resourceBean.nombre}"/><br/>
+            <p:inputText id="iName" class="input" type="text" placeholder="Nombre" value="#{resourceBean.nombre}"
+                         required="true"
+                         requiredMessage="Campo requerido"
+                         validator="#{validatorBean.validateName}"/><br/>
         </div>
 
             <!-- Campo Ubi -->
         <div class="formItem">
             <label>Ubicación</label><br/>
-            <p:inputText id="iUbi" class="input" type="text" placeholder="Ubicación" value="#{resourceBean.ubicacion}"/><br/>
+            <p:inputText id="iUbi" class="input" type="text" placeholder="Ubicación" value="#{resourceBean.ubicacion}"
+                         required="true"
+                         requiredMessage="Campo requerido"
+                         validator="#{validatorBean.validateUbi}"/><br/>
         </div>
 
             <!-- Selector Tipo -->
         <div class="formItem">
             <p:selectOneMenu class="select" id="iType" value="#{resourceBean.tipo}" >
                     <f:selectItem itemLabel="Tipo" itemValue="" />
-                    <f:selectItem itemLabel="Sala de Estudio" itemValue="sala"/>
-                    <f:selectItem itemLabel="Equipo de Cómputo" itemValue="pc"/>
-                    <f:selectItem itemLabel="Equipo Multimedia" itemValue="multi"/>
+                    <f:selectItem itemLabel="Sala de Estudio" itemValue="Sala de Estudio"/>
+                    <f:selectItem itemLabel="Equipo de Cómputo" itemValue="Equipo de Cómputo"/>
+                    <f:selectItem itemLabel="Equipo Multimedia" itemValue="Equipo Multimedia"/>
             </p:selectOneMenu><br/>
         </div>
 
             <!-- Campo Descripcion -->
             <div class="formItem">
-                <label>Descripcion</label><br/>
-                <p:inputText id="iDesc" class="input" type="text" placeholder="Capacidad" value="#{resourceBean.descripcion}" /><br/>
+                <label>Descripción</label><br/>
+                <p:inputText id="iDesc" class="input" type="text" placeholder="Descripción" value="#{resourceBean.descripcion}"
+                             required="true"
+                             requiredMessage="Campo Descripción requerido"
+                             validator="#{validatorBean.validateDesc}"/><br/>
             </div>
 
             <!-- Campo Capacidad -->
         <div class="formItem">
             <label>Capacidad</label><br/>
-            <p:inputText id="iCapa" class="input" type="number" placeholder="Capacidad" value="#{resourceBean.capacidad}" /><br/>
+            <p:inputText id="iCapa" class="input" type="number" placeholder="Capacidad" value="#{resourceBean.capacidad}"
+                         required="true"
+                         requiredMessage="Campo Capacidad requerido"
+                         validator="#{validatorBean.validateCapacity}"/><br/>
         </div>
 
             <!-- Campo IDisponibilidad -->
         <div class="formItem">
             <label>Inicio Disponibilidad</label><br/>
-            <p:inputText id="iFechaI" class="input" type="date" value="#{resourceBean.iDisp}" /><br/>
+            <p:inputText id="iFechaI" class="input" type="date" value="#{resourceBean.iDisp}" validator="#{validatorBean.validateDate}"/><br/>
         </div>
 
             <!-- Campo FDisponibilidad -->
@@ -71,13 +82,17 @@
 
             <div class="formItem">
                 <p:selectOneMenu class="select"  value="#{resourceBean.disponible}" >
+                    <f:selectItem itemLabel="Disponibilidad" itemValue="" />
                     <f:selectItem itemLabel="Disponible" itemValue="true"/>
                     <f:selectItem itemLabel="No Disponible" itemValue="false"/>
                 </p:selectOneMenu><br/>
             </div>
 
-        <p:commandButton class="submit-btn" id="register-btn" value="Registrar" actionListener="#{resourceBean.registerResource}" update="registerResourceForm" />
-            <p:commandButton class="submit-btn" value="Cerrar Sesion"  action="#{userBean.logOut}"/>
+        <p:commandButton class="submit-btn" id="register-btn" value="Registrar Recurso" actionListener="#{resourceBean.registerResource}" update="registerResourceForm" />
+        <a href="/faces/index.xhtml" class="submit-btn">
+            Inicio
+        </a>
+        <h:messages style="color:#F00000; margin:10px; font-size:1.5rem"/>
         </h:form>
 
     </div>

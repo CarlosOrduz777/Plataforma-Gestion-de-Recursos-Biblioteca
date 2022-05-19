@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.Setter;
 
 import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.*;
 import javax.faces.context.FacesContext;
 import javax.inject.Inject;
@@ -46,12 +47,12 @@ public class ResourceBean extends BasePageBean{
             Date fDispSql = new Date(parsed.getTime());
 
             boolean disponibilidad = Boolean.parseBoolean(disponible);
-            System.out.println("---------------Disponibilidad-------------------------: "+disponibilidad);
             Resource resource = new Resource(this.nombre, this.ubicacion,this.descripcion, Integer.parseInt(this.capacidad), this.tipo , iDispSql, fDispSql,disponibilidad);
 
             eciStuffServices.registerResources(resource);
 
             System.out.println("Recurso Agregado: " + resource.toString());
+            FacesContext.getCurrentInstance().getExternalContext().redirect("/faces/consultarRecursos.xhtml");
 
         }catch (Exception e){
             throw new ServicesException(e.getMessage());
