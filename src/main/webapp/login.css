@@ -1,0 +1,129 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: #131112;
+    display: grid;
+    place-items: center;
+    width: 100vw;
+    height: 100vh;
+    font-family: "Arial";
+    font-weight: bold;
+    color: white;
+}
+
+.container {
+    border: 0px solid #F00000 ;
+    width: 98vw;
+    height: 90vh;
+    display: flex;
+}
+
+.sidebar{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    background-color: #990000;
+    color: white;
+    justify-content: space-around;
+    align-items: stretch;
+}
+
+.sidebar img {
+    width: 15rem;
+    height: 6rem;
+    aspect-ratio: 16/9;
+}
+
+.sidebar span {
+    align-self: center;
+    font-size: 2.5rem;
+    margin-top: 1rem;
+}
+
+.main {
+    flex: 4;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: #003C69;
+}
+
+.title {
+    position: absolute;
+    bottom: 80%;
+    font-size: 3rem;
+    margin: 3rem;
+}
+
+.form_container{
+    height: 50%;
+    border: 0px solid blue;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    background-image: url("https://cdn.discordapp.com/attachments/831560691252068372/972713369167597629/fondoLogin1.jpg");
+    background-size: cover;
+    width: 80%;
+    border-radius: 1rem;
+    padding:15rem;
+}
+
+.row{
+    display: flex;
+    flex-direction: column;
+    font-size: 1.8rem;
+    margin: 0.5rem;
+    
+}
+
+.btn-ingresar {
+    border: 4px solid #000000;
+    background: #990000;
+    border-radius: 6px;
+    color: white;
+    padding: 16px 32px;
+    text-align: center;
+    display: inline-block;
+    font-size: 1rem;
+    margin: 16px 8px;
+    transition-duration: 0.4s;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+
+.btn-ingresar:hover {
+      border: 4px solid white;
+      background-color: transparent;
+      color: 00000;
+ }
+
+.label{
+    margin: 10px;
+    font-weight: lighter;
+}
+input{
+      background-color: transparent;
+      color: white;
+      border: 2px solid #635959;
+      margin-top: 10px;
+      font: inherit;
+      font-size: 100%;
+  
+  }
+  
+  input::-webkit-outer-spin-button,
+  input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+  }
+  
+  input[type=number] {
+      -moz-appearance: textfield;
+  } 
+  

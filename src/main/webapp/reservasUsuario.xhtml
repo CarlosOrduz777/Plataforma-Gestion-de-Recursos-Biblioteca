@@ -1,0 +1,59 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+<h:head>
+    <title>Consultar Reserva</title>
+    <link rel="stylesheet" href="reservasUsuario.css"/>
+</h:head>
+<h:body>
+    <p:messages id="messages" showDetail="true" closable="true">
+        <p:autoUpdate/>
+    </p:messages>
+    <p:button outcome="/faces/consultarRecursos.xhtml" value="Regresar"/>
+    <div class="container">
+        <div class="sidebar">
+            <img src="https://cdn.discordapp.com/attachments/810979872473350154/964584678248022116/unknown.png" alt="Logo Escuela"/>
+            <span>ECI - STUFF</span>
+        </div>
+            <div class="bookings">
+                <h1 class="titulo">Consultar Reservas de Usuario</h1>
+                <p:dataTable var="Booking" value="#{userBean.bookingsUser}" id="bookingData">
+
+                    <p:column field="Booking.id" headerText="Id Reserva">
+                        <h:outputText value="#{Booking.id}" />
+                    </p:column>
+                    <p:column sortBy="#{Booking.fechaInicio}" field="Booking.fechaInicio" headerText="Fecha Inicio">
+                        <h:outputText value="#{Booking.fechaInicio}" />
+                    </p:column>
+                    <p:column field="Booking.fechaFin" headerText="Fecha Fin">
+                        <h:outputText value="#{Booking.fechaFin}" />
+                    </p:column>
+                    <p:column field="Booking.recursoId" headerText="Recurso Id">
+                        <h:outputText value="#{Booking.recurso_id}" />
+                    </p:column>
+                    <p:column field="CancelarBooking" headerText="Cancelar">
+                        <h:form>
+                            <p:growl id="message" showDetail="true"/>
+                            <p:commandButton value="Cancelar" action="#{bookingBean.cancelBooking(Booking.id)}" update="message" styleClass="p-mr-2" icon="pi pi-check" immediate="true">
+                                <p:confirm header="Confirmation" message="Are you sure you want to proceed?" icon="pi pi-exclamation-triangle"/>
+                            </p:commandButton>
+
+                            <p:confirmDialog global="true" showEffect="fade" hideEffect="fade" responsive="true" width="350">
+                                <p:commandButton value="No" type="button" styleClass="ui-confirmdialog-no ui-button-flat"/>
+                                <p:commandButton value="Yes" type="button" styleClass="ui-confirmdialog-yes" update="bookingData" immediate="true"/>
+                            </p:confirmDialog>
+                        </h:form>
+                    </p:column>
+                    <p:column field="verBooking" headerText="Ver">
+                        <p:button value="Ver" outcome="/faces/consultarReserva.xhtml?id=#{Booking.id}"/>
+                    </p:column>
+                </p:dataTable>
+                <p:commandButton value=" ver Reservas Canceladas" onclick="document.write('Funcionalidad en Desarrollo');"></p:commandButton>
+                <p:commandButton value=" ver Reservas Finalizada" onclick="document.write('Funcionalidad en Desarrollo');"></p:commandButton>
+            </div>
+    </div>
+</h:body>
+</html>

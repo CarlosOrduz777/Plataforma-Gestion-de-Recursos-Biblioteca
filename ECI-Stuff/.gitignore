@@ -1,0 +1,12 @@
+objetivo /
+pom.xml.etiqueta
+pom.xml.releaseBackup
+pom.xml.versionsBackup
+pom.xml.siguiente
+release.properties
+dependencia-reducida-pom.xml
+buildNumber.properties
+.mvn / sincronización.propiedades
+# https://github.com/takari/maven-wrapper#usage-without-binary-jar
+.mvn / envoltorio / maven-wrapper.jar
+.idea

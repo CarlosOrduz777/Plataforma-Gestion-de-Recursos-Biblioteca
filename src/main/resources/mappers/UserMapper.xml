@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+
+<mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.UserMapper">
+
+    <insert id="createUser">
+        insert into "ECIStuff".user_eci (id, name, role) values (00005, 'Usuario7','Comunidad')
+    </insert>
+    <select id="getUserIdByEmail" resultMap="UserResult" parameterType="map">
+        SELECT
+            id,
+            role
+        FROM "ECIStuff".usuarios WHERE email = #{email}
+    </select>
+    <select id="viewBookingUser" resultMap="UserBookings" parameterType="String">
+        SELECT * from "ECIStuff".reservas
+        WHERE usuario_id  = (SELECT id
+        FROM "ECIStuff".usuarios
+        WHERE email = #{email})
+        AND cancelada = false
+        order by fechainicio;
+    </select>
+    <select id="getUserById" resultMap="UserResult" parameterType="map">
+        SELECT
+            id,
+            nombre,
+            email,
+            role
+        FROM "ECIStuff".usuarios WHERE id = #{id}
+    </select>
+    <select id="getReportByResourceMan" resultMap="ReportResult">
+        SELECT  COUNT(recursos.id) numReservas, recursos.id,
+        iniciodisponibilidad, findisponibilidad,
+        usuarios.programa, recursos.tipo, recursos.nombre, recursos.ubicacion
+        FROM "ECIStuff".recursos
+        join "ECIStuff".reservas on  reservas.recurso_id = recursos.id
+        join "ECIStuff".usuarios on reservas.usuario_id = usuarios.id
+        group by recursos.id, usuarios.programa
+        order by numReservas desc;
+    </select>
+    <select id="getReportByResourceMen" resultMap="ReportResult">
+        SELECT  COUNT(recursos.id) numReservas, recursos.id,
+        iniciodisponibilidad, findisponibilidad,
+        usuarios.programa, recursos.tipo, recursos.nombre, recursos.ubicacion
+        FROM "ECIStuff".recursos
+        join "ECIStuff".reservas on  reservas.recurso_id = recursos.id
+        join "ECIStuff".usuarios on reservas.usuario_id = usuarios.id
+        group by recursos.id, usuarios.programa
+        order by numReservas ASC;
+    </select>
+    <select id="getReportByResourceRec" resultMap="ReportResult">
+        SELECT  recursos.id, iniciodisponibilidad, findisponibilidad,
+        usuarios.programa, recursos.tipo, recursos.nombre, recursos.ubicacion
+        FROM "ECIStuff".recursos
+        join "ECIStuff".reservas on  reservas.recurso_id = recursos.id
+        join "ECIStuff".usuarios on reservas.usuario_id = usuarios.id
+        where tiporeserva  = 'Recurrente';
+    </select>
+    <select id="getReportByResourceCan" resultMap="ReportResult">
+        SELECT  recursos.id, iniciodisponibilidad, findisponibilidad,
+        usuarios.programa, recursos.tipo, recursos.nombre, recursos.ubicacion
+        FROM "ECIStuff".recursos
+        join "ECIStuff".reservas on  reservas.recurso_id = recursos.id
+        join "ECIStuff".usuarios on reservas.usuario_id = usuarios.id
+        where cancelada = true;
+    </select>
+    <resultMap id="ReportResult" type="Report">
+        <id property="recursoId" column="id"/>
+        <result property="numReservas" column="numreservas"/>
+        <result property="inicioDisp" column="iniciodisponibilidad"/>
+        <result property="finDisp" column="findisponibilidad"/>
+        <result property="programa" column="programa"/>
+        <result property="tipo" column="tipo"/>
+        <result property="nombre" column="nombre"/>
+        <result property="ubicacion" column="ubicacion"/>
+    </resultMap>
+    <resultMap id="UserResult" type="User">
+        <id property="id" column="id"/>
+    </resultMap>
+    <resultMap id="UserBookings" type="Booking">
+        <id property="id" column="id"/>
+        <result property="fechaInicio" column="fechainicio"/>
+        <result property="fechaFin" column="fechafin"/>
+        <result property="usuario_id" column="usuario_id"/>
+        <result property="recurso_id" column="recurso_id"/>
+    </resultMap>
+</mapper>
