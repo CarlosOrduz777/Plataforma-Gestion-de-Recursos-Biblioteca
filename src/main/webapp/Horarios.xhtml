@@ -56,22 +56,21 @@
         </div>
     </nav>
 
-    <!-- Calendario -->
+
     <div>
         <h:form>
             <p:growl id="messages" showDetail="true"/>
             #{calendarView.loadEvents()}
-            <p:schedule id="schedule" value="#{calendarView.eventModel}" widgetVar="myschedule"
+            <p:schedule id="schedule" value="#{calendarBean.eventModel}" widgetVar="myschedule"
                         rightHeaderTemplate="agendaDay,agendaWeek,month"
                         timeZone="ZoneId.systemDefault()" clientTimeZone="local" draggable="false">
                 <!--
                 <p:ajax event="dateSelect" listener="#{calendarView.onDateSelect}" update="eventDetails"
                         oncomplete="PF('eventDialog').show();"/>
-                        -->
+                -->
             </p:schedule>
-
-
         </h:form>
     </div>
+
 </h:body>
 </html>

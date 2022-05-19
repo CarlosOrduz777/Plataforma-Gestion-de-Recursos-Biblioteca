@@ -10,10 +10,10 @@ import java.text.ParseException;
 
 public interface HorarioDAO {
 
-    public void reservarRecurso(Date fecha, Timestamp horainicial, Timestamp horafinal, int idrecurso, int idusuario, OpcionRecurrencia recurrencia, Date fecharecurrencia, String estado);
+    void reservarRecurso(Date fecha, Timestamp horainicial, Timestamp horafinal, int idrecurso, int idusuario, OpcionRecurrencia recurrencia, Date fecharecurrencia, String estado);
 
-    public List<Horario> consultarHorario(int id) throws ParseException;
+    List<Horario> consultarHorario(int id) throws ParseException;
 
-    public List<Horario> consultarHorarios() throws ParseException;
+    List<Horario> consultarHorarios() throws ParseException;
 
 }

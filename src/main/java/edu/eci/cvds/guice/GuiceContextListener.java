@@ -3,11 +3,9 @@ package edu.eci.cvds.guice;
 import com.google.inject.Guice;
 import com.google.inject.Injector;
 import edu.eci.cvds.persistence.HorarioDAO;
-import edu.eci.cvds.persistence.mybatisimpl.MyBATISHorarioDAO;
+import edu.eci.cvds.persistence.mybatisimpl.MyBatisHorarioDAO;
 import edu.eci.cvds.services.ServiciosHorario;
-import edu.eci.cvds.services.ServiciosReservar;
 import edu.eci.cvds.services.impl.ServiciosHorarioImpl;
-import edu.eci.cvds.services.impl.ServiciosReservarImpl;
 import edu.eci.cvds.persistence.BookingDAO;
 import edu.eci.cvds.persistence.ResourceDAO;
 import edu.eci.cvds.persistence.UserDAO;
@@ -46,8 +44,7 @@ public class GuiceContextListener implements ServletContextListener {
 				bind(ResourceDAO.class).to(MyBatisResourceDAO.class);
 				bind(BookingDAO.class).to(MyBatisBookingDAO.class);
 				bind(ECIStuffServices.class).to(ECIStuffServicesImpl.class);
-				bind(HorarioDAO.class).to(MyBATISHorarioDAO.class);
-				bind(ServiciosReservar.class).to(ServiciosReservarImpl.class);
+				bind(HorarioDAO.class).to(MyBatisHorarioDAO.class);
 				bind(ServiciosHorario.class).to(ServiciosHorarioImpl.class);
 
 

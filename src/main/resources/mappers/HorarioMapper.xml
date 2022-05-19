@@ -4,20 +4,6 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="edu.eci.cvds.persistence.mybatisimpl.mappers.HorarioMapper">
-    <!--
-    <select parameterType="map" id="consultarRecurso" resultMap="RecursoResult">
-        SELECT
-        r.id AS r_id,
-        r.nombre AS r_nombre,
-        r.ubicacion AS r_ubicacion,
-        r.tipo AS r_tipo,
-        r.descripcion AS r_descripcion,
-        r.iniciodisponibilidad AS r_iniciodisponibilidad,
-        r.findisponibilidad AS r_findisponibilidad
-        FROM "ECIStuff".recursos AS r
-        WHERE r.id = #{id}
-    </select>
-    -->
 
     <select parameterType="map" id="consultarHorarios" resultMap="HorarioResult">
         SELECT
@@ -33,12 +19,6 @@
 
         FROM "ECIStuff".horarios as h;
     </select>
-
-    <!--
-    <insert id="reservarRecurso" parameterType="map">
-        insert into Reservas(Fecha, Horaini, Horafin, recurso, usuario, recurrencia, fecharecurrencia,estado) values (#{fecha}, #{horaini}, #{horafin}, #{recurso}, #{carnet}, #{recurrencia}, #{fecharecurrencia},#{estado})
-    </insert>
-    -->
 
     <resultMap type='Horario' id='HorarioResult'>
         <id property='idhorario' column='idhorario'/>

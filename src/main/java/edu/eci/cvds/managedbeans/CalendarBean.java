@@ -19,9 +19,9 @@ import java.util.Date;
 import java.util.List;
 
 @SuppressWarnings("deprecation")
-@ManagedBean(name = "calendarView")
+@ManagedBean(name = "calendarBean")
 @ApplicationScoped
-public class CalendarView extends BasePageBean {
+public class CalendarBean extends BasePageBean {
 
     private Timestamp horainicial;
     private Timestamp horafinal;
@@ -80,7 +80,6 @@ public class CalendarView extends BasePageBean {
 
     private ScheduleEvent eventAux = new DefaultScheduleEvent();
 
-    private int eventId;
 
     public void loadEvents() {
         eventModel = new DefaultScheduleModel();
@@ -100,33 +99,4 @@ public class CalendarView extends BasePageBean {
         this.eventModel = eventModel;
     }
 
-    public void onEventSelect(SelectEvent selectEvent) {
-        this.event = (ScheduleEvent) selectEvent.getObject();
-        this.eventId = Integer.parseInt(event.getId());
-    }
-
-    public void onEventMove(ScheduleEntryMoveEvent event) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event moved", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
-        PrimeFaces.current().dialog().showMessageDynamic(message);
-        addMessage(message);
-    }
-
-    public void onEventResize(ScheduleEntryResizeEvent event) {
-        FacesMessage message = new FacesMessage(FacesMessage.SEVERITY_INFO, "Event resized", "Day delta:" + event.getDayDelta() + ", Minute delta:" + event.getMinuteDelta());
-        PrimeFaces.current().dialog().showMessageDynamic(message);
-    }
-
-    private void addMessage(FacesMessage message) {
-        PrimeFaces.current().dialog().showMessageDynamic(message);
-    }
-
-    public int getEventId() {
-        return eventId;
-    }
-
-    public int setEventId() {
-        HttpServletRequest request = (HttpServletRequest) FacesContext.getCurrentInstance().getExternalContext()
-                .getRequest();
-        return Integer.parseInt(request.getParameter("id"));
-    }
 }

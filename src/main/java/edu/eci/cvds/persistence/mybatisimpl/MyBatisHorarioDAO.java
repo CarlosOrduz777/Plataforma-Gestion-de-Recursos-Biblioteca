@@ -6,12 +6,13 @@ import edu.eci.cvds.persistence.mybatisimpl.mappers.HorarioMapper;
 import edu.eci.cvds.entities.Horario;
 import edu.eci.cvds.services.OpcionRecurrencia;
 
+import javax.persistence.PersistenceException;
 import java.sql.Date;
 import java.sql.Timestamp;
-import java.text.ParseException;
+import java.util.ArrayList;
 import java.util.List;
 
-public class MyBATISHorarioDAO implements HorarioDAO {
+public class MyBatisHorarioDAO implements HorarioDAO {
 
     @Inject
     private HorarioMapper horarioMapper;
@@ -27,22 +28,23 @@ public class MyBATISHorarioDAO implements HorarioDAO {
     }
 
 
-    public List<Horario> consultarHorario(int id) throws ParseException {
+    public List<Horario> consultarHorario(int id) {
         try{
             return horarioMapper.consultarHorario(id);
-        } catch (org.apache.ibatis.exceptions.PersistenceException e){
-            throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar el horario" + id, e);
+        } catch (PersistenceException e){
+            throw new PersistenceException("Error al consultar el horario" + id, e);
         }
     }
 
 
     @Override
-    public List<Horario> consultarHorarios() throws ParseException {
+    public List<Horario> consultarHorarios() {
         try{
             return horarioMapper.consultarHorarios();
-        } catch (org.apache.ibatis.exceptions.PersistenceException e){
-            throw new org.apache.ibatis.exceptions.PersistenceException("Error al consultar los horarios", e);
-        }
+        } catch (PersistenceException e){
+            e.printStackTrace();
+            //throw new PersistenceException("Error al consultar los horarios", e);
+        } return new ArrayList<>();
     }
 
 }
