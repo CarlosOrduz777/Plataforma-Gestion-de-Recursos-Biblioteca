@@ -349,6 +349,7 @@
                   <exclude>edu/eci/cvds/entities/</exclude>
                   <exclude>edu/eci/cvds/security/</exclude>
                   <exclude>edu/eci/cvds/persistence/mybatisimpl/</exclude>
+                  <exclude>edu/eci/cvds/managedbeans/</exclude>
                 </excludes>
             </configuration>
         </plugin>
