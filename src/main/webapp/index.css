@@ -99,6 +99,7 @@ body {
 
 #sidemenu .menu-items .item a:hover{
     background-color:#131112
+
 }
 
 #sidemenu .menu-items .item .icon{
@@ -149,7 +150,6 @@ body {
   
   .btn {
     width: 180px;
-    height: 60px;
     cursor: pointer;
     background: transparent;
     border: 2px solid #990000;
@@ -179,6 +179,6 @@ body {
   
   .btn span {
     color: white;
-    font-size: 18px;
+    font-size: 25px;
     font-weight: 100;
   }

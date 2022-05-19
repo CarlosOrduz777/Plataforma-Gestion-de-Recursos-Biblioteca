@@ -1,6 +1,7 @@
 package edu.eci.cvds.services;
 
 import edu.eci.cvds.entities.Booking;
+import edu.eci.cvds.entities.Report;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 
@@ -31,4 +32,11 @@ public interface ECIStuffServices {
 
     void changeResourceState(int idResource)throws ServicesException;
 
+    List<Report> getReportByResourceMan();
+
+    List<Report> getReportByResourceMen();
+
+    List<Report> getReportByResourceRec();
+
+    List<Report> getReportByResourceCan();
 }

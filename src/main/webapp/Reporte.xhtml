@@ -1,0 +1,313 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <title>Reporte</title>
+        <link rel="stylesheet" href="Reporte.css"/>
+    </h:head>
+    <h:body>
+        <div class="main-container">
+            <div id="sidemenu" class="menu-static">
+                <!-- Header -->
+                <div class="header">
+                    <div class="title">
+                        <span>ECI-STUFF</span>
+                    </div>
+                </div>
+                <!-- Logo -->
+                <div class="profile">
+                    <h:form class="photo">
+                        <img src="https://cdn.discordapp.com/attachments/831560691252068372/971016806728888380/logo-eci-removebg-preview.png" alt="Logo Escuela"/>
+                        <h:outputText value="#{validatorBean.userMail}" rendered="#{validatorBean.authenticated()}"></h:outputText>
+                    </h:form>
+                </div>
+                <!-- Items -->
+                <div class="menu-items">
+                    <div class="item">
+                        <a href="/faces/index.xhtml">
+                            <div class="icon">
+                                <img src="https://cdn.discordapp.com/attachments/831560691252068372/972921286059778108/553376.png" alt="Inicio"/>
+                            </div>
+                            <div class="title">
+                                <span>Inicio</span>
+                            </div>
+                        </a>
+                    </div>
+                    <h:form class="item">
+                        <p:link outcome="/faces/reservasUsuario.xhtml" rendered="#{validatorBean.authenticated()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973021919504896040/661513.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Mis reservas</h:panelGroup>
+                            </h:panelGroup>
+                        </p:link>
+                    </h:form>
+                    <h:form class="item">
+                        <p:commandLink action="#{userBean.logOut}" immediate="true" rendered="#{validatorBean.authenticated()}">
+                            <h:panelGroup  class="icon" layout="block">
+                                <h:graphicImage url="https://cdn.discordapp.com/attachments/831560691252068372/973033620744847380/unknown.png"/>
+                            </h:panelGroup>
+                            <h:panelGroup  class="title" layout="block">
+                                <h:panelGroup>Cerrar Sesion</h:panelGroup>
+                            </h:panelGroup>
+                        </p:commandLink>
+                    </h:form>
+                </div>
+            </div>
+            <div class="main">
+                <p:tabView>
+                    <p:tab class="tab" title="Recursos Mas Usados">
+                        <p:dataTable class="tablaReporte" var="reportInf" value="#{userBean.reportsMasU}"
+                                     filteredValue="#{userBean.reportsFilter}">
+
+
+                            <p:column  class="col" sortBy="#{reportInf.recursoId}" filterBy="#{reportInf.recursoId}"
+                                       filterMatchMode="exact" headerText="Id Recurso">
+                                <h:outputLabel value="#{reportInf.recursoId}"/>
+                            </p:column>
+
+                            <p:column  headerText="Fecha Inicio Disponblidad"
+                                       sortBy="#{reportInf.inicioDisp}"
+                                       filterBy="#{reportInf.inicioDisp}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.inicioDisp}"/>
+                            </p:column>
+
+                            <p:column  headerText="Fecha fin Disponblidad"
+                                       sortBy="#{reportInf.finDisp}"
+                                       filterBy="#{reportInf.finDisp}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.finDisp}"/>
+                            </p:column>
+
+                            <p:column  headerText="Programa"
+                                       sortBy="#{reportInf.programa}"
+                                       filterBy="#{reportInf.programa}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.programa}"/>
+                            </p:column>
+
+                            <p:column  headerText="tipo Recurso"
+                                       sortBy="#{reportInf.tipo}"
+                                       filterBy="#{reportInf.tipo}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.tipo}"/>
+                            </p:column>
+
+                            <p:column  headerText="Nombre Recurso"
+                                       sortBy="#{reportInf.nombre}"
+                                       filterBy="#{reportInf.nombre}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.nombre}"/>
+                            </p:column>
+
+                            <p:column  headerText="Ubicación"
+                                       sortBy="#{reportInf.ubicacion}"
+                                       filterBy="#{reportInf.ubicacion}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.ubicacion}"/>
+                            </p:column>
+
+                            <p:column  headerText="Numero de Reservas"
+                                       sortBy="#{reportInf.numReservas}"
+                                       filterBy="#{reportInf.numReservas}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.numReservas}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab class="tab" title="Recursos Menos Usados">
+                        <p:dataTable class="tablaReporte" var="reportInf" value="#{userBean.reportsMenU}"
+                                     filteredValue="#{userBean.reportsFilter}">
+
+
+                            <p:column  class="col" sortBy="#{reportInf.recursoId}" filterBy="#{reportInf.recursoId}"
+                                       filterMatchMode="exact" headerText="Id Recurso">
+                                <h:outputLabel value="#{reportInf.recursoId}"/>
+                            </p:column>
+
+                            <p:column  headerText="Fecha Inicio Disponblidad"
+                                       sortBy="#{reportInf.inicioDisp}"
+                                       filterBy="#{reportInf.inicioDisp}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.inicioDisp}"/>
+                            </p:column>
+
+                            <p:column  headerText="Fecha fin Disponblidad"
+                                       sortBy="#{reportInf.finDisp}"
+                                       filterBy="#{reportInf.finDisp}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.finDisp}"/>
+                            </p:column>
+
+                            <p:column  headerText="Programa"
+                                       sortBy="#{reportInf.programa}"
+                                       filterBy="#{reportInf.programa}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.programa}"/>
+                            </p:column>
+
+                            <p:column  headerText="tipo Recurso"
+                                       sortBy="#{reportInf.tipo}"
+                                       filterBy="#{reportInf.tipo}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.tipo}"/>
+                            </p:column>
+
+                            <p:column  headerText="Nombre Recurso"
+                                       sortBy="#{reportInf.nombre}"
+                                       filterBy="#{reportInf.nombre}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.nombre}"/>
+                            </p:column>
+
+                            <p:column  headerText="Ubicación"
+                                       sortBy="#{reportInf.ubicacion}"
+                                       filterBy="#{reportInf.ubicacion}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.ubicacion}"/>
+                            </p:column>
+
+                            <p:column  headerText="Numero de Reservas"
+                                       sortBy="#{reportInf.numReservas}"
+                                       filterBy="#{reportInf.numReservas}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.numReservas}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab class="tab" title="Reservas Recurrentes">
+                        <p:dataTable class="tablaReporte" var="reportInf" value="#{userBean.reportsRec}"
+                                     filteredValue="#{userBean.reportsFilter}">
+
+
+                            <p:column  class="col" sortBy="#{reportInf.recursoId}" filterBy="#{reportInf.recursoId}"
+                                       filterMatchMode="exact" headerText="Id Recurso">
+                                <h:outputLabel value="#{reportInf.recursoId}"/>
+                            </p:column>
+
+                            <p:column  headerText="Fecha Inicio Disponblidad"
+                                       sortBy="#{reportInf.inicioDisp}"
+                                       filterBy="#{reportInf.inicioDisp}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.inicioDisp}"/>
+                            </p:column>
+
+                            <p:column  headerText="Fecha fin Disponblidad"
+                                       sortBy="#{reportInf.finDisp}"
+                                       filterBy="#{reportInf.finDisp}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.finDisp}"/>
+                            </p:column>
+
+                            <p:column  headerText="Programa"
+                                       sortBy="#{reportInf.programa}"
+                                       filterBy="#{reportInf.programa}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.programa}"/>
+                            </p:column>
+
+                            <p:column  headerText="tipo Recurso"
+                                       sortBy="#{reportInf.tipo}"
+                                       filterBy="#{reportInf.tipo}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.tipo}"/>
+                            </p:column>
+
+                            <p:column  headerText="Nombre Recurso"
+                                       sortBy="#{reportInf.nombre}"
+                                       filterBy="#{reportInf.nombre}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.nombre}"/>
+                            </p:column>
+
+                            <p:column  headerText="Ubicación"
+                                       sortBy="#{reportInf.ubicacion}"
+                                       filterBy="#{reportInf.ubicacion}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.ubicacion}"/>
+                            </p:column>
+
+                            <p:column  headerText="Numero de Reservas"
+                                       sortBy="#{reportInf.numReservas}"
+                                       filterBy="#{reportInf.numReservas}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.numReservas}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:tab>
+                    <p:tab class="tab" title="Reservas Canceladas">
+                        <p:dataTable class="tablaReporte" var="reportInf" value="#{userBean.reportsCan}"
+                                     filteredValue="#{userBean.reportsFilter}">
+
+
+                            <p:column  class="col" sortBy="#{reportInf.recursoId}" filterBy="#{reportInf.recursoId}"
+                                       filterMatchMode="exact" headerText="Id Recurso">
+                                <h:outputLabel value="#{reportInf.recursoId}"/>
+                            </p:column>
+
+                            <p:column  headerText="Fecha Inicio Disponblidad"
+                                       sortBy="#{reportInf.inicioDisp}"
+                                       filterBy="#{reportInf.inicioDisp}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.inicioDisp}"/>
+                            </p:column>
+
+                            <p:column  headerText="Fecha fin Disponblidad"
+                                       sortBy="#{reportInf.finDisp}"
+                                       filterBy="#{reportInf.finDisp}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.finDisp}"/>
+                            </p:column>
+
+                            <p:column  headerText="Programa"
+                                       sortBy="#{reportInf.programa}"
+                                       filterBy="#{reportInf.programa}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.programa}"/>
+                            </p:column>
+
+                            <p:column  headerText="tipo Recurso"
+                                       sortBy="#{reportInf.tipo}"
+                                       filterBy="#{reportInf.tipo}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.tipo}"/>
+                            </p:column>
+
+                            <p:column  headerText="Nombre Recurso"
+                                       sortBy="#{reportInf.nombre}"
+                                       filterBy="#{reportInf.nombre}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.nombre}"/>
+                            </p:column>
+
+                            <p:column  headerText="Ubicación"
+                                       sortBy="#{reportInf.ubicacion}"
+                                       filterBy="#{reportInf.ubicacion}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.ubicacion}"/>
+                            </p:column>
+
+                            <p:column  headerText="Numero de Reservas"
+                                       sortBy="#{reportInf.numReservas}"
+                                       filterBy="#{reportInf.numReservas}"
+                                       filterMatchMode="contains">
+                                <h:outputText value="#{reportInf.numReservas}"/>
+                            </p:column>
+
+                        </p:dataTable>
+                    </p:tab>
+                </p:tabView>
+            </div>
+        </div>
+    </h:body>
+</html>
+

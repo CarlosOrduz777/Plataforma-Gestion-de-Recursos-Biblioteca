@@ -1,6 +1,7 @@
 package edu.eci.cvds.persistence;
 
 import edu.eci.cvds.entities.Booking;
+import edu.eci.cvds.entities.Report;
 import edu.eci.cvds.entities.Resource;
 import edu.eci.cvds.entities.User;
 import org.apache.ibatis.annotations.Param;
@@ -14,8 +15,13 @@ public interface UserDAO {
 
     public List<Booking> viewBookingUser(String email) throws PersistenceException;
 
-
     User getUserById(int id) throws PersistenceException;
 
+    List<Report> getReportByResourceMan();
 
+    List<Report> getReportByResourceMen();
+
+    List<Report> getReportByResourceRec();
+
+    List<Report> getReportByResourceCan();
 }
